@@ -94,7 +94,7 @@ export default function UserProfile({ UserDetails }) {
     <>
       <Document />
       <Navbar />
-      <GeneralSidebar title="User Profile" />
+      <GeneralSidebar title="Your Orders" />
       {!session && (
         <>
           <div className="ml-[0px] lg:ml-[300px] lg:w-[calc(100%-300px)]">
