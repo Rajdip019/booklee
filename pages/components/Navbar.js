@@ -13,7 +13,6 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  ChevronDownIcon,
   Avatar
 } from '@chakra-ui/react'
 import Link from "next/link";
