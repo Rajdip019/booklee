@@ -25,7 +25,7 @@ function Storybooks(storybook, index) {
 
 const TopStoryBooksHome = () => {
 
-    const [result, setResult] = useState()
+    const [result, setResult] = useState(null)
 
     const handleStory = async () => {
         try{

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 import ProductCardSellingDisplay from "../components/ProductCardSellingDisplay";
 import Navbar from "../components/Navbar";
 import Document from "../document";
@@ -49,29 +49,33 @@ const search = () => {
   const [price, setPrice] = useState(10000);
   const [priceMax, setPriceMax] = useState(10000);
   const [priceMin, setPriceMin] = useState(0);
-  const [result, setResult] = useState();
+  const [result, setResult] = useState(null);
 
   const stateCity = cities.filter((element) => element.state == state); //Filtering data according to State from the cities database
 
   const handleFilter = async () => {
     //Getting the Data from all the input field and Sending it to the API end Point.
+    try{
+      const res = await fetch("https://booklee.vercel.app/api/filter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          category: category,
+          state: state,
+          city: city,
+          condition: condition,
+          price: price,
+        }),
+      });
+      const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
+      const newBooks = bookData?.value.reverse();
+      setResult(newBooks);
 
-    const res = await fetch("https://booklee.vercel.app/api/filter", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        category: category,
-        state: state,
-        city: city,
-        condition: condition,
-        price: price,
-      }),
-    });
-    const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
-    const newBooks = bookData?.value.reverse();
-    setResult(newBooks);
+    }catch{
+      null
+    }
   };
 
   const handlePriceMax = async () => {

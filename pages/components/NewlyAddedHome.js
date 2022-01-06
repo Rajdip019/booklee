@@ -24,7 +24,7 @@ function Newbooks(newbooks) {
 const NewlyAddedHome = () => {
     
 
-    const [result, setResult] = useState();
+    const [result, setResult] = useState(null);
 
     const handleNew = async () => {
         //Getting the Data from all the input field and Sending it to the API end Point.

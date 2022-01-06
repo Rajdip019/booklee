@@ -31,18 +31,20 @@ export default function ProductDetailsSellPage({donateNGOData}) {
   }
 
   export async function getStaticProps(){
-    const res = await fetch("https://booklee.vercel.app/api/donatengo/counter");
-    const donateNGOData = await res.json(); 
-    
-    if (!donateNGOData) {
+    try{
+      const res = await fetch("https://booklee.vercel.app/api/donatengo/counter");
+      const donateNGOData = await res.json(); 
+      return {
+          props : {
+              donateNGOData,
+          }
+      }
+
+    }catch{
       return {
         notFound: true,
       }
     }
+  
 
-    return {
-        props : {
-            donateNGOData,
-        }
-    }
   };
