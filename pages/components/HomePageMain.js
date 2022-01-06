@@ -1,9 +1,18 @@
 import React from 'react'
 import Link from 'next/link'
+import LoadingBar from 'react-top-loading-bar';
+import { useState } from 'react';
 
 const HomePageMain = () => {
+  const [progress, setProgress] = useState(0)
     return (
         <>
+        <LoadingBar
+        color='#4287f5'
+        height = {4}
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
         <div className="absolute z-10 right-0 hidden lg:block">
         <img src="/Vector.png" alt="vector image" />
         </div>
@@ -88,21 +97,21 @@ const HomePageMain = () => {
               </div>
 
               <Link href="/ListBookForDonating">
-              <button
+              <button onClick={()=> {setProgress(40); setProgress(100)}}
                 className="inline-block text-center font-bold text-xl bg-skin-lightGreen border border-transparent rounded-md py-3 px-10 text-skin-darkGreen hover:bg-skin-hoverGreen transition-all"
               >
                 Donate Now
               </button>
               </Link>
               <Link href="/ListBookForSelling">
-              <button
+              <button onClick={()=> {setProgress(40); setProgress(100)}}
                 className="ml-6 inline-block text-center font-bold text-xl bg-skin-lightBlue border border-transparent rounded-md py-3 px-8 text-skin-darkBlue hover:bg-skin-hoverBlue relative z-20 transition-all"
               >
                 Sell
               </button>
               </Link>
               <Link href="/donatengo">
-              <button
+              <button onClick={()=> {setProgress(40); setProgress(100)}}
                 className="block mt-5 px-[5.4rem] text-center font-bold text-xl border-4 border-[#155D18] rounded-md py-3 text-skin-darkGreen hover:bg-skin-hoverGreen transition-all"
               >
                 Donate to NGO

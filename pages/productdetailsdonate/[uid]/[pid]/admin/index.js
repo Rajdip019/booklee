@@ -10,6 +10,8 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import DonatedModalButton from "../../../../components/DonatedModalButton";
 import { template } from "../../../../../helpers/template";
+import LoadingBar from "react-top-loading-bar";
+import { useState } from "react";
 
 export default function ProductDetailsDonate({
   donateBooksDetails,
@@ -18,10 +20,18 @@ export default function ProductDetailsDonate({
   const { data: session } = useSession();
   const mail = session?.user?.email;
 
+  const [progress, setProgress] = useState(0);
+
   return (
     <>
       <Document />
       <Navbar />
+      <LoadingBar
+        color="#4287f5"
+        height={4}
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
       <GeneralSidebar title="Book Details" />
 
       {UserBookDetails.email != mail && (
@@ -35,7 +45,7 @@ export default function ProductDetailsDonate({
           <Link
             href={`/productdetailsdonate/${UserBookDetails._id}/${donateBooksDetails._id}`}
           >
-            <p className="mx-[20vw] rounded-3xl text-center mt-5 bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 font-semibold text-xl cursor-pointer">
+            <p className="mx-[20vw] rounded-3xl text-center mt-5 bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 font-semibold text-xl cursor-pointer"  onClick={()=> {setProgress(30)}}>
               Go to Visitor View
             </p>
           </Link>
@@ -88,10 +98,10 @@ export default function ProductDetailsDonate({
               <h4 className="text-center">{UserBookDetails.email}</h4>
             </div>
             <Link
-              href={"/productdetailssell/[uid]/[pid]/admin/edit"}
-              as={`/productdetailssell/${UserBookDetails._id}/${donateBooksDetails._id}/admin/edit`}
+              href={"/productdetailsdonate/[uid]/[pid]/admin/edit"}
+              as={`/productdetailsdonate/${UserBookDetails._id}/${donateBooksDetails._id}/admin/edit`}
             >
-              <button className="h-[50px] w-10/12  md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-10 lg:mx-5  mx-5 mt-4">
+              <button className="h-[50px] w-10/12  md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-10 lg:mx-5  mx-5 mt-4"  onClick={()=> {setProgress(30)}}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 inline-block pr-1 mb-0.5"
@@ -109,7 +119,7 @@ export default function ProductDetailsDonate({
                 Edit
               </button>
             </Link>
-            <button className="h-[50px] w-10/12 md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-10 lg:mx-4  mx-5 mt-4">
+            <button className="h-[50px] w-10/12 md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-10 lg:mx-4  mx-5 mt-4"  onClick={()=> {setProgress(30)}}>
               <div className="flex items-center justify-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +178,7 @@ export default function ProductDetailsDonate({
               </div>
             </button>
             <Link href={'/productdetailsdonate/[uid]/[pid]'} as={`/productdetailsdonate/${UserBookDetails._id}/${donateBooksDetails._id}`}>
-        <button className="h-[50px] w-10/12 md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-10 lg:mx-4 sm:mx-3 mx-5 mt-4">
+        <button className="h-[50px] w-10/12 md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-10 lg:mx-4 sm:mx-3 mx-5 mt-4"  onClick={()=> {setProgress(30)}}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 inline pr-1 mb-0.5"

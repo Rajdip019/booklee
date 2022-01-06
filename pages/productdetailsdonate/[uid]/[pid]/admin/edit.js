@@ -580,7 +580,7 @@ const EditListBookForDonating = ({donateBooksDetails, UserBookDetails}) => {
   );
 };
 
-export async function getServerSideProps({params:{pid, uid}}) {
+export async function getServerSideProps({ params: { pid, uid } }) {
   const {templateString} = template;
   try{
     const res = await fetch(`${templateString}/api/donatebook/${pid}`);
@@ -593,7 +593,6 @@ export async function getServerSideProps({params:{pid, uid}}) {
         UserBookDetails : data2
       }
     }
-
   }catch{
     return{
       notFound: true,

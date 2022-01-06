@@ -10,7 +10,7 @@ const ProductDonatedCard = (props) => {
 
             <div className="flex  mb-3 w-[266px]">
             <Link href={'/productdonated/invoice/[order_id]'} as={`/productdonated/invoice/${props._id}`}> 
-                <button className="w-[266px] rounded-b-lg bg-skin-lightGreen text-skin-darkGreen py-3 font-bold text-center text-xl">Get Donation Proof</button>
+                <button className="w-[266px] rounded-b-lg bg-skin-lightGreen text-skin-darkGreen py-3 font-bold text-center text-xl" onClick={()=> {try{props.topLoader()}catch{}}}>Get Donation Proof</button>
             </Link>
             </div>
                 <h1 className="w-[215px] font-semibold text-xl mb-2">{props.name}</h1>

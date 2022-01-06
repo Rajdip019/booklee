@@ -7,15 +7,29 @@ import ProductDetailsDonation from "../../../components/ProductDetailsDonation";
 import SellerDonaterDetailsDonate from "../../../components/Seller-DonatorDetailsDonate";
 import Footer from "../../../components/Footer";
 import { template } from "../../../../helpers/template";
+import LoadingBar from "react-top-loading-bar";
+import { useState } from "react";
 
 export default function ProductDetailsDonate({
   donateBooksDetails,
   UserBookDetails,
 }) {
+
+  const [progress, setProgress] = useState(0);
+
+  const topLoader = () => {
+    setProgress(30);
+  };
   return (
     <>
       <Document />
       <Navbar />
+      <LoadingBar
+        color="#4287f5"
+        height={4}
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
       <GeneralSidebar title="Book Details" />
       <div className=" mr-6 lg:ml-[300px] my-10">
         <ProductDetailsDonation
@@ -49,6 +63,7 @@ export default function ProductDetailsDonate({
           stateB={donateBooksDetails.state}
           landmarkB={donateBooksDetails.landmark}
           pinB={donateBooksDetails.pin}
+          topLoader = {topLoader}
         />
       </div>
       <div className="lg:ml-[300px]">

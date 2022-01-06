@@ -6,39 +6,59 @@ import GetBooksHome from "./components/GetBooksHome"
 import TopFreeBooksHome from "./components/TopFreeBooksHome"
 import TopStoryBooksHome from "./components/TopStoryBooksHome"
 import DonateBottomHome from "./components/DonateBottomHome"
-import Footer from "./components/Footer"
-import {template} from "../helpers/template"
+import Footer from "./components/Footer";
+import LoadingBar from 'react-top-loading-bar';
+import { useState } from "react"
+import {template} from "../helpers/template";
 
 
 export default function Home({sellBooks, donateBooks, sellerDetails}) {
 
-  console.log(template)
+  const [progress, setProgress] = useState(0)
+
+  const topLoader = () => {
+    setProgress(30);
+  }
   return (
     <>  
     <Document />
     <Navbar/>
+    <LoadingBar
+        color='#4287f5'
+        height = {4}
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
+      {/* <button onClick={topLoader}>click</button> */}
     <HomePageMain />
     <NewlyAddedHome 
       sellBooks={sellBooks}
       sellerDetails = {sellerDetails}
+      topLoader = {topLoader}
     />
-    <GetBooksHome />
+    <GetBooksHome 
+    topLoader = {topLoader}
+    />
     <TopFreeBooksHome 
     donateBooks={donateBooks}
     sellerDetails = {sellerDetails}
+    topLoader = {topLoader}
     />
     <TopStoryBooksHome 
       sellBooks={sellBooks}
       sellerDetails = {sellerDetails}
+      topLoader = {topLoader}
     />
-    <DonateBottomHome />
+    <DonateBottomHome 
+      topLoader = {topLoader}
+    />
     <Footer />
     </>
   )
 }
 
 export async function getStaticProps() {
-  const {templateString} = template;
+  const {templateString} = template
   try{
     const res = await fetch(`${templateString}/api/sellbook`);
     const res2 = await fetch(`${templateString}/api/donatebook`);
