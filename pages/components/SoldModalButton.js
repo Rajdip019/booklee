@@ -17,7 +17,6 @@ import { useSession } from "next-auth/react";
 import { template } from "../../helpers/template";
 
 const SoldModalButton = (props) => {
-  const {templateString} = template;
 
   const {templateString} = template;
 
