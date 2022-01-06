@@ -86,7 +86,9 @@ const NewlyAddedHome = () => {
 
             <div className="sm:hidden  grid grid-cols-1 mt-14 mb-14">
                 <h2 className="text-3xl font-semibold mb-12 text-center underline">Newly Added</h2>
-                {result?.slice(0, 2).map(Newbooks)}
+                {result ? (
+                result?.slice(0, 2).map(Newbooks)
+                ) : (null)}
                 <Link href="/browsebooks/newlyadded" >
                 <button className="float-right bg-skin-lightBlue text-skin-darkBlue py-2 px-4 rounded-lg font-semibold text-xl hover:bg-skin-hoverBlue transition-all w-8/12 ml-auto mr-auto">View all</button>
                 </Link>
@@ -96,13 +98,3 @@ const NewlyAddedHome = () => {
 }
 
 export default NewlyAddedHome
-
-export async function getStaticProps() {
-    const res = await fetch("https://booklee.vercel.app/api/sellbook");
-    const data = await res.json()
-    return{
-      props:{
-        sellBooks : data
-      }
-    }
-  }
