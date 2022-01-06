@@ -18,7 +18,6 @@ import {
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
-import { getSession } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
@@ -33,8 +32,7 @@ const Navbar = (props) => {
   const [id, setId] = useState("");
 
   const havesession = async () => {
-    const fetchSession = await getSession();
-    const sessionMail = fetchSession?.user?.email;
+    const sessionMail = session?.user?.email;
     if (sessionMail) {
       const res = await fetch(
         `https://booklee.vercel.app/api/user/${sessionMail}`
