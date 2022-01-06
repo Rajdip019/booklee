@@ -172,7 +172,6 @@ const Navbar = (props) => {
                   transition="all 0.2s"
                   _expanded={{ bg: "blue.400" }}
                   _focus={{ boxShadow: "outline" }}
-                  rightIcon={<ChevronDownIcon />}
                 >
                   <div className="w-[35px] ml-4">
                     <svg
