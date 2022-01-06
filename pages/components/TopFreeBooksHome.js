@@ -32,7 +32,9 @@ const TopFreeEduBook = ({donateBooks}) => {
                     <button className="float-right bg-skin-lightBlue text-skin-darkBlue py-2 px-4 rounded-lg font-semibold text-xl hover:bg-skin-hoverBlue transition-all">View all</button>
                     </Link>
                 </div>
-                {donateBooks.slice(0, 5).map(Edubooks)}
+                {donateBooks ? (
+                donateBooks.slice(0, 5).map(Edubooks)
+                ) : (null)}
             </div>
 
             {/*////////////////////////////////////////////////// For Large/Laptop Screens //////////////////////////////////////*/}
@@ -44,7 +46,9 @@ const TopFreeEduBook = ({donateBooks}) => {
                     <button className="float-right bg-skin-lightBlue text-skin-darkBlue py-2 px-4 rounded-lg font-semibold text-xl hover:bg-skin-hoverBlue transition-all">View all</button>
                     </Link>
                 </div>
-                    {donateBooks.slice(0, 4).map(Edubooks)}
+                {donateBooks ? (
+                donateBooks.slice(0, 4).map(Edubooks)
+                ) : (null)}
             </div>
 
             {/* ////////////////////////////////////////////////For Medium Screens////////////////////////////////////////// */}
@@ -56,14 +60,18 @@ const TopFreeEduBook = ({donateBooks}) => {
                 <button className="float-right bg-skin-lightBlue text-skin-darkBlue py-2 px-4 rounded-lg font-semibold text-xl hover:bg-skin-hoverBlue transition-all">View all</button>
                 </Link>
                 </div>
-                {donateBooks.slice(0, 3).map(Edubooks)}
+                {donateBooks ? (
+                donateBooks.slice(0, 3).map(Edubooks)
+                ) : (null)}
             </div>
 
             {/* ///////////////////////////////////////////////////For Small/Mobile Screens///////////////////////////////////////// */}
 
             <div className="sm:hidden  grid grid-cols-1 my-14">
                 <h2 className="text-3xl font-semibold mb-12 text-center underline">Free Educational Books</h2>
-                {donateBooks.slice(0, 2).map(Edubooks)}
+                {donateBooks ? (
+                donateBooks.slice(0, 2).map(Edubooks)
+                ) : (null)}
                 <Link href="/browsefreebooks" >
                 <button className="float-right bg-skin-lightBlue text-skin-darkBlue py-2 px-4 rounded-lg font-semibold text-xl hover:bg-skin-hoverBlue transition-all w-8/12 ml-auto mr-auto">View all</button>
                 </Link>

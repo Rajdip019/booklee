@@ -31,8 +31,7 @@ const NewlyAddedHome = () => {
         try{
             const res = await fetch("https://booklee.vercel.app/api/sellbook");
             const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
-            const newBooks = bookData?.reverse();
-            setResult(newBooks);
+            setResult(bookData?.reverse());
         }catch{
             null
         }
