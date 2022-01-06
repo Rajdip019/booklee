@@ -4,6 +4,7 @@ import TwitterProvider from "next-auth/providers/twitter";
 import GitHubProvider from "next-auth/providers/github";
 
 export default NextAuth({
+  secret : process.env.SECRET,
   providers: [
     GoogleProvider({
         clientId: process.env.GOOGLE_CLIENT_ID,
