@@ -11,7 +11,7 @@ const ProductCardSellMakeInvoice = (props) => {
             </div>
 
             <Link href={'/productdetailssell/[uid]/[pid]/admin'} as={`/productdetailssell/${props.seller_id}/${props._id}/admin`}>
-            <button className="w-[266px] rounded-b-lg bg-skin-lightBlue py-3 text-skin-darkBlue font-bold text-center hover:bg-skin-hoverBlue transition-all">Manage Book</button>
+            <button className="w-[266px] rounded-b-lg bg-skin-lightBlue py-3 text-skin-darkBlue font-bold text-center hover:bg-skin-hoverBlue transition-all" onClick={()=> {try{props.topLoader()}catch{}}}>Manage Book</button>
             </Link>
   
             <div className="flex ">

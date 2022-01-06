@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/dist/client/link";
 
-const DonateBottomHome = () => {
+const DonateBottomHome = ({topLoader}) => {
   return (
     <div className=" w-11/12 mx-auto my-10">
       <div className="bg-skin-lightGreen text-skin-darkGreen rounded-xl h-[30vh]">
@@ -15,7 +15,7 @@ const DonateBottomHome = () => {
             </div>
             <div className="my-auto text-center">
             <Link href="/donatengo">
-            <button className="font-bold bg-skin-darkGreen text-skin-lightGreen rounded-xl mr-0 sm:mr-7 py-2 px-4 my-3 text-xl">
+            <button className="font-bold bg-skin-darkGreen text-skin-lightGreen rounded-xl mr-0 sm:mr-7 py-2 px-4 my-3 text-xl" onClick={()=> {topLoader()}}>
               Donate Now
             </button>
             </Link>

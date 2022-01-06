@@ -11,6 +11,8 @@ import { Avatar } from "@chakra-ui/react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { template } from "../../../../../helpers/template";
+import LoadingBar from "react-top-loading-bar";
+import { useState } from "react";
 
 export default function ProductDetailsSellPage({
   sellBooksDetails,
@@ -20,10 +22,18 @@ export default function ProductDetailsSellPage({
   const {data : session} = useSession();
   const mail = session?.user?.email;
 
+  const [progress, setProgress] = useState(0);
+
   return (
     <>
       <Document />
       <Navbar />
+      <LoadingBar
+        color="#4287f5"
+        height={4}
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
       <GeneralSidebar title="Book Details" />
 
       {UserBookDetails.email != mail && (
@@ -31,7 +41,7 @@ export default function ProductDetailsSellPage({
           <h1 className="text-4xl text-gray-500 text-center">You Do not Have Access to this Page!</h1>
           <h1 className="text-2xl text-gray-500 text-center mt-3">This page can only be accessed by Admin</h1>
           <Link href={`/productdetailssell/${UserBookDetails._id}/${sellBooksDetails._id}`}>
-          <p className="mx-[20vw] rounded-3xl text-center mt-5 bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 font-semibold text-xl cursor-pointer">Go to Visitor View</p>
+          <p className="mx-[20vw] rounded-3xl text-center mt-5 bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 font-semibold text-xl cursor-pointer" onClick={()=> {setProgress(30)}}>Go to Visitor View</p>
           </Link>
           </div>
         ) }
@@ -86,7 +96,7 @@ export default function ProductDetailsSellPage({
           <h4 className="text-center">{UserBookDetails.email}</h4>
         </div>
         <Link href={'/productdetailssell/[uid]/[pid]/admin/edit'} as={`/productdetailssell/${UserBookDetails._id}/${sellBooksDetails._id}/admin/edit`}>
-        <button className="h-[50px] w-10/12  md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-10 lg:mx-5  mx-5 mt-4">
+        <button className="h-[50px] w-10/12  md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-10 lg:mx-5  mx-5 mt-4" onClick={()=> {setProgress(30)}}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 inline-block pr-1 mb-0.5"
@@ -165,7 +175,7 @@ export default function ProductDetailsSellPage({
           </div>
         </button>
         <Link href={'/productdetailssell/[uid]/[pid]'} as={`/productdetailssell/${UserBookDetails._id}/${sellBooksDetails._id}`}>
-        <button className="h-[50px] w-10/12 md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-10 lg:mx-4 sm:mx-3 mx-5 mt-4">
+        <button className="h-[50px] w-10/12 md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-10 lg:mx-4 sm:mx-3 mx-5 mt-4" onClick={()=> {setProgress(30)}}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 inline pr-1 mb-0.5"

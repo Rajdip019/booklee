@@ -76,20 +76,20 @@ const SellerDonaterDetails = (props) => {
             <h3 className="font-semibold text-2xl">{props.name}</h3>
             <div className="flex lg:justify-center 2xl:justify-between">
               <Link href={"/profile/[uid]"} as={`/profile/${props._id}`}>
-                <button className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue transition-all px-4 py-2 text-md font-bold rounded-3xl m-4 2xl:mx-2 ">
+                <button className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue transition-all px-4 py-2 text-md font-bold rounded-3xl m-4 2xl:mx-2 " onClick={()=> {try{props.topLoader()}catch{}}}>
                   View Profile
                 </button>
               </Link>
               {props.email != mail && (
               <Link href={"/profile/[uid]/message"} as={`/profile/${props._id}/message`}>
-              <button className="text-md text-center bg-skin-darkBlue text-skin-lightBlue p-2 px-6 rounded-3xl hover:bg-blue-700 font-semibold m-4 2xl:mx-2 ">
+              <button className="text-md text-center bg-skin-darkBlue text-skin-lightBlue p-2 px-6 rounded-3xl hover:bg-blue-700 font-semibold m-4 2xl:mx-2 " onClick={()=> {try{props.topLoader()}catch{}}}>
                 Message
               </button>
               </Link>
               ) }
               {props.email === mail && (
               <Link href={"/productdetailssell/[uid]/[pid]/admin"} as={`/productdetailssell/${props._id}/${props.book_id}/admin`}>
-              <button className="text-md text-center bg-skin-darkBlue text-skin-lightBlue p-2 px-6 rounded-3xl hover:bg-blue-700 font-semibold m-4 2xl:mx-2 ">
+              <button className="text-md text-center bg-skin-darkBlue text-skin-lightBlue p-2 px-6 rounded-3xl hover:bg-blue-700 font-semibold m-4 2xl:mx-2 " onClick={()=> {try{props.topLoader()}catch{}}}>
                 Admin View
               </button>
               </Link>
@@ -170,7 +170,7 @@ const SellerDonaterDetails = (props) => {
               Seller Profile
             </h1>
             <Link href={"/profile/[uid]"} as={`/profile/${props._id}`}>
-              <div className="mt-auto mb-auto text-center cursor-pointer">
+              <div className="mt-auto mb-auto text-center cursor-pointer"  onClick={()=> {try{props.topLoader()}catch{}}}>
                 <ChakraProvider>
                   <Avatar
                     name={props.name}
@@ -187,7 +187,7 @@ const SellerDonaterDetails = (props) => {
             </h3>
             <Link href={"/profile/[uid]"} as={`/profile/${props._id}`}>
               <div className="w-8/12 mx-auto">
-                <button className="w-full bg-skin-darkBlue text-skin-lightBlue hover:bg-skin-hoverBlue transition-all px-4 py-2  text-xl font-bold rounded-3xl">
+                <button className="w-full bg-skin-darkBlue text-skin-lightBlue hover:bg-skin-hoverBlue transition-all px-4 py-2  text-xl font-bold rounded-3xl" onClick={()=> {try{props.topLoader()}catch{}}}>
                   View Profile
                 </button>
               </div>
@@ -221,14 +221,14 @@ const SellerDonaterDetails = (props) => {
               <h2 className="font-semibold mt-5">Want to chat?</h2>
               {props.email != mail && (
               <Link href={"/profile/[uid]/message"} as={`/profile/${props._id}/message`}>
-              <button className="text-md text-center bg-skin-darkBlue text-skin-lightBlue p-2 px-6 rounded-3xl hover:bg-blue-700 font-semibold m-4 2xl:mx-2 ">
+              <button className="text-md text-center bg-skin-darkBlue text-skin-lightBlue p-2 px-6 rounded-3xl hover:bg-blue-700 font-semibold m-4 2xl:mx-2 " onClick={()=> {try{props.topLoader()}catch{}}}>
                 Message
               </button>
               </Link>
               ) }
               {props.email === mail && (
               <Link href={"/productdetailssell/[uid]/[pid]/admin"} as={`/productdetailssell/${props._id}/${props.book_id}/admin`}>
-              <button className="text-md text-center bg-skin-darkBlue text-skin-lightBlue p-2 px-6 rounded-3xl hover:bg-blue-700 font-semibold m-4 2xl:mx-2 ">
+              <button className="text-md text-center bg-skin-darkBlue text-skin-lightBlue p-2 px-6 rounded-3xl hover:bg-blue-700 font-semibold m-4 2xl:mx-2 " onClick={()=> {try{props.topLoader()}catch{}}}>
                 Admin View
               </button>
               </Link>

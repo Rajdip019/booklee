@@ -1,7 +1,7 @@
 import React from "react";
 import Link from 'next/link'
 
-const GetBooksHome = () => {
+const GetBooksHome = ({topLoader}) => {
   return (
     <div>
       <div className="grid  grid-col-1 lg:grid-cols-2 gap-6 w-11/12 mx-auto">
@@ -11,7 +11,7 @@ const GetBooksHome = () => {
             <h1 className="text-lg sm:text-4xl xl:text-5xl  font-bold">Get</h1>
             <h1 className="text-md sm:text-[20px]  font-bold">Free Educational Books</h1>
             <Link href="/browsefreebooks" >
-            <button className="font-bold bg-skin-darkGreen text-skin-lightGreen rounded-xl py-2 px-4 my-3 text-xl">
+            <button className="font-bold bg-skin-darkGreen text-skin-lightGreen rounded-xl py-2 px-4 my-3 text-xl" onClick={()=> {topLoader()}}>
               Browse Now
             </button>
             </Link>
@@ -28,7 +28,7 @@ const GetBooksHome = () => {
             <h1 className="text-lg sm:text-4xl xl:text-5xl font-bold">Get</h1>
             <h1 className="text-md sm:text-[20px] font-bold">Old Books at lesser price</h1>
             <Link href="/browsebooks" >
-            <button className="font-bold bg-skin-darkBlue text-skin-lightBlue rounded-xl py-2 px-4 my-3 text-xl">
+            <button className="font-bold bg-skin-darkBlue text-skin-lightBlue rounded-xl py-2 px-4 my-3 text-xl" onClick={()=> {topLoader()}}>
               Browse Now
             </button>
             </Link>

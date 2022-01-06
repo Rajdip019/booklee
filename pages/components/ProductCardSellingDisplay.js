@@ -55,8 +55,9 @@ const ProductCardSellingDisplay = (props) => {
 
 
   return (
+    <>
     <Link href={'/productdetailssell/[uid]/[pid]'} as={`/productdetailssell/${props.seller_id}/${props._id}`}>
-    <div className="w-[266px] cursor-pointer">
+      <div className="w-[266px] cursor-pointer">
       <div>
         <img
           className=" h-[300px] w-[266px] rounded-lg mb-3"
@@ -124,6 +125,7 @@ const ProductCardSellingDisplay = (props) => {
       </div>
     </div>
     </Link>
+    </>
   );
 };
 

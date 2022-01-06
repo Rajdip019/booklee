@@ -7,6 +7,7 @@ import cities from "../../database/city";
 import { useDisclosure } from "@chakra-ui/hooks";
 import Link from "next/link";
 import { template } from "../../helpers/template";
+import LoadingBar from "react-top-loading-bar";
 import {
   Slider,
   SliderTrack,
@@ -26,25 +27,11 @@ import {
   Tab,
 } from "@chakra-ui/react";
 
-function bookCards(Book) {
-  return (
-    <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
-      <ProductCardSellingDisplay
-        _id={Book.doc_id}
-        seller_id={Book.seller_id}
-        name={Book.name}
-        img={Book.photo}
-        price={Book.price}
-        condition={Book.condition}
-        category={Book.category}
-      />
-    </div>
-  );
-}
-
 const BrowseBooks = () => {
-  const {templateString} = template;
-  
+  const { templateString } = template;
+
+  const [progress, setProgress] = useState(0);
+
   const [category, setCategory] = useState(null);
   const [state, setState] = useState(null);
   const [city, setCity] = useState(null);
@@ -61,7 +48,7 @@ const BrowseBooks = () => {
 
   const handleFilter = async () => {
     //Getting the Data from all the input field and Sending it to the API end Point.
-
+    setProgress(30);
     const res = await fetch(`${templateString}/api/filter`, {
       method: "POST",
       headers: {
@@ -75,8 +62,10 @@ const BrowseBooks = () => {
         price: price,
       }),
     });
+    setProgress(90);
     const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
     setResult(bookData?.value);
+    setProgress(100);
   };
 
   const handlePriceMax = async () => {
@@ -110,6 +99,12 @@ const BrowseBooks = () => {
     <>
       <Document />
       <Navbar />
+      <LoadingBar
+        color="#4287f5"
+        height={4}
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
       {/* Filter Start */}
       <ChakraProvider>
         <div className="w-[300px] text-center shadow-2xl h-[100vh] fixed hidden lg:block overflow-scroll">
@@ -322,22 +317,22 @@ const BrowseBooks = () => {
                   );
                 })}
               </select>
-          <div className="flex justify-between mb-12">
-            <button
-              className="bg-skin-lightRed text-skin-darkRed hover:bg-red-100 px-4 py-2 transition-all rounded-lg font-bold my-10 "
-              onClick={handleReset}
-            >
-              Clear Filter
-            </button>
-            <button
-              className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 transition-all rounded-lg font-bold my-10"
-              onClick={handleFilter}
-            >
-              Search
-            </button>
-          </div>
-          </div>
+              <div className="flex justify-between mb-12">
+                <button
+                  className="bg-skin-lightRed text-skin-darkRed hover:bg-red-100 px-4 py-2 transition-all rounded-lg font-bold my-10 "
+                  onClick={handleReset}
+                >
+                  Clear Filter
+                </button>
+                <button
+                  className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 transition-all rounded-lg font-bold my-10"
+                  onClick={handleFilter}
+                >
+                  Search
+                </button>
+              </div>
             </div>
+          </div>
         </div>
       </ChakraProvider>
       {/* Filter End */}
@@ -641,7 +636,14 @@ const BrowseBooks = () => {
             >
               <TabList className="bg-blue-50 w-[300px] rounded-3xl shadow-lg">
                 <Link href={"/browsefreebooks"}>
-                  <Tab className="w-[160px]">Educational</Tab>
+                  <Tab
+                    className="w-[160px]"
+                    onClick={() => {
+                      setProgress(30);
+                    }}
+                  >
+                    Educational
+                  </Tab>
                 </Link>
                 <Tab className="w-[150px] ">Others</Tab>
               </TabList>
@@ -652,12 +654,31 @@ const BrowseBooks = () => {
 
       <div className=" items-center">
         <div className="lg:ml-[300px] my-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 lg:w-[calc(100%-350px)] align-middle">
-          {result?.map(bookCards)}
+          {result?.map((Book) => {
+            return (
+              <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                <div
+                  onClick={() => {
+                    setProgress(30);
+                  }}
+                >
+                  <ProductCardSellingDisplay
+                    _id={Book.doc_id}
+                    seller_id={Book.seller_id}
+                    name={Book.name}
+                    img={Book.photo}
+                    price={Book.price}
+                    condition={Book.condition}
+                    category={Book.category}
+                  />
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </>
   );
 };
-
 
 export default BrowseBooks;

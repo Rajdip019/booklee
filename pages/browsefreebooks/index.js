@@ -7,6 +7,7 @@ import cities from "../../database/city";
 import { useDisclosure } from "@chakra-ui/hooks";
 import Link from "next/link";
 import { template } from "../../helpers/template";
+import LoadingBar from "react-top-loading-bar";
 import {
   Drawer,
   DrawerBody,
@@ -25,7 +26,7 @@ function bookCards(Book) {
   return (
     <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
       <ProductCardDonationDisplay
-        _id={Book.doc_id}
+        _id={Book._id}
         seller_id={Book.seller_id}
         name={Book.name}
         img={Book.photo}
@@ -37,8 +38,8 @@ function bookCards(Book) {
   );
 }
 
-export default function BrowseFreeBooks({donatebook}) {
-  const {templateString} = template;
+export default function BrowseFreeBooks({ donatebook }) {
+  const [progress, setProgress] = useState(0);
 
   const [state, setState] = useState(null);
   const [city, setCity] = useState(null);
@@ -50,38 +51,16 @@ export default function BrowseFreeBooks({donatebook}) {
 
   const stateCity = cities.filter((element) => element.state == state); //Filtering data according to State from the cities database
 
-  // const handleFilter = async () => {
-  //   //Getting the Data from all the input field and Sending it to the API end Point.
-
-  //   const res = await fetch(`${templateString}/api/filterD`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       state: state,
-  //       city: city,
-  //       condition: condition,
-  //     }),
-  //   });
-  //   const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
-  //   setResult(bookData?.value);
-  // };
-
-  // const handleReset = () => {
-  //   setState(0);
-  //   setCity(null);
-  //   setCondition(0);
-  // };
-
-  // useEffect(() => {
-  //   handleFilter();
-  // }, []);
-
   return (
     <>
       <Document />
       <Navbar />
+      <LoadingBar
+        color="#4287f5"
+        height={4}
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
       {/* Filter Start */}
       <ChakraProvider>
         <div className="w-[300px] text-center shadow-2xl h-[100vh] fixed hidden lg:block overflow-scroll">
@@ -247,20 +226,14 @@ export default function BrowseFreeBooks({donatebook}) {
                 })}
               </select>
             </div>
-          <div className="flex justify-between mb-12">
-            <button
-              className="bg-skin-lightRed text-skin-darkRed hover:bg-red-100 px-4 py-2 transition-all rounded-lg font-bold my-10 "
-         
-            >
-              Clear Filter
-            </button>
-            <button
-              className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 transition-all rounded-lg font-bold my-10"
-              
-            >
-              Search
-            </button>
-          </div>
+            <div className="flex justify-between mb-12">
+              <button className="bg-skin-lightRed text-skin-darkRed hover:bg-red-100 px-4 py-2 transition-all rounded-lg font-bold my-10 ">
+                Clear Filter
+              </button>
+              <button className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 transition-all rounded-lg font-bold my-10">
+                Search
+              </button>
+            </div>
           </div>
         </div>
       </ChakraProvider>
@@ -484,16 +457,10 @@ export default function BrowseFreeBooks({donatebook}) {
                     </div>
                   </div>
                   <div className="flex justify-between w-9/12 mx-auto">
-                    <button
-                      className="bg-skin-lightRed text-skin-darkRed hover:bg-red-100 px-4 py-2 transition-all rounded-lg font-bold my-10 "
-                    
-                    >
+                    <button className="bg-skin-lightRed text-skin-darkRed hover:bg-red-100 px-4 py-2 transition-all rounded-lg font-bold my-10 ">
                       Clear Filter
                     </button>
-                    <button
-                      className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 transition-all rounded-lg font-bold my-10"
-                    
-                    >
+                    <button className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 transition-all rounded-lg font-bold my-10">
                       Search
                     </button>
                   </div>
@@ -506,23 +473,29 @@ export default function BrowseFreeBooks({donatebook}) {
 
       {/* Mobile Filter End */}
       <div className=" mt-10  lg:ml-[300px] ">
-            <div className=" bg-skin-lightRed text-skin-darkRed rounded-xl w-11/12 mx-auto mt-5 shadow-lg">
-              <div className="flex flex-col sm:flex-row text-center sm:text-left justify-between h-full ">
-                <div className="ml-0 sm:ml-7 my-auto ">
-                  <h1 className="text-xl sm:text-2xl font-semibold p-2">
-                    Filter & Search Freature doesn't work in Donated Books due to Azure Student Subscription Limitations!
-                  </h1>
-                </div>
-                <div className="my-auto text-center">
-                  <Link href="/limitations">
-                    <button className="font-bold bg-skin-darkRed text-skin-lightRed rounded-xl mr-0 sm:mr-7 py-2 px-4 my-3 text-xl hover:bg-red-600 transition-all">
-                      Know More!
-                    </button>
-                  </Link>
-                </div>
-              </div>
+        <div className=" bg-skin-lightRed text-skin-darkRed rounded-xl w-11/12 mx-auto mt-5 shadow-lg">
+          <div className="flex flex-col sm:flex-row text-center sm:text-left justify-between h-full ">
+            <div className="ml-0 sm:ml-7 my-auto ">
+              <h1 className="text-xl sm:text-2xl font-semibold p-2">
+                Filter & Search Freature doesn't work in Donated Books due to
+                Azure Student Subscription Limitations!
+              </h1>
+            </div>
+            <div className="my-auto text-center">
+              <Link href="/limitations">
+                <button
+                  className="font-bold bg-skin-darkRed text-skin-lightRed rounded-xl mr-0 sm:mr-7 py-2 px-4 my-3 text-xl hover:bg-red-600 transition-all"
+                  onClick={() => {
+                    setProgress(30);
+                  }}
+                >
+                  Know More!
+                </button>
+              </Link>
             </div>
           </div>
+        </div>
+      </div>
       <div className=" ml-[30px] mt-10  lg:ml-[350px] flex-row sm:flex sm:items-center">
         <div>
           <ChakraProvider>
@@ -533,17 +506,16 @@ export default function BrowseFreeBooks({donatebook}) {
               orientation="horizontal"
             >
               <TabList className="bg-blue-50 w-[300px] rounded-3xl shadow-lg">
-                <Tab
-                  className="w-[160px]"
-                >
-                  Educational
-                </Tab>
+                <Tab className="w-[160px]">Educational</Tab>
                 <Link href={"/browsebooks"}>
-                <Tab
-                  className="w-[150px] "
-                >
-                  Others
-                </Tab>
+                  <Tab
+                    className="w-[150px] "
+                    onClick={() => {
+                      setProgress(30);
+                    }}
+                  >
+                    Others
+                  </Tab>
                 </Link>
               </TabList>
             </Tabs>
@@ -552,26 +524,46 @@ export default function BrowseFreeBooks({donatebook}) {
       </div>
       <div className=" items-center">
         <div className="lg:ml-[300px] my-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 lg:w-[calc(100%-350px)] align-middle">
-          {donatebook?.map(bookCards)}
+          {donatebook?.map((Book) => {
+            return (
+              <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                <div
+                  onClick={() => {
+                    setProgress(30);
+                  }}
+                >
+                  <ProductCardDonationDisplay
+                    _id={Book._id}
+                    seller_id={Book.seller_id}
+                    name={Book.name}
+                    img={Book.photo}
+                    price={Book.Price}
+                    condition={Book.condition}
+                    category={Book.category}
+                  />
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </>
   );
 }
 
-export async function getServerSideProps(){
-  const {templateString} = template;
-  try{
-    const res =  await fetch(`${templateString}/api/donatebook`);
+export async function getServerSideProps() {
+  const { templateString } = template;
+  try {
+    const res = await fetch(`${templateString}/api/donatebook`);
     const donatebook = await res.json();
     return {
-      props : {
-        donatebook : donatebook
-      }
-    }
-  }catch{
+      props: {
+        donatebook: donatebook,
+      },
+    };
+  } catch {
     return {
-      notFound : true
-    }
+      notFound: true,
+    };
   }
 }

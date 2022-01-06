@@ -7,13 +7,27 @@ import Footer from "../../../components/Footer";
 import ProductDetailsSell from "../../../components/ProductDetailsSell";
 import SellerDonaterDetails from "../../../components/Seller-DonaterDetails";
 import { template } from "../../../../helpers/template";
+import LoadingBar from "react-top-loading-bar";
+import { useState } from "react";
 
 
 export default function ProductDetailsSellPage({sellBooksDetails, UserBookDetails}) {
+  const [progress, setProgress] = useState(0);
+
+  const topLoader = () => {
+    setProgress(30);
+  };
+
     return (
       <>  
       <Document />
       <Navbar/>
+      <LoadingBar
+        color="#4287f5"
+        height={4}
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
       <GeneralSidebar title="Book Details"/>
       <div className=" mr-6 lg:ml-[300px]">
       <ProductDetailsSell 
@@ -50,6 +64,7 @@ export default function ProductDetailsSellPage({sellBooksDetails, UserBookDetail
             stateB = {sellBooksDetails.state}
             landmarkB ={sellBooksDetails.landmark}
             pinB = {sellBooksDetails.pin}
+            topLoader = {topLoader}
       />
       </div>
       <div className="lg:ml-[300px]">

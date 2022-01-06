@@ -1,36 +1,9 @@
-import { useState } from "react";
+
 import React from "react";
-import { useDisclosure } from "@chakra-ui/hooks";
 import Link from "next/link";
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  ChevronDownIcon,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-} from "@chakra-ui/react";
-import DeleteModalButton from "./DeleteModalButton";
-import DonatedModalButton from "./DonatedModalButton";
+
 
 const ProductCardDonationMakeProof = (props) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const [expandZone, setExpandZone] = useState(false);
-
-  function handleExpansion() {
-    setExpandZone(true);
-  }
-  function handleExpansionClose() {
-    setExpandZone(false);
-  }
-
   return (
     
 
@@ -46,10 +19,7 @@ const ProductCardDonationMakeProof = (props) => {
     
           <button
             className="w-[266px] rounded-b-lg bg-skin-lightGreen text-skin-darkGreen py-3 font-bold text-center hover:bg-skin-hoverGreen"
-            onClick={() => {
-              onOpen();
-              handleExpansionClose();
-            }}
+            onClick={()=> {try{props.topLoader()}catch{}}}
           >
             Manage Book
           </button>

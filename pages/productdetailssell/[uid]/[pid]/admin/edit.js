@@ -10,14 +10,13 @@ import { Input, ChakraProvider } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
 import cities from "../../../../../database/city"; //Have all the cities name According to State
 import { template } from "../../../../../helpers/template";
+import LoadingBar from "react-top-loading-bar";
 
 const EditListBookForSelling = ({sellBooksDetails , UserBookDetails}) => {
   const { data: session } = useSession();
   const mail = session?.user?.email
 
-  //Getting Email of the user form Session
-
-
+  const [progress, setProgress] = useState(0);
 
   //Gettting the form Changes
 
@@ -144,11 +143,18 @@ const EditListBookForSelling = ({sellBooksDetails , UserBookDetails}) => {
     setPin(sellBooksDetails.pin);
   };
 
+
   return (
     <>
       <div>
         <Document />
         <Navbar />
+        <LoadingBar
+        color="#4287f5"
+        height={4}
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
         <GeneralSidebar title="List Your Book" />
 
         
@@ -157,7 +163,7 @@ const EditListBookForSelling = ({sellBooksDetails , UserBookDetails}) => {
           <h1 className="text-4xl text-gray-500 text-center">You Do not Have Access to this Page!</h1>
           <h1 className="text-2xl text-gray-500 text-center mt-3">This page can only be accessed by Admin</h1>
           <Link href={`/productdetailssell/${UserBookDetails._id}/${sellBooksDetails._id}`}>
-          <p className="mx-[20vw] rounded-3xl text-center mt-5 bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 font-semibold text-xl cursor-pointer">Go to Visitor View</p>
+          <p className="mx-[20vw] rounded-3xl text-center mt-5 bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 font-semibold text-xl cursor-pointer" onClick={()=> {setProgress(30)}}>Go to Visitor View</p>
           </Link>
           </div>
         ) }
