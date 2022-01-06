@@ -24,15 +24,18 @@ function Newbooks(newbooks) {
 const NewlyAddedHome = () => {
     
 
-    const [result, setResult] = useState()
+    const [result, setResult] = useState();
 
     const handleNew = async () => {
         //Getting the Data from all the input field and Sending it to the API end Point.
-    
-        const res = await fetch("https://booklee.vercel.app/api/sellbook");
-        const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
-        const newBooks = bookData?.reverse();
-        setResult(newBooks);
+        try{
+            const res = await fetch("https://booklee.vercel.app/api/sellbook");
+            const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
+            const newBooks = bookData?.reverse();
+            setResult(newBooks);
+        }catch{
+            null
+        }
       };
       
       useEffect(() => {

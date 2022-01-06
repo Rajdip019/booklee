@@ -23,14 +23,18 @@ function Storybooks(storybook, index) {
 
 
 
-const TopStoryBooksHome = ({sellBooks}) => {
+const TopStoryBooksHome = () => {
 
     const [result, setResult] = useState()
 
     const handleStory = async () => {
-        const res = await fetch("https://booklee.vercel.app/api/sellbook/storybooks")
-        const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
-        setResult(bookData);
+        try{
+            const res = await fetch("https://booklee.vercel.app/api/sellbook/storybooks")
+            const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
+            setResult(bookData);
+        }catch{
+            null
+        }
       };
 
       useEffect(() => {

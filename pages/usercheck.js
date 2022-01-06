@@ -5,8 +5,12 @@ import { ChakraProvider, Spinner } from '@chakra-ui/react'
 const usercheck = () => {
     const router = useRouter()
     const checkUser = async() => {
-        const res = await fetch("https://booklee.vercel.app/api/user/signin")
-        router.push('/')
+        try{
+            const res = await fetch("https://booklee.vercel.app/api/user/signin")
+            router.push('/')
+        }catch{
+            null
+        }
       }
       checkUser();
     return (
