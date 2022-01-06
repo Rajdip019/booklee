@@ -37,17 +37,24 @@ export default function Home({sellBooks, donateBooks, sellerDetails}) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch("https://booklee.vercel.app/api/sellbook");
-  const res2 = await fetch("https://booklee.vercel.app/donatebook");
-  const res3 = await fetch ("https://booklee.vercel.app/api/user")
-  const data = await res.json()
-  const data2 = await res2.json()
-  const data3 = await res3.json()
-  return{
-    props:{
-      sellBooks : data,
-      donateBooks : data2,
-      sellerDetails : data3
+  try{
+    const res = await fetch("https://booklee.vercel.app/api/sellbook");
+    const res2 = await fetch("https://booklee.vercel.app/donatebook");
+    const res3 = await fetch ("https://booklee.vercel.app/api/user")
+    const data = await res.json()
+    const data2 = await res2.json()
+    const data3 = await res3.json()
+    return{
+      props:{
+        sellBooks : data,
+        donateBooks : data2,
+        sellerDetails : data3
+      }
+    }
+
+  }catch{
+    return{
+      notFound : true
     }
   }
 }
