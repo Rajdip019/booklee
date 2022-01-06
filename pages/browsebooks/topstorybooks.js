@@ -25,7 +25,6 @@ import {
   TabList,
   Tab,
 } from "@chakra-ui/react";
-import { template } from "../../helpers/template";
 
 function bookCards(Book) {
   return (
