@@ -39,7 +39,7 @@ export default function Home({sellBooks, donateBooks, sellerDetails}) {
 export async function getStaticProps() {
   try{
     const res = await fetch("https://booklee.vercel.app/api/sellbook");
-    const res2 = await fetch("https://booklee.vercel.app/donatebook");
+    const res2 = await fetch("https://booklee.vercel.app/api/donatebook");
     const res3 = await fetch ("https://booklee.vercel.app/api/user")
     const data = await res.json()
     const data2 = await res2.json()
