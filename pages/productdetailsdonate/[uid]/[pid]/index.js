@@ -1,0 +1,79 @@
+// URL: productdetailsdonate
+
+import Document from "../../../document";
+import Navbar from "../../../components/Navbar";
+import GeneralSidebar from "../../../components/GeneralSidebar";
+import ProductDetailsDonation from "../../../components/ProductDetailsDonation";
+import SellerDonaterDetailsDonate from "../../../components/Seller-DonatorDetailsDonate";
+import Footer from "../../../components/Footer";
+
+export default function ProductDetailsDonate({
+  donateBooksDetails,
+  UserBookDetails,
+}) {
+  return (
+    <>
+      <Document />
+      <Navbar />
+      <GeneralSidebar title="Book Details" />
+      <div className=" mr-6 lg:ml-[300px] my-10">
+        <ProductDetailsDonation
+          name={donateBooksDetails.name}
+          img={donateBooksDetails.photo}
+          description={donateBooksDetails.description}
+          author={donateBooksDetails.author}
+          condition={donateBooksDetails.condition}
+          city={donateBooksDetails.city}
+          country={donateBooksDetails.country}
+          state={donateBooksDetails.state}
+          landmark={donateBooksDetails.landmark}
+        />
+      </div>
+      <div className="lg:ml-[300px]">
+        <SellerDonaterDetailsDonate
+          _id={UserBookDetails._id}
+          name={UserBookDetails.name}
+          email = {UserBookDetails.email}
+          img={UserBookDetails.image}
+          phno={UserBookDetails.phone}
+          adress={UserBookDetails.address}
+          country={UserBookDetails.country}
+          city={UserBookDetails.city}
+          state={UserBookDetails.state}
+          landmark={UserBookDetails.landmark}
+          book_id = {donateBooksDetails._id}
+          cityB={donateBooksDetails.city}
+          addressB={donateBooksDetails.adress}
+          countryB={donateBooksDetails.country}
+          stateB={donateBooksDetails.state}
+          landmarkB={donateBooksDetails.landmark}
+          pinB={donateBooksDetails.pin}
+        />
+      </div>
+      <div className="lg:ml-[300px]">
+        <Footer />
+      </div>
+    </>
+  );
+}
+
+export async function getServerSideProps({ params: { pid, uid } }) {
+  try {
+    const res = await fetch(`https://booklee.vercel.app/api/donatebook/${pid}`);
+    const res2 = await fetch(
+      `https://booklee.vercel.app/api/user/userdetails/${uid}`
+    );
+    const data = await res.json();
+    const data2 = await res2.json();
+    return {
+      props: {
+        donateBooksDetails: data,
+        UserBookDetails: data2,
+      },
+    };
+  } catch {
+    return {
+      notFound: true,
+    };
+  }
+}

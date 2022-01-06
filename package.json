@@ -1,0 +1,37 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "node_modules/next/dist/bin/next start -p $PORT"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^1.7.2",
+    "@emotion/react": "^11.7.0",
+    "@emotion/styled": "^11.6.0",
+    "@headlessui/react": "^1.4.2",
+    "@heroicons/react": "^1.0.5",
+    "@sendgrid/mail": "^7.6.0",
+    "@tailwindcss/aspect-ratio": "^0.3.0",
+    "@tailwindcss/forms": "^0.3.4",
+    "dotenv": "^10.0.0",
+    "framer-motion": "^4.1.17",
+    "geolib": "^3.3.3",
+    "mongodb": "^3.5.9",
+    "mongoose": "^6.1.1",
+    "next": "latest",
+    "next-auth": "^4.0.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-map-gl": "^6.1.18",
+    "swr": "^1.1.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.2.6",
+    "json-loader": "^0.5.7",
+    "postcss": "^8.3.5",
+    "tailwindcss": "^2.2.4",
+    "transform-loader": "^0.2.4",
+    "webworkify-webpack": "^1.0.6"
+  }
+}

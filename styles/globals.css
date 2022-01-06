@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+
+    [type="text"],
+  [type="email"],
+  [type="url"],
+  [type="password"],
+  [type="number"],
+  [type="date"],
+  [type="datetime-local"],
+  [type="month"],
+  [type="search"],
+  [type="tel"],
+  [type="time"],
+  [type="week"],
+  [multiple],
+  textarea,
+  select {
+    @apply px-3 py-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all;
+  }
+  [type="checkbox"],
+  [type="radio"] {
+    @apply px-3 py-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all;
+  },
+
+    body{
+        font-family: 'IBM Plex Sans', sans-serif;
+    }
+
+    :root{
+        --dark-green: #155D18;
+        --light-green : #C5F2C7 ;
+        --dark-blue: #0F56B3  ;
+        --light-blue: #C5DCFA ;
+        --accent-grey: #E0E0E0 ;
+        --dark-red: #FB1616 ;
+        --light-red: #FCD0CF;
+        --btn-hover-green: #9AFF9F ;
+        --btn-hover-blue: #E1EEFF ;
+    }
+    
+}
