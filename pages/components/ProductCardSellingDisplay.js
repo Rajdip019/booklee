@@ -2,8 +2,10 @@ import React from "react";
 import { useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { template } from "../../helpers/template";
 
 const ProductCardSellingDisplay = (props) => {
+  const {templateString} = template;
 
   const { data: session } = useSession();
   const mail = session?.user?.email;
@@ -20,7 +22,7 @@ const ProductCardSellingDisplay = (props) => {
     const addToFavourite = async() => {
     
       setstate((state = !state));
-        const res = await fetch("https://booklee.vercel.app/api/user/favs/add", {
+        const res = await fetch(`${templateString}/api/user/favs/add`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -37,7 +39,7 @@ const ProductCardSellingDisplay = (props) => {
       const delFromFavourite = async() => {
         
         setstate((state = !state));
-        const res = await fetch("https://booklee.vercel.app/api/user/favs/delete", {
+        const res = await fetch(`${templateString}/api/user/favs/delete`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

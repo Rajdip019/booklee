@@ -9,8 +9,10 @@ import { getCenter } from "geolib";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { ChakraProvider, Spinner, createStandaloneToast } from "@chakra-ui/react";
+import { template } from "../../helpers/template";
 
 const DonationNGOlist = ({ NGOData }) => {
+  const {templateString} = template;
   const { data: session } = useSession();
   const email = session?.user?.email;
   const nameUser = session?.user?.name;
@@ -87,7 +89,7 @@ const DonationNGOlist = ({ NGOData }) => {
 
     //Getting the Data from all the input field and Sending it to the API end Point.
 
-    const res = await fetch("https://booklee.vercel.app/api/donatengo", {
+    const res = await fetch(`${templateString}/api/donatengo`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

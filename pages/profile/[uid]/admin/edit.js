@@ -10,8 +10,11 @@ import cities from "../../../../database/city"; //Have all the cities name Accor
 import { createStandaloneToast } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { template } from "../../../../helpers/template";
 
 const EditProfile = ({UserDetails}) => {
+
+  const {templateString} = template;
 
   const { data: session } = useSession();
   
@@ -43,7 +46,7 @@ const EditProfile = ({UserDetails}) => {
 
     //Getting the Data from all the input field and Sending it to the API end Point.
 
-    const res = await fetch("https://booklee.vercel.app/api/user/edit", {
+    const res = await fetch(`${templateString}/api/user/edit`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -288,7 +291,7 @@ const EditProfile = ({UserDetails}) => {
                 })}
               </select>
 
-              <div className=" flex mt-8">
+              <div className=" flex my-8">
                 <button
                   type="submit"
                   onClick={handleSubmit}
@@ -392,7 +395,7 @@ const EditProfile = ({UserDetails}) => {
                 </ChakraProvider>
               </div>
               {/* ////////////////////Mobile Buttons////////////////////////////// */}
-              <div className=" flex">
+              <div className=" flex mb-10">
                 <button
                   onClick={handleSubmit}
                   type="submit"
@@ -431,8 +434,10 @@ const EditProfile = ({UserDetails}) => {
   );
 };
 export async function getServerSideProps({params:{uid}}) {
+  const {templateString} = template;
+
   try{
-    const res = await fetch(`https://booklee.vercel.app/api/user/userdetails/${uid}`);
+    const res = await fetch(`${templateString}/api/user/userdetails/${uid}`);
     const data = await res.json()
     return{
       props:{

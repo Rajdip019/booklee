@@ -2,9 +2,11 @@ import React from 'react'
 import ProductCardSellingDisplay from './ProductCardSellingDisplay'
 import Link from 'next/link'
 import { useState ,useEffect } from 'react'
+import { template } from '../../helpers/template'
 
 
 function Storybooks(storybook, index) {
+
     return (
         <div className="ml-auto mr-auto mb-16">
             <ProductCardSellingDisplay
@@ -24,12 +26,13 @@ function Storybooks(storybook, index) {
 
 
 const TopStoryBooksHome = () => {
+    const {templateString} = template;
 
     const [result, setResult] = useState(null)
 
     const handleStory = async () => {
         try{
-            const res = await fetch("https://booklee.vercel.app/api/sellbook/storybooks")
+            const res = await fetch(`${templateString}/api/sellbook/storybooks`)
             const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
             setResult(bookData);
         }catch{

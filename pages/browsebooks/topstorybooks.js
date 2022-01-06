@@ -6,6 +6,7 @@ import Document from "../document";
 import cities from "../../database/city";
 import { useDisclosure } from '@chakra-ui/hooks'
 import Link from "next/link";
+import { template } from "../../helpers/template";
 import {
   Slider,
   SliderTrack,
@@ -24,6 +25,7 @@ import {
   TabList,
   Tab,
 } from "@chakra-ui/react";
+import { template } from "../../helpers/template";
 
 function bookCards(Book) {
   return (
@@ -42,6 +44,8 @@ function bookCards(Book) {
 }
 
 const search = () => {
+  const {templateString} = template;
+
   const [category, setCategory] = useState("Story Book");
   const [state, setState] = useState(null);
   const [city, setCity] = useState(null);
@@ -58,7 +62,7 @@ const search = () => {
   const stateCity = cities.filter((element) => element.state == state); //Filtering data according to State from the cities database
 
   const handleStory = async () => {
-    const res = await fetch("https://booklee.vercel.app/api/sellbook/storybooks")
+    const res = await fetch(`${templateString}/api/sellbook/storybooks`)
     const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
     setResult(bookData);
   };
@@ -66,7 +70,7 @@ const search = () => {
   const handleFilter = async () => {
     //Getting the Data from all the input field and Sending it to the API end Point.
 
-    const res = await fetch("https://booklee.vercel.app/api/filter", {
+    const res = await fetch(`${templateString}/api/filter`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -86,7 +90,7 @@ const search = () => {
   const handlePriceMax = async () => {
     //Getting the Data from all the input field and Sending it to the API end Point.
 
-    const res = await fetch("https://booklee.vercel.app/api/filter/all");
+    const res = await fetch(`${templateString}/api/filter/all`);
     const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
     setPriceSlider(bookData?.value);
     let priceArr = [];

@@ -35,7 +35,7 @@ const Navbar = (props) => {
     const sessionMail = session?.user?.email;
     if (sessionMail) {
       const res = await fetch(
-        `https://booklee.vercel.app/api/user/${sessionMail}`
+        `http://localhost:3000/api/user/${sessionMail}`
       );
       const userData = await res.json();
       setId(userData._id);

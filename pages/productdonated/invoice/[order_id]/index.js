@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { getSession } from "next-auth/react";
 import Document from "../../../document";
+import { template } from "../../../../helpers/template";
 
 const index = ({ DonatedBooksDetails }) => {
   const router = useRouter();
@@ -11,12 +12,14 @@ const index = ({ DonatedBooksDetails }) => {
   const mail = session?.user?.email;
 
   const [id, setId] = useState("");
+  const {templateString} = template;
+
 
   const havesession =async ()=> {
     const fetchSession =  await getSession()
     const sessionMail = fetchSession?.user?.email;
     if(sessionMail){
-      const res = await fetch(`https://booklee.vercel.app/api/user/${sessionMail}`)
+      const res = await fetch(`${templateString}/api/user/${sessionMail}`)
       const userData = await res.json()
       setId(userData._id)
     }
@@ -209,8 +212,9 @@ const index = ({ DonatedBooksDetails }) => {
 };
 
 export async function getServerSideProps({ params: { order_id } }) {
+  const {templateString} = template;
   try {
-    const res = await fetch(`https://booklee.vercel.app/api/donatedbook/${order_id}`);
+    const res = await fetch(`${templateString}/api/donatedbook/${order_id}`);
     const data = await res.json();
     return {
       props: {

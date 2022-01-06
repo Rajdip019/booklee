@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import ProductCardSellingDisplay from './ProductCardSellingDisplay'
 import Link from "next/link"
 import { useState } from 'react'
+import { template } from '../../helpers/template'
 
 function Newbooks(newbooks) {
     return (
@@ -22,14 +23,15 @@ function Newbooks(newbooks) {
 
 
 const NewlyAddedHome = () => {
-    
+    const {templateString} = template;
+  
 
     const [result, setResult] = useState(null);
 
     const handleNew = async () => {
         //Getting the Data from all the input field and Sending it to the API end Point.
         try{
-            const res = await fetch("https://booklee.vercel.app/api/sellbook");
+            const res = await fetch(`${templateString}/api/sellbook`);
             const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
             setResult(bookData?.reverse());
         }catch{

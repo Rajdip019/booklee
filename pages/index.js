@@ -7,11 +7,12 @@ import TopFreeBooksHome from "./components/TopFreeBooksHome"
 import TopStoryBooksHome from "./components/TopStoryBooksHome"
 import DonateBottomHome from "./components/DonateBottomHome"
 import Footer from "./components/Footer"
+import {template} from "../helpers/template"
 
 
 export default function Home({sellBooks, donateBooks, sellerDetails}) {
 
-
+  console.log(template)
   return (
     <>  
     <Document />
@@ -37,10 +38,11 @@ export default function Home({sellBooks, donateBooks, sellerDetails}) {
 }
 
 export async function getStaticProps() {
+  const {templateString} = template;
   try{
-    const res = await fetch("https://booklee.vercel.app/api/sellbook");
-    const res2 = await fetch("https://booklee.vercel.app/api/donatebook");
-    const res3 = await fetch ("https://booklee.vercel.app/api/user")
+    const res = await fetch(`${templateString}/api/sellbook`);
+    const res2 = await fetch(`${templateString}/api/donatebook`);
+    const res3 = await fetch (`${templateString}/api/user`)
     const data = await res.json()
     const data2 = await res2.json()
     const data3 = await res3.json()

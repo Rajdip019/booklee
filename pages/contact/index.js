@@ -4,8 +4,11 @@ import GeneralSidebar from "../components/GeneralSidebar";
 import { createStandaloneToast } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+import { template } from "../../helpers/template";
 
 export default function Contact() {
+  const {templateString} = template;
+
   const toast = createStandaloneToast(); // A standalone toast (doesn't reqiure a parent element)
 
   const { data: session } = useSession();
@@ -14,7 +17,7 @@ export default function Contact() {
   const [message, setMessage] = useState();
 
   const handleMail = async () => {
-    const res = await fetch("https://booklee.vercel.app/api/contact", {
+    const res = await fetch(`${templateString}/api/contact`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

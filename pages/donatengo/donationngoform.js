@@ -314,7 +314,7 @@ const DonationAddressForm = () => {
               </div>
             </div>
 
-            <div className="flex">
+            <div className="flex mb-8">
               <button
                 type="submit"
                 className="bg-skin-lightGreen text-skin-darkGreen font-bold py-2 px-4 rounded-lg hover:bg-skin-hoverGreen transition-all mr-5"
