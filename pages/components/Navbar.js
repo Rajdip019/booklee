@@ -145,24 +145,24 @@ const Navbar = (props) => {
               </MenuButton>
               <MenuList className=" bg-white rounded-lg p-2 w-28 shadow-lg">
                 <Link href={"/profile/[uid]/admin"} as={`/profile/${id}/admin`}>
-                  <MenuItem className="p-1 hover:bg-skin-lightBlue transition-all rounded font-semibold" onClick={()=> {setProgress(40); setProgress(100)}}>
-                    <span className="text-skin-darkBlue">User Profile</span>
+                  <MenuItem className="p-1 hover:bg-skin-lightBlue transition-all rounded font-semibold" >
+                    <span onClick={()=> {setProgress(40);}} className="text-skin-darkBlue">User Profile</span>
                   </MenuItem>
                 </Link>
                 <Link
                   href={"/profile/[uid]/admin/favourite"}
                   as={`/profile/${id}/admin/favourite`}
                 >
-                  <MenuItem className="p-1 hover:bg-skin-lightBlue transition-all rounded font-semibold" onClick={()=> {setProgress(40); setProgress(100)}}>
-                    <span className="text-skin-darkBlue">Favourite</span>
+                  <MenuItem className="p-1 hover:bg-skin-lightBlue transition-all rounded font-semibold" >
+                    <span onClick={()=> {setProgress(40);}} className="text-skin-darkBlue">Favourite</span>
                   </MenuItem>
                 </Link>
                 <Link
                   href={"/profile/[uid]/admin/orders"}
                   as={`/profile/${id}/admin/orders`}
                 >
-                  <MenuItem className="p-1 hover:bg-skin-lightBlue transition-all rounded font-semibold" onClick={()=> {setProgress(40); setProgress(100)}}>
-                    <span className="text-skin-darkBlue">Your Orders</span>
+                  <MenuItem className="p-1 hover:bg-skin-lightBlue transition-all rounded font-semibold" >
+                    <span onClick={()=> {setProgress(40);}} className="text-skin-darkBlue">Your Orders</span>
                   </MenuItem>
                 </Link>
                 <MenuItem className="p-1 hover:bg-skin-lightBlue transition-all rounded font-semibold" onClick={()=> {setProgress(40); setProgress(100)}}>
