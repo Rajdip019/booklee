@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import ProductCardSellingDisplay from "../components/ProductCardSellingDisplay";
 import Document from "../document";
-import cities from "../../Database/city";
+import cities from "../../database/city";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { useRouter } from "next/router";
 import {

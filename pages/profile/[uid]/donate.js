@@ -2,14 +2,11 @@ import Document from "../../document";
 import Navbar from "../../components/Navbar";
 import GeneralSidebar from "../../components/GeneralSidebar";
 import UserProfileDonation from "../../components/UserProfileDonation";
-import ToggleButtonDonate from "../../components/ToggleButtonDonate";
 import ProductCardDonationMakeProof from "../../components/ProductCardDonationMakeProof";
 import ProductDonatedCard from "../../components/ProductDonatedCard";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
-
-import BookD from "../../../Database/bookD";
 
 function bookCards(Book){
     return(
