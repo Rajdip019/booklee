@@ -1,7 +1,7 @@
 import Document from "../document";
-import Navbar from "../Components/Navbar";
-import GeneralSidebar from "../Components/GeneralSidebar";
-import Footer from "../Components/Footer";
+import Navbar from "../components/Navbar";
+import GeneralSidebar from "../components/GeneralSidebar";
+import Footer from "../components/Footer";
 
 
 

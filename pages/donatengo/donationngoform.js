@@ -5,7 +5,7 @@ import { Input, ChakraProvider, createStandaloneToast, Spinner } from "@chakra-u
 import Document from "../document";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import cities from "../../Database/city";
+import cities from "../../database/city";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 

@@ -8,7 +8,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { Input, ChakraProvider } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
-import cities from "../../../../../Database/city"; //Have all the cities name According to State
+import cities from "../../../../../database/city"; //Have all the cities name According to State
 
 const EditListBookForSelling = ({sellBooksDetails , UserBookDetails}) => {
   const { data: session } = useSession();
