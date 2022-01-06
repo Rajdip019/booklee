@@ -21,8 +21,11 @@ import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import LoadingBar from 'react-top-loading-bar';
+import { template } from "../../helpers/template";
 
 const Navbar = (props) => {
+
+  const {templateString} = template;
   const [searchInput, setSearchInput] = useState(null);
   const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -36,7 +39,7 @@ const Navbar = (props) => {
     const sessionMail = session?.user?.email;
     if (sessionMail) {
       const res = await fetch(
-        `http://localhost:3000/api/user/${sessionMail}`
+        `${templateString}/api/user/${sessionMail}`
       );
       const userData = await res.json();
       setId(userData._id);
