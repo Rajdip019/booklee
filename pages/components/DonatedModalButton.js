@@ -14,8 +14,11 @@ import { Avatar } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import { template } from "../../helpers/template";
 
 const DonatedModalButton = (props) => {
+  const {templateString} = template;
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [expandZone, setExpandZone] = useState(false);
   const router = useRouter();
@@ -39,7 +42,7 @@ const DonatedModalButton = (props) => {
   const handleSoldAdd = async (e) => {
     //Getting the Data from all the input field and Sending it to the API end Point.
     setLoader(true);
-    const res = await fetch("https://booklee.vercel.app/api/donatedbook/add", {
+    const res = await fetch(`${templateString}/api/donatedbook/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -72,7 +75,7 @@ const DonatedModalButton = (props) => {
   const handleSoldDelete = async (e) => {
     //Getting the Data from all the input field and Sending it to the API end Point.
 
-    const res = await fetch("https://booklee.vercel.app/api/donatedbook/delete", {
+    const res = await fetch(`${templateString}/api/donatedbook/delete`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -87,7 +90,7 @@ const DonatedModalButton = (props) => {
   const handleSoldPull = async (e) => {
     //Getting the Data from all the input field and Sending it to the API end Point.
 
-    const res = await fetch("https://booklee.vercel.app/api/donatedbook/pull", {
+    const res = await fetch(`${templateString}/api/donatedbook/pull`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -106,7 +109,7 @@ const DonatedModalButton = (props) => {
 
   const handleEmailCheck = async () => {
     try {
-      const res = await fetch(`https://booklee.vercel.app/api/user/${buyerEmail}`);
+      const res = await fetch(`${templateString}/api/user/${buyerEmail}`);
       const data = await res.json();
       setBuyerData(data);
     } catch {
@@ -129,7 +132,7 @@ const DonatedModalButton = (props) => {
     //OTP Generater
     var otp = Math.floor(1000 + Math.random() * 9000);
     setOTP(otp);
-    const res = await fetch("https://booklee.vercel.app/api/email", {
+    const res = await fetch(`${templateString}/api/email`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

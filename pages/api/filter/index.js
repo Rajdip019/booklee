@@ -93,7 +93,7 @@ export default async (req, res) => {
                 bookMain = ""
               }
               else{
-                  bookMain = `${book}~`
+                bookMain = `${book}~`
               }
 
 

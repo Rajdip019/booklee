@@ -2,6 +2,7 @@ import Document from "../document";
 import Navbar from "../components/Navbar";
 import GeneralSidebar from "../components/GeneralSidebar";
 import DonationMainCounter from "../components/DonationMainCounter";
+import { template } from "../../helpers/template";
 
 
 export default function ProductDetailsSellPage({donateNGOData}) {
@@ -30,9 +31,11 @@ export default function ProductDetailsSellPage({donateNGOData}) {
     )
   }
 
-  export async function getStaticProps(){
+  export async function getServerSideProps(){
+    const {templateString} = template;
+
     try{
-      const res = await fetch("https://booklee.vercel.app/api/donatengo/counter");
+      const res = await fetch(`${templateString}/api/donatengo/counter`);
       const donateNGOData = await res.json(); 
       return {
           props : {

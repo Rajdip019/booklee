@@ -6,6 +6,7 @@ import cities from "../../database/city";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { template } from "../../helpers/template";
 import {
   Drawer,
   DrawerBody,
@@ -50,8 +51,9 @@ const Search = () => {
   const stateCity = cities.filter((element) => element.state == state); //Filtering data according to State from the cities database
 
   const handleFilter = async () => {
+    const {templateString} = template;
     //Getting the Data from all the input field and Sending it to the API end Point.
-    const res = await fetch("https://booklee.vercel.app/api/filterD", {
+    const res = await fetch(`${templateString}/api/filterD`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

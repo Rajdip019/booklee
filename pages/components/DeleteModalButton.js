@@ -12,9 +12,12 @@ import Link from "next/link";
 import { ChakraProvider, Button } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 import { createStandaloneToast } from '@chakra-ui/react'
+import { template } from "../../helpers/template";
 
 
 const DeleteModalButton = (props) => {
+  const {templateString} = template;
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const toast = createStandaloneToast()
@@ -22,7 +25,7 @@ const DeleteModalButton = (props) => {
   const handleSoldDelete = async () => {
     //Getting the Data from all the input field and Sending it to the API end Point.
 
-    const res = await fetch("https://booklee.vercel.app/api/sellbook/delete", {
+    const res = await fetch(`${templateString}/api/sellbook/delete`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,11 +1,13 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import GeneralSidebar from '../components/GeneralSidebar'
+import Document from '../document'
 
 const index = () => {
     return (
         <>
         <Navbar/>
+        <Document/>
         <GeneralSidebar title="Limits"/>
         <div className=' lg:ml-[350px] mr-[20px] ml-[20px]'>
             <h1 className="text-4xl font-semibold mt-16">Limitations</h1>

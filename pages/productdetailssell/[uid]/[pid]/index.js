@@ -6,6 +6,7 @@ import GeneralSidebar from "../../../components/GeneralSidebar";
 import Footer from "../../../components/Footer";
 import ProductDetailsSell from "../../../components/ProductDetailsSell";
 import SellerDonaterDetails from "../../../components/Seller-DonaterDetails";
+import { template } from "../../../../helpers/template";
 
 
 export default function ProductDetailsSellPage({sellBooksDetails, UserBookDetails}) {
@@ -60,9 +61,10 @@ export default function ProductDetailsSellPage({sellBooksDetails, UserBookDetail
   }
 
   export async function getServerSideProps({params:{pid, uid}}) {
+    const {templateString} = template;
     try{
-      const res = await fetch(`https://booklee.vercel.app/api/sellbook/${pid}`);
-      const res2 = await fetch(`https://booklee.vercel.app/api/user/userdetails/${uid}`);
+      const res = await fetch(`${templateString}/api/sellbook/${pid}`);
+      const res2 = await fetch(`${templateString}/api/user/userdetails/${uid}`);
       const data = await res.json()
       const data2 = await res2.json()
       return{

@@ -10,10 +10,13 @@ import { createStandaloneToast } from "@chakra-ui/react";
 import { Input, ChakraProvider } from "@chakra-ui/react";
 import { getSession } from "next-auth/react";
 import cities from "../../database/city"; //Have all the cities name According to State
+import { template } from "../../helpers/template";
 
 const ListBookForDonating = () => {
   
   const { data: session } = useSession();
+  const {templateString} = template;
+
 
   //Getting Email of the user form Session
 
@@ -49,7 +52,7 @@ const ListBookForDonating = () => {
 
     //Getting the Data from all the input field and Sending it to the API end Point.
 
-    const res = await fetch("https://booklee.vercel.app/api/donatebook/add", {
+    const res = await fetch(`${templateString}/api/donatebook/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -118,7 +121,7 @@ const ListBookForDonating = () => {
   const havesession =async ()=> {
     const fetchSession =  await getSession()
     const fetchMail = fetchSession?.user?.email
-    const res = await fetch(`https://booklee.vercel.app/api/user/${fetchMail}`)
+    const res = await fetch(`${templateString}/api/user/${fetchMail}`)
     const userData = await res.json()
     return userData._id
   }

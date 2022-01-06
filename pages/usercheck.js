@@ -1,12 +1,14 @@
 import React from 'react'
 import {useRouter} from 'next/router'
 import { ChakraProvider, Spinner } from '@chakra-ui/react'
+import { template } from '../helpers/template'
 
 const usercheck = () => {
+    const {templateString} = template;
     const router = useRouter()
     const checkUser = async() => {
         try{
-            const res = await fetch("https://booklee.vercel.app/api/user/signin")
+            const res = await fetch(`${templateString}/api/user/signin`)
             router.push('/')
         }catch{
             null

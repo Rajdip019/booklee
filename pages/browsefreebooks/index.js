@@ -6,6 +6,7 @@ import Document from "../document";
 import cities from "../../database/city";
 import { useDisclosure } from "@chakra-ui/hooks";
 import Link from "next/link";
+import { template } from "../../helpers/template";
 import {
   Drawer,
   DrawerBody,
@@ -37,6 +38,8 @@ function bookCards(Book) {
 }
 
 export default function BrowseFreeBooks({donatebook}) {
+  const {templateString} = template;
+
   const [state, setState] = useState(null);
   const [city, setCity] = useState(null);
   const [condition, setCondition] = useState();
@@ -50,7 +53,7 @@ export default function BrowseFreeBooks({donatebook}) {
   // const handleFilter = async () => {
   //   //Getting the Data from all the input field and Sending it to the API end Point.
 
-  //   const res = await fetch("https://booklee.vercel.app/api/filterD", {
+  //   const res = await fetch(`${templateString}/api/filterD`, {
   //     method: "POST",
   //     headers: {
   //       "Content-Type": "application/json",
@@ -557,8 +560,9 @@ export default function BrowseFreeBooks({donatebook}) {
 }
 
 export async function getServerSideProps(){
+  const {templateString} = template;
   try{
-    const res =  await fetch("https://booklee.vercel.app/api/donatebook");
+    const res =  await fetch(`${templateString}/api/donatebook`);
     const donatebook = await res.json();
     return {
       props : {

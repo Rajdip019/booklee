@@ -6,8 +6,12 @@ import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { createStandaloneToast } from "@chakra-ui/react";
 import Link from "next/link";
+import { template } from "../../../../helpers/template";
 
 export default function ThankYou({ UserDetails }) {
+
+  const {templateString} = template;
+
   const { data: session } = useSession();
   const sender_email = session?.user?.email;
   const sender_name = session?.user?.name;
@@ -19,7 +23,7 @@ export default function ThankYou({ UserDetails }) {
   const toast = createStandaloneToast(); // A standalone toast (doesn't reqiure a parent element)
 
   const handleMail = async () => {
-    const res = await fetch("https://booklee.vercel.app/api/message", {
+    const res = await fetch(`${templateString}/api/message`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -124,9 +128,10 @@ export default function ThankYou({ UserDetails }) {
 }
 
 export async function getServerSideProps({ params: { uid } }) {
+  const {templateString} = template;
   try {
     const res = await fetch(
-      `https://booklee.vercel.app/api/user/userdetails/${uid}`
+      `${templateString}/api/user/userdetails/${uid}`
     );
     const data = await res.json();
     return {

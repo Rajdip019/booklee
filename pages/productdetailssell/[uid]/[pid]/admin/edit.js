@@ -9,6 +9,7 @@ import Link from "next/link";
 import { Input, ChakraProvider } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
 import cities from "../../../../../database/city"; //Have all the cities name According to State
+import { template } from "../../../../../helpers/template";
 
 const EditListBookForSelling = ({sellBooksDetails , UserBookDetails}) => {
   const { data: session } = useSession();
@@ -43,6 +44,8 @@ const EditListBookForSelling = ({sellBooksDetails , UserBookDetails}) => {
   const stateCity = cities.filter((element) => element.state == state); //Filtering data according to State from the cities database
 
   const toast = createStandaloneToast(); // A standalone toast (doesn't reqiure a parent element)
+  const {templateString} = template;
+
   ///Form Submit Function
   
   const handleSubmit = async (e) => {
@@ -56,7 +59,7 @@ const EditListBookForSelling = ({sellBooksDetails , UserBookDetails}) => {
       setImg(sellBooksDetails.img)
     }
      //Getting the Image URL from the imgUpload function
-    const res = await fetch("https://booklee.vercel.app/api/sellbook/edit", {
+    const res = await fetch(`${templateString}/api/sellbook/edit`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -610,9 +613,10 @@ const EditListBookForSelling = ({sellBooksDetails , UserBookDetails}) => {
 };
 
 export async function getServerSideProps({ params: { pid, uid } }) {
+  const {templateString} = template;
   try{
-    const res = await fetch(`https://booklee.vercel.app/api/sellbook/${pid}`);
-    const res2 = await fetch(`https://booklee.vercel.app/api/user/userdetails/${uid}`);
+    const res = await fetch(`${templateString}/api/sellbook/${pid}`);
+    const res2 = await fetch(`${templateString}/api/user/userdetails/${uid}`);
     const data = await res.json();
     const data2 = await res2.json();
     return {

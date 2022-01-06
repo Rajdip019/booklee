@@ -9,6 +9,7 @@ import { Avatar } from "@chakra-ui/react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import DonatedModalButton from "../../../../components/DonatedModalButton";
+import { template } from "../../../../../helpers/template";
 
 export default function ProductDetailsDonate({
   donateBooksDetails,
@@ -194,10 +195,11 @@ export default function ProductDetailsDonate({
 }
 
 export async function getServerSideProps({ params: { pid, uid } }) {
+  const {templateString} = template;
   try {
-    const res = await fetch(`https://booklee.vercel.app/api/donatebook/${pid}`);
+    const res = await fetch(`${templateString}/api/donatebook/${pid}`);
     const res2 = await fetch(
-      `https://booklee.vercel.app/api/user/userdetails/${uid}`
+      `${templateString}/api/user/userdetails/${uid}`
     );
     const data = await res.json();
     const data2 = await res2.json();

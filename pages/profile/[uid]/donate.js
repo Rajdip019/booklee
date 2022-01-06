@@ -7,6 +7,7 @@ import ProductDonatedCard from "../../components/ProductDonatedCard";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
+import { template } from "../../../helpers/template";
 
 function bookCards(Book){
     return(
@@ -41,6 +42,8 @@ function bookCardsold(Book){
 
 export default function UserProfileDonate({UserDetails}) {
 
+  const {templateString} = template;
+
   const [bookD, setBookD] = useState([]);
   
   useEffect(() => {
@@ -49,7 +52,7 @@ export default function UserProfileDonate({UserDetails}) {
 
   const handleSubmit = async () => {
    
-    const res = await fetch("https://booklee.vercel.app/api/user/bookD", {
+    const res = await fetch(`${templateString}/api/user/bookD`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -120,8 +123,9 @@ export default function UserProfileDonate({UserDetails}) {
   }
 
   export async function getServerSideProps({params:{uid}}) {
+    const {templateString} = template;
     try{
-      const res = await fetch(`https://booklee.vercel.app/api/user/userdetails/${uid}`);
+      const res = await fetch(`${templateString}/api/user/userdetails/${uid}`);
       const data = await res.json()
       return{
         props:{

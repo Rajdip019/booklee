@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Tabs, TabList, Tab, ChakraProvider } from "@chakra-ui/react";
+import { template } from "../../../../helpers/template";
 
 
 
@@ -47,6 +48,9 @@ function bookCardsold(Book) {
 }
 
 export default function UserProfile({ UserDetails }) {
+
+  const {templateString} = template;
+
   const { data: session } = useSession();
   const [soldBook, setSoldBook] = useState([]);
   const [donateBook, setDonatedBook] = useState([])
@@ -59,7 +63,7 @@ export default function UserProfile({ UserDetails }) {
     }, []);
 
   const handleBookSold = async () => {
-    const res = await fetch("https://booklee.vercel.app/api/user/orderedbooks", {
+    const res = await fetch(`${templateString}/api/user/orderedbooks`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +77,7 @@ export default function UserProfile({ UserDetails }) {
   };
 
   const handleBookDonated = async () => {
-    const res = await fetch("https://booklee.vercel.app/api/user/getbooks", {
+    const res = await fetch(`${templateString}/api/user/getbooks`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -90,7 +94,7 @@ export default function UserProfile({ UserDetails }) {
     <>
       <Document />
       <Navbar />
-      <GeneralSidebar title="User Profile" />
+      <GeneralSidebar title="Your Orders" />
       {!session && (
         <>
           <div className="ml-[0px] lg:ml-[300px] lg:w-[calc(100%-300px)]">
@@ -264,8 +268,10 @@ export default function UserProfile({ UserDetails }) {
 }
 
 export async function getServerSideProps({ params: { uid } }) {
+  const {templateString} = template;
+
   try{
-    const res = await fetch(`https://booklee.vercel.app/api/user/userdetails/${uid}`);
+    const res = await fetch(`${templateString}/api/user/userdetails/${uid}`);
     const data = await res.json();
     return {
       props: {

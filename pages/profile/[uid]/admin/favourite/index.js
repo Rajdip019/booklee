@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { Tabs, TabList, Tab, ChakraProvider } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { template } from "../../../../../helpers/template";
 
 function bookCards(Book) {
   return (
@@ -44,6 +45,8 @@ function bookCardsD(Book) {
 }
 
 export default function UserProfileSell({ UserDetails }) {
+  const {templateString} = template;
+
   const [favbookS, setFavBookS] = useState([]);
   const [favbookD, setFavBookD] = useState([]);
   const [profile, setprofile] = useState(false);
@@ -57,7 +60,7 @@ export default function UserProfileSell({ UserDetails }) {
   }, []);
 
   const handleBookS = async () => {
-    const res = await fetch("https://booklee.vercel.app/api/user/bookS", {
+    const res = await fetch(`${templateString}/api/user/bookS`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,7 +78,7 @@ export default function UserProfileSell({ UserDetails }) {
   }, []);
 
   const handleBookD = async () => {
-    const res = await fetch("https://booklee.vercel.app/api/user/bookD", {
+    const res = await fetch(`${templateString}/api/user/bookD`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -278,8 +281,10 @@ export default function UserProfileSell({ UserDetails }) {
 }
 
 export async function getServerSideProps({ params: { uid } }) {
+  const {templateString} = template;
+
   try{
-    const res = await fetch(`https://booklee.vercel.app/api/user/userdetails/${uid}`);
+    const res = await fetch(`${templateString}/api/user/userdetails/${uid}`);
     const data = await res.json();
     return {
       props: {

@@ -10,10 +10,12 @@ import { useSession } from "next-auth/react";
 import { createStandaloneToast } from "@chakra-ui/react";
 import { Input, ChakraProvider } from "@chakra-ui/react";
 import cities from "../../../../../database/city"; //Have all the cities name According to State
+import { template } from "../../../../../helpers/template";
 
 const EditListBookForDonating = ({donateBooksDetails, UserBookDetails}) => {
   
   const { data: session } = useSession();
+  const {templateString} = template;
 
   //Getting Email of the user form Session
 
@@ -49,7 +51,7 @@ const EditListBookForDonating = ({donateBooksDetails, UserBookDetails}) => {
 
     //Getting the Data from all the input field and Sending it to the API end Point.
 
-    const res = await fetch("https://booklee.vercel.app/api/donatebook/edit", {
+    const res = await fetch(`${templateString}/api/donatebook/edit`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -579,9 +581,10 @@ const EditListBookForDonating = ({donateBooksDetails, UserBookDetails}) => {
 };
 
 export async function getServerSideProps({params:{pid, uid}}) {
+  const {templateString} = template;
   try{
-    const res = await fetch(`https://booklee.vercel.app/api/donatebook/${pid}`);
-    const res2 = await fetch(`https://booklee.vercel.app/api/user/userdetails/${uid}`);
+    const res = await fetch(`${templateString}/api/donatebook/${pid}`);
+    const res2 = await fetch(`${templateString}/api/user/userdetails/${uid}`);
     const data = await res.json()
     const data2 = await res2.json()
     return{
