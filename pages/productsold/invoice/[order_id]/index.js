@@ -164,7 +164,7 @@ const index = ({ soldBooksDetails }) => {
 
           <div className="flex items-center">
             <h3 className="font-semibold text-gray-800 text-lg mr-2">
-              Book Name:
+              Name:
             </h3>
             <h2 className="text-slate-900 font-medium text-md">
               {soldBooksDetails.seller_name}
@@ -186,7 +186,7 @@ const index = ({ soldBooksDetails }) => {
           </h1>
           <div className="flex items-center">
             <h3 className="font-semibold text-gray-800 text-lg mr-2">
-              Book Name:
+              Name:
             </h3>
             <h2 className="text-slate-900 font-medium text-md">
               {soldBooksDetails.buyer_name}

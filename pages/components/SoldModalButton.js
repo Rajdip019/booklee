@@ -274,7 +274,7 @@ const SoldModalButton = (props) => {
               <ModalFooter display="block" className="text-center">
               {expandZone === "fail" && (
                 <button
-                    className="ml-auto mr-auto bg-skin-lightBlue text-skin-darkBlue rounded-lg p-3 mt-6 font-bold"
+                    className="ml-auto mr-auto bg-skin-lightBlue text-skin-darkBlue rounded-lg p-3 mt-6 font-bold hover:bg-skin-hoverBlue transition-all"
                     onClick={()=> {handleExpansionClose();}}
                   >
                     Back
@@ -288,7 +288,7 @@ const SoldModalButton = (props) => {
                   {expandOTP ? (
                     <>
                       {OTPVerified ? (
-                    <button className="ml-auto mr-auto bg-skin-lightGreen text-skin-darkGreen rounded-lg px-4 py-2 mt-6 font-bold" onClick={() => {handleSoldAdd(); waitSendFunc(); handleSoldPull(); }}>
+                    <button className="ml-auto mr-auto bg-skin-lightGreen text-skin-darkGreen rounded-lg px-4 py-2 mt-6 font-bold hover:bg-skin-hoverGreen transition-all" onClick={() => {handleSoldAdd(); waitSendFunc(); handleSoldPull(); }}>
                       Make Invoice
                     </button>
                       ) : (
@@ -304,14 +304,14 @@ const SoldModalButton = (props) => {
   
                     </>
                   ) : (
-                    <button className="ml-auto mr-auto bg-skin-lightGreen text-skin-darkGreen rounded-lg px-4 py-2 mt-6 font-bold" onClick={() => {setExpandOTP(true); handleMail();  }}>
+                    <button className="ml-auto mr-auto bg-skin-lightGreen text-skin-darkGreen rounded-lg px-4 py-2 mt-6 font-bold hover:bg-skin-hoverGreen transition-all" onClick={() => {setExpandOTP(true); handleMail();  }}>
                       Get OTP
                     </button>
                   )}
                   </>
                 ) : (
                   <button
-                    className="ml-auto mr-auto bg-skin-lightBlue text-skin-darkBlue rounded-lg px-4 py-2 mt-6 font-bold"
+                    className="ml-auto mr-auto bg-skin-lightBlue text-skin-darkBlue rounded-lg px-4 py-2 mt-6 font-bold hover:bg-skin-hoverBlue transition-all"
                     onClick={()=> {handleExpansion(); handleEmailCheck(); setExpandOTP(false); }}
                   >
                     Verify
