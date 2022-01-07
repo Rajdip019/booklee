@@ -148,29 +148,28 @@ const Navbar = (props) => {
               </MenuButton>
               <MenuList className=" bg-white rounded-lg p-2 w-28 shadow-lg">
                 <Link href={"/profile/[uid]/admin"} as={`/profile/${id}/admin`}>
-                  <MenuItem className="p-1 hover:bg-skin-lightBlue transition-all rounded font-semibold" >
-                    <span onClick={()=> {setProgress(40);}} className="text-skin-darkBlue">User Profile</span>
+                  <MenuItem className="p-1 hover:bg-skin-lightBlue transition-all rounded font-semibold" onClick={()=> {setProgress(40);}}>
+                    <span className="text-skin-darkBlue">User Profile</span>
                   </MenuItem>
                 </Link>
                 <Link
                   href={"/profile/[uid]/admin/favourite"}
                   as={`/profile/${id}/admin/favourite`}
                 >
-                  <MenuItem className="p-1 hover:bg-skin-lightBlue transition-all rounded font-semibold" >
-                    <span onClick={()=> {setProgress(40);}} className="text-skin-darkBlue">Favourite</span>
+                  <MenuItem className="p-1 hover:bg-skin-lightBlue transition-all rounded font-semibold" onClick={()=> {setProgress(40);}}>
+                    <span className="text-skin-darkBlue">Favourite</span>
                   </MenuItem>
                 </Link>
                 <Link
                   href={"/profile/[uid]/admin/orders"}
                   as={`/profile/${id}/admin/orders`}
                 >
-                  <MenuItem className="p-1 hover:bg-skin-lightBlue transition-all rounded font-semibold" >
-                    <span onClick={()=> {setProgress(40);}} className="text-skin-darkBlue">Your Orders</span>
+                  <MenuItem className="p-1 hover:bg-skin-lightBlue transition-all rounded font-semibold" onClick={()=> {setProgress(40);}} >
+                    <span  className="text-skin-darkBlue">Your Orders</span>
                   </MenuItem>
                 </Link>
-                <MenuItem className="p-1 hover:bg-skin-lightBlue transition-all rounded font-semibold" onClick={()=> {setProgress(40); setProgress(100)}}>
+                <MenuItem className="p-1 hover:bg-skin-lightBlue transition-all rounded font-semibold" onClick={()=> { signOut(); setProgress(40); setProgress(100)}}>
                   <span
-                    onClick={() => signOut()}
                     className="text-skin-darkBlue"
                   >
                     Logout
@@ -204,7 +203,7 @@ const Navbar = (props) => {
                     </svg>
                   </div>
                 </MenuButton>
-                <MenuList className=" bg-white rounded-lg p-2 w-24 shadow-xl " onClick={()=> {setProgress(40); setProgress(100)}}>
+                <MenuList className=" bg-white rounded-lg p-2 w-24 shadow-xl " onClick={()=> {setProgress(40);}}>
                   <Link href="/ListBookForSelling">
                     <MenuItem className="p-1 hover:bg-skin-lightGreen transition-all rounded font-semibold">
                       <span className="text-skin-darkGreen text-center mx-auto">
@@ -213,14 +212,14 @@ const Navbar = (props) => {
                     </MenuItem>
                   </Link>
                   <Link href="/ListBookForDonating">
-                    <MenuItem className="p-1 hover:bg-skin-lightGreen transition-all rounded font-semibold" onClick={()=> {setProgress(40); setProgress(100)}}>
+                    <MenuItem className="p-1 hover:bg-skin-lightGreen transition-all rounded font-semibold" onClick={()=> {setProgress(40);}}>
                       <span className="text-skin-darkGreen text-center mx-auto">
                         Donate Directly
                       </span>
                     </MenuItem>
                   </Link>
                   <Link href="/donatengo">
-                    <MenuItem className="p-1 hover:bg-skin-lightGreen transition-all rounded font-semibold" onClick={()=> {setProgress(40); setProgress(100)}}>
+                    <MenuItem className="p-1 hover:bg-skin-lightGreen transition-all rounded font-semibold" onClick={()=> {setProgress(40);}}>
                       <span className="text-skin-darkGreen text-center mx-auto">
                         Donate to NGO
                       </span>
@@ -265,7 +264,7 @@ const Navbar = (props) => {
                             </h1>
                             <hr />
                             <Link href="/">
-                              <button className="w-full  text-xl rounded-lg font-semibold text-skin-darkBlue my-2" onClick={()=> {setProgress(40); setProgress(100)}}>
+                              <button className="w-full  text-xl rounded-lg font-semibold text-skin-darkBlue my-2"  onClick={()=> {setProgress(40);}}>
                                 Home
                               </button>
                             </Link>
@@ -274,7 +273,7 @@ const Navbar = (props) => {
                               href={"/profile/[uid]/admin"}
                               as={`/profile/${id}/admin`}
                             >
-                              <button className="w-full  text-xl rounded-lg font-semibold text-skin-darkBlue my-2" onClick={()=> {setProgress(40); setProgress(100)}}>
+                              <button className="w-full  text-xl rounded-lg font-semibold text-skin-darkBlue my-2"  onClick={()=> {setProgress(40);}}>
                                 Profile
                               </button>
                             </Link>
@@ -283,7 +282,7 @@ const Navbar = (props) => {
                               href={"/profile/[uid]/admin/favourite"}
                               as={`/profile/${id}/admin/favourite`}
                             >
-                              <button className="w-full  text-xl rounded-lg font-semibold text-skin-darkBlue my-2" onClick={()=> {setProgress(40); setProgress(100)}}>
+                              <button className="w-full  text-xl rounded-lg font-semibold text-skin-darkBlue my-2" onClick={()=> {setProgress(40);}}>
                                 Favourite
                               </button>
                             </Link>
@@ -292,20 +291,20 @@ const Navbar = (props) => {
                               href={"/profile/[uid]/admin/orders"}
                               as={`/profile/${id}/admin/orders`}
                             >
-                              <button className="w-full  text-xl rounded-lg font-semibold text-skin-darkBlue my-2" onClick={()=> {setProgress(40); setProgress(100)}}>
+                              <button className="w-full  text-xl rounded-lg font-semibold text-skin-darkBlue my-2" onClick={()=> {setProgress(40);}}>
                                 Your Orders
                               </button>
                             </Link>
                             <hr />
                             <button
                               onClick={() => signOut()}
-                              className="w-full text-xl rounded-lg font-semibold text-skin-darkBlue my-2" onClick={()=> {setProgress(40); setProgress(100)}}
+                              className="w-full text-xl rounded-lg font-semibold text-skin-darkBlue my-2" onClick={()=> {setProgress(40);}}
                             >
                               Logout
                             </button>
                             <hr />
                             <Link href="/profile/sell">
-                              <div className=" bottom-0 absolute mb-3 w-full left-0 py-3" onClick={()=> {setProgress(40); setProgress(100)}}>
+                              <div className=" bottom-0 absolute mb-3 w-full left-0 py-3" onClick={()=> {setProgress(40);}}>
                                 <hr />
                                 <div className="flex mt-3">
                                   <div className="mx-5 my-auto">
@@ -316,7 +315,7 @@ const Navbar = (props) => {
                                     />
                                   </div>
                                   <div>
-                                    <p className="text-lg font-semibold text-left" onClick={()=> {setProgress(40); setProgress(100)}}>
+                                    <p className="text-lg font-semibold text-left" onClick={()=> {setProgress(40);}}>
                                       {session?.user.name}
                                     </p>
                                     <p className="text-left text-sm">
@@ -348,7 +347,7 @@ const Navbar = (props) => {
                 className="flex justify-start h-20 w-auto"
                 src="/Logo.png"
                 alt="Workflow"
-                onClick={()=> {setProgress(40); setProgress(100)}}
+                onClick={()=> {setProgress(40);}}
               />
             </Link>
           </div>
@@ -375,7 +374,7 @@ const Navbar = (props) => {
 
           <div className="flex items-center">
             <Link href="/auth/signin">
-              <button onClick={()=> {setProgress(40); setProgress(100)}} className="bg-skin-lightBlue hover:bg-skin-hoverBlue text-skin-darkBlue py-2 px-4 rounded-lg mx-4 font-bold w-[100px] ">
+              <button onClick={()=> {setProgress(40);}} className="bg-skin-lightBlue hover:bg-skin-hoverBlue text-skin-darkBlue py-2 px-4 rounded-lg mx-4 font-bold w-[100px] ">
                 Sign In
               </button>
             </Link>

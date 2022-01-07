@@ -366,10 +366,10 @@ const BrowseBooks = () => {
           >
             <DrawerOverlay />
             <DrawerContent >
-              <DrawerCloseButton />
+              <DrawerCloseButton className="mt-24"/>
 
               <DrawerBody >
-                <>
+                <div className="mt-12">
                   <h1 className="text-5xl font-semibold py-10 font-rokkitt">
                     Filter
                   </h1>
@@ -383,7 +383,7 @@ const BrowseBooks = () => {
                       onChange={(val) => setPrice(val + 1)}
                       min={priceMin}
                       max={priceMax}
-                      
+                      value={price}
                     >
                         
                       <SliderTrack>
@@ -610,7 +610,7 @@ const BrowseBooks = () => {
                       Search
                     </button>
                   </div>
-                </>
+                </div>
               </DrawerBody>
             </DrawerContent>
           </Drawer>
