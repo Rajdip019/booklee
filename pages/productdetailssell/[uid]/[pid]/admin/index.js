@@ -68,7 +68,7 @@ export default function ProductDetailsSellPage({
       {/* Admin Pannel Start */}
 
       <div className="lg:ml-[300px] bg-gray-50 pt-5 block text-center">
-        <h2 className=" text-3xl font-semibold">Admin Pannel</h2>
+        <h2 className=" text-3xl font-semibold">Admin Panel</h2>
         <div className="2xl:hidden items-center">
           <Avatar
             className="w-36 h-36 mt-5 "
