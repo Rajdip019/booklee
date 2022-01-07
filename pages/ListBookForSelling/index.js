@@ -10,11 +10,13 @@ import { Spinner } from "@chakra-ui/react";
 import { getSession } from "next-auth/react";
 import cities from "../../database/city"; //Have all the cities name According to State
 import { template } from "../../helpers/template";
+import LoadingBar from "react-top-loading-bar";
 
 const ListBookForSelling = () => {
   const { data: session } = useSession();
   const {templateString} = template;
 
+  const [progress, setProgress] = useState(0);
 
   //Getting Email of the user form Session
 
@@ -47,11 +49,12 @@ const ListBookForSelling = () => {
   ///Form Submit Function
   
   const handleSubmit = async (e) => {
+    setProgress(30)
     e.preventDefault(); // Preventing Default Action of form (Stops page reload)
     const id = await havesession();
     setLoading(true); //Showing Loading Animation
     const mediaUrl = await imgUpload(); //Getting the Image URL from the imgUpload function
-
+    setProgress(50)
     //Getting the Data from all the input field and Sending it to the API end Point.
 
     const res = await fetch(`${templateString}/api/sellbook/add`, {
@@ -77,6 +80,7 @@ const ListBookForSelling = () => {
         pin: pin,
       }),
     });
+    setProgress(100)
     const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
 
     //Showing Toast conditionally
@@ -154,6 +158,12 @@ const ListBookForSelling = () => {
       <div>
         <Document />
         <Navbar />
+        <LoadingBar
+        color="#4287f5"
+        height={4}
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
         <GeneralSidebar title="List Your Book" />
 
         {/*//////////////////////////////////////////// When User is not Authenticated //////////////////////////////////// */}
@@ -163,7 +173,7 @@ const ListBookForSelling = () => {
             <div className="ml-[0px] lg:ml-[300px] lg:w-[calc(100%-300px)]">
               <div className="flex justify-center mt-[30vh] lg:mt-[40vh]">
                 <Link href="/auth/signin">
-                  <button className="bg-skin-lightBlue hover:bg-skin-hoverBlue text-skin-darkBlue p-6 rounded-lg font-bold text-xl">
+                  <button className="bg-skin-lightBlue hover:bg-skin-hoverBlue text-skin-darkBlue p-6 rounded-lg font-bold text-xl" onClick={()=> setProgress(30)}>
                     Sign In to List Your Book for Selling
                   </button>
                 </Link>

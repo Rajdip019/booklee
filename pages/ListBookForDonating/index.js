@@ -11,12 +11,14 @@ import { Input, ChakraProvider } from "@chakra-ui/react";
 import { getSession } from "next-auth/react";
 import cities from "../../database/city"; //Have all the cities name According to State
 import { template } from "../../helpers/template";
+import LoadingBar from "react-top-loading-bar";
 
 const ListBookForDonating = () => {
   
   const { data: session } = useSession();
   const {templateString} = template;
 
+  const [progress, setProgress] = useState(0);
 
   //Getting Email of the user form Session
 
@@ -45,9 +47,11 @@ const ListBookForDonating = () => {
   ///Form Submit Function
 
   const handleSubmit = async (e) => {
+    setProgress(30)
     e.preventDefault(); // Preventing Default Action of form (Stops page reload)
     const id = await havesession();
     setLoading(true);  //Showing Loading Animation
+    setProgress(50)
     const mediaUrl = await imgUpload(); //Getting the Image URL from the imgUpload function
 
     //Getting the Data from all the input field and Sending it to the API end Point.
@@ -73,6 +77,7 @@ const ListBookForDonating = () => {
         pin: pin,
       }),
     });
+    setProgress(100)
     const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
 
     //Showing Toast conditionally
@@ -147,6 +152,12 @@ const ListBookForDonating = () => {
     <div>
       <Document />
       <Navbar />
+      <LoadingBar
+        color="#4287f5"
+        height={4}
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
       <GeneralSidebar title="List Your Book" />
 
       {/*/////////////////////// If there is no session (user is not authenticated)  /////////////////////////// */}
@@ -156,7 +167,7 @@ const ListBookForDonating = () => {
           <div className="ml-[0px] lg:ml-[300px] lg:w-[calc(100%-300px)]">
             <div className="flex justify-center mt-[30vh] lg:mt-[40vh]">
               <Link href="/auth/signin">
-                <button className="bg-skin-lightGreen hover:bg-skin-hoverGreen text-skin-darkGreen p-6 rounded-lg font-bold text-xl">
+                <button className="bg-skin-lightGreen hover:bg-skin-hoverGreen text-skin-darkGreen p-6 rounded-lg font-bold text-xl" onClick={()=> setProgress(30)}>
                   Sign In to List Your Book for Donation
                 </button>
               </Link>
@@ -182,7 +193,7 @@ const ListBookForDonating = () => {
                 </div>
                 <div className="my-auto text-center">
                   <Link href="/donatengo">
-                    <button className="font-bold bg-skin-darkGreen text-skin-lightGreen rounded-xl mr-0 sm:mr-7 py-2 px-4 my-3 text-xl">
+                    <button className="font-bold bg-skin-darkGreen text-skin-lightGreen rounded-xl mr-0 sm:mr-7 py-2 px-4 my-3 text-xl" onClick={()=> setProgress(30)}>
                       Donate
                     </button>
                   </Link>
