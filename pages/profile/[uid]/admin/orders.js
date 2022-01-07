@@ -10,46 +10,14 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Tabs, TabList, Tab, ChakraProvider } from "@chakra-ui/react";
 import { template } from "../../../../helpers/template";
+import LoadingBar from "react-top-loading-bar";
 
-
-
-
-function bookCardsoldD(Book) {
-  return (
-    <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
-      <ProductDonatedCard
-        _id = {Book._id}
-        seller_id = {Book.seller_id}
-        name={Book.name}
-        img={Book.photo}
-        price={Book.Price}
-        condition={Book.condition}
-        category={Book.category}
-      />
-    </div>
-  );
-}
-
-
-function bookCardsold(Book) {
-  return (
-    <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
-      <ProductSoldOutCard
-        _id = {Book._id}
-        seller_id = {Book.seller_id}
-        name={Book.name}
-        img={Book.photo}
-        price={Book.price}
-        condition={Book.condition}
-        category={Book.category}
-      />
-    </div>
-  );
-}
 
 export default function UserProfile({ UserDetails }) {
 
   const {templateString} = template;
+
+  const [progress, setProgress] = useState(0);
 
   const { data: session } = useSession();
   const [soldBook, setSoldBook] = useState([]);
@@ -63,6 +31,7 @@ export default function UserProfile({ UserDetails }) {
     }, []);
 
   const handleBookSold = async () => {
+    setProgress(30)
     const res = await fetch(`${templateString}/api/user/orderedbooks`, {
       method: "POST",
       headers: {
@@ -72,11 +41,14 @@ export default function UserProfile({ UserDetails }) {
         id: UserDetails.orderBook_id,
       }),
     });
+    setProgress(90)
     const bookData = await res.json();
     setSoldBook(bookData);
+    setProgress(100)
   };
 
   const handleBookDonated = async () => {
+    setProgress(30)
     const res = await fetch(`${templateString}/api/user/getbooks`, {
       method: "POST",
       headers: {
@@ -86,14 +58,26 @@ export default function UserProfile({ UserDetails }) {
         id: UserDetails.getBook_id,
       }),
     });
+    setProgress(90)
     const bookData = await res.json();
     setDonatedBook(bookData);
+    setProgress(100)
+  };
+
+  const topLoader = () => {
+    setProgress(30);
   };
 
   return (
     <>
       <Document />
       <Navbar />
+      <LoadingBar
+        color="#4287f5"
+        height={4}
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
       <GeneralSidebar title="Your Orders" />
       {!session && (
         <>
@@ -103,7 +87,7 @@ export default function UserProfile({ UserDetails }) {
             </div>
             <div className="flex justify-center mt-5">
               <Link href="/auth/signin">
-                <button className="bg-skin-lightBlue hover:bg-skin-hoverBlue text-skin-darkBlue px-6 py-4 rounded-lg font-bold text-xl">
+                <button className="bg-skin-lightBlue hover:bg-skin-hoverBlue text-skin-darkBlue px-6 py-4 rounded-lg font-bold text-xl" onClick={()=> setProgress(30)}>
                   Sign In
                 </button>
               </Link>
@@ -119,7 +103,7 @@ export default function UserProfile({ UserDetails }) {
           <h1 className="text-4xl text-gray-500 text-center">You Do not Have Access to this Page!</h1>
           <h1 className="text-2xl text-gray-500 text-center mt-3">This page can only be accessed by Admin</h1>
           <Link href={`/profile/${UserDetails._id}`}>
-          <p className="mx-[20vw] rounded-3xl text-center mt-5 bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 font-semibold text-xl cursor-pointer">Go to Visitor View</p>
+          <p className="mx-[20vw] rounded-3xl text-center mt-5 bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 font-semibold text-xl cursor-pointer" onClick={()=> setProgress(30)}>Go to Visitor View</p>
           </Link>
           </div>
         ) }
@@ -131,6 +115,7 @@ export default function UserProfile({ UserDetails }) {
               name={UserDetails.name}
               email={UserDetails.email}
               image={UserDetails.image}
+              topLoader={topLoader}
             />
           ) : (
             <UserProfileOthers
@@ -138,6 +123,7 @@ export default function UserProfile({ UserDetails }) {
               name={UserDetails.name}
               email={UserDetails.email}
               image={UserDetails.image}
+              topLoader={topLoader}
             />
           )}
           <div className=" ml-[30px] mt-10  lg:ml-[350px] flex-row sm:flex sm:items-center">
@@ -157,6 +143,7 @@ export default function UserProfile({ UserDetails }) {
                         className="w-[160px]"
                         onClick={() => {
                           setprofile(true);
+                          setProgress(100)
                         }}
                       >
                         Educational
@@ -165,6 +152,7 @@ export default function UserProfile({ UserDetails }) {
                         className="w-[150px] "
                         onClick={() => {
                           setprofile(false);
+                          setProgress(100)
                         }}
                       >
                         
@@ -189,6 +177,7 @@ export default function UserProfile({ UserDetails }) {
                         className="w-[160px]"
                         onClick={() => {
                           setprofile(true);
+                          setProgress(100)
                         }}
                       >
                         Educational
@@ -197,6 +186,7 @@ export default function UserProfile({ UserDetails }) {
                         className="w-[150px] "
                         onClick={() => {
                           setprofile(false);
+                          setProgress(100)
                         }}
                       >
                        
@@ -213,10 +203,27 @@ export default function UserProfile({ UserDetails }) {
           {profile ? (
             <>
               <div className="lg:ml-[300px] my-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 lg:w-[calc(100%-350px)] align-middle">
-                {donateBook.map(bookCardsoldD)}
+              {donateBook?.map((Book) => {
+                      return (
+                        <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                          <div>
+                            <ProductDonatedCard
+                              _id={Book._id}
+                              seller_id={Book.seller_id}
+                              name={Book.name}
+                              img={Book.photo}
+                              price={Book.Price}
+                              condition={Book.condition}
+                              category={Book.category}
+                              topLoader={topLoader}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
               </div>
               <Link href="/ListBookForDonating">
-                <button className="fixed right-10 bottom-10 bg-skin-darkGreen rounded-full text-skin-lightGreen p-4 shadow-xl hover:bg-green-600 transition-all">
+                <button className="fixed right-10 bottom-10 bg-skin-darkGreen rounded-full text-skin-lightGreen p-4 shadow-xl hover:bg-green-600 transition-all" onClick={()=> setProgress(30)}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-10 w-10"
@@ -237,10 +244,27 @@ export default function UserProfile({ UserDetails }) {
           ) : (
             <>
               <div className="lg:ml-[300px] my-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 lg:w-[calc(100%-350px)] align-middle">
-                {soldBook.map(bookCardsold)}
+              {soldBook?.map((Book) => {
+                      return (
+                        <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                          <div>
+                            <ProductSoldOutCard
+                              _id={Book._id}
+                              seller_id={Book.seller_id}
+                              name={Book.name}
+                              img={Book.photo}
+                              price={Book.price}
+                              condition={Book.condition}
+                              category={Book.category}
+                              topLoader={topLoader}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
               </div>
               <Link href="/ListBookForSelling">
-                <button className="fixed right-10 bottom-10 bg-skin-darkBlue rounded-full text-skin-lightBlue p-4 hover:bg-skin-lightBlue hover:text-skin-darkBlue shadow-xl transition-all">
+                <button className="fixed right-10 bottom-10 bg-skin-darkBlue rounded-full text-skin-lightBlue p-4 hover:bg-skin-lightBlue hover:text-skin-darkBlue shadow-xl transition-all" onClick={()=> setProgress(30)}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-10 w-10"

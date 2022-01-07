@@ -79,9 +79,9 @@ const BrowseBooks = () => {
       priceArr.push(bookData?.value[i]?.price);
     }
     setPriceMax(Math.max(...priceArr));
-    setPriceMin(Math.min(...priceArr) - 1);
+    setPriceMin(Math.min(...priceArr));
   };
-
+  
   const handleReset = () => {
     setCategory(0);
     setState(0);
@@ -341,7 +341,7 @@ const BrowseBooks = () => {
 
       <>
         <ChakraProvider>
-          <div className="lg:hidden block fixed bottom-6 right-6 z-50">
+          <div className="lg:hidden block fixed bottom-6 right-6 z-50 ">
             <Button ref={btnRef} colorScheme="blue" onClick={onOpen}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -365,16 +365,16 @@ const BrowseBooks = () => {
             finalFocusRef={btnRef}
           >
             <DrawerOverlay />
-            <DrawerContent>
+            <DrawerContent >
               <DrawerCloseButton />
 
-              <DrawerBody>
+              <DrawerBody >
                 <>
                   <h1 className="text-5xl font-semibold py-10 font-rokkitt">
                     Filter
                   </h1>
                   {/* Slider Starts */}
-                  <div className="w-10/12 mx-auto">
+                  <div className="w-10/12 mx-auto overflow-hidden">
                     <h2 className="text-left text-xl font-semibold my-3">
                       Price
                     </h2>
@@ -383,23 +383,17 @@ const BrowseBooks = () => {
                       onChange={(val) => setPrice(val + 1)}
                       min={priceMin}
                       max={priceMax}
+                      
                     >
-                      <SliderMark
-                        value={price}
-                        textAlign="center"
-                        bg="blue.500"
-                        color="white"
-                        mt="-10"
-                        ml="-5"
-                        w="12"
-                      >
-                        ₹ {price}
-                      </SliderMark>
+                        
                       <SliderTrack>
                         <SliderFilledTrack />
                       </SliderTrack>
                       <SliderThumb />
                     </Slider>
+                    <div className="text-right font-bold">
+                    ₹ {price}
+                    </div>
                   </div>
                   {/* Slider Ends */}
 

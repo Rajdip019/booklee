@@ -374,11 +374,11 @@ const search = () => {
 
               <DrawerBody>
                 <>
-                  <h1 className="text-5xl font-semibold py-10 font-rokkitt">
+                <h1 className="text-5xl font-semibold py-10 font-rokkitt">
                     Filter
                   </h1>
                   {/* Slider Starts */}
-                  <div className="w-10/12 mx-auto">
+                  <div className="w-10/12 mx-auto overflow-hidden">
                     <h2 className="text-left text-xl font-semibold my-3">
                       Price
                     </h2>
@@ -387,23 +387,17 @@ const search = () => {
                       onChange={(val) => setPrice(val + 1)}
                       min={priceMin}
                       max={priceMax}
+                      
                     >
-                      <SliderMark
-                        value={price}
-                        textAlign="center"
-                        bg="blue.500"
-                        color="white"
-                        mt="-10"
-                        ml="-5"
-                        w="12"
-                      >
-                        ₹ {price}
-                      </SliderMark>
+                        
                       <SliderTrack>
                         <SliderFilledTrack />
                       </SliderTrack>
                       <SliderThumb />
                     </Slider>
+                    <div className="text-right font-bold">
+                    ₹ {price}
+                    </div>
                   </div>
                   {/* Slider Ends */}
 
