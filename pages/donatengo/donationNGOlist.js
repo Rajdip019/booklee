@@ -219,15 +219,15 @@ const DonationNGOlist = ({ NGOData }) => {
             {submitButton ? (
               <button
                 type="submit"
-                className=" font-bold text-lg bg-skin-lightGreen text-skin-darkGreen px-4 py-2 rounded-xl my-3 mx-10 transition-all hover:bg-skin-hoverGreen"
+                className="lg:flex lg:items-center my-3 font-bold text-lg bg-skin-lightGreen text-skin-darkGreen px-4 py-2 rounded-xl mx-10 transition-all hover:bg-skin-hoverGreen"
                 onClick={handleSubmit}
               >
-                Donate to <p className="text-sm my-1">{nameS}</p> 
+                Donate to <p className="text-sm lg:ml-2 lg:mt-[2px] ">{nameS}</p> 
               </button>
             ) : (
               <button
                 type="submit"
-                className=" font-bold text-lg bg-gray-300 text-gray-700 px-4 py-2 rounded-xl lg:mb-5 mx-10"
+                className=" font-bold text-lg bg-gray-300 text-gray-700 px-4 py-2 rounded-xl my-3 lg:my-3 mx-10"
                 disabled
               >
                 Donate
@@ -236,7 +236,7 @@ const DonationNGOlist = ({ NGOData }) => {
             {/* Showing the Spinner Conditionally */}
 
             {loading ? (
-              <div className="mb-5 mx-auto">
+              <div className="my-5">
                 <ChakraProvider>
                   <Spinner
                     thickness="3.5px"
