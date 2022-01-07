@@ -1,9 +1,30 @@
 import React from "react";
 import ProductCardDonationDisplay from "./ProductCardDonationDisplay";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import { template } from "../../helpers/template";
 
 
-const TopFreeEduBook = ({ donateBooks, topLoader }) => {
+const TopFreeEduBook = ({ topLoader }) => {
+
+  const [result, setResult]  = useState()
+
+  const {templateString} =template;
+
+  const handledonatebook = async () => {
+    try {
+      const res = await fetch(`${templateString}/api/donatebook`);
+      const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
+      setResult(bookData);
+    } catch {
+      null;
+    }
+  };
+
+  useEffect(() => {
+    handledonatebook();
+  }, []);
+
   return (
     <>
       {/*////////////////////////////////////////// For Extra Large/PC Skin/////////////////////////////////////////// */}
@@ -19,7 +40,7 @@ const TopFreeEduBook = ({ donateBooks, topLoader }) => {
             </button>
           </Link>
         </div>
-        {donateBooks?.slice(0, 5).map((edubook) => {
+        {result?.slice(0, 5).map((edubook) => {
           return (
             <div className="ml-auto mr-auto mb-16">
               <div
@@ -54,7 +75,7 @@ const TopFreeEduBook = ({ donateBooks, topLoader }) => {
             </button>
           </Link>
         </div>
-        {donateBooks?.slice(0, 4).map((edubook) => {
+        {result?.slice(0, 4).map((edubook) => {
           return (
             <div className="ml-auto mr-auto mb-16">
               <div
@@ -87,7 +108,7 @@ const TopFreeEduBook = ({ donateBooks, topLoader }) => {
             </button>
           </Link>
         </div>
-        {donateBooks?.slice(0, 3).map((edubook) => {
+        {result?.slice(0, 3).map((edubook) => {
           return (
             <div className="ml-auto mr-auto mb-16">
               <div
@@ -115,7 +136,7 @@ const TopFreeEduBook = ({ donateBooks, topLoader }) => {
         <h2 className="font-bold font-rokkitt text-3xl mb-12 text-center underline">
           Free Educational Books
         </h2>
-        {donateBooks?.slice(0, 2).map((edubook) => {
+        {result?.slice(0, 2).map((edubook) => {
           return (
             <div className="ml-auto mr-auto mb-16">
               <div

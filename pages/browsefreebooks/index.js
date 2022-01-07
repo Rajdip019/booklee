@@ -22,21 +22,6 @@ import {
   Tab,
 } from "@chakra-ui/react";
 
-function bookCards(Book) {
-  return (
-    <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
-      <ProductCardDonationDisplay
-        _id={Book._id}
-        seller_id={Book.seller_id}
-        name={Book.name}
-        img={Book.photo}
-        price={Book.Price}
-        condition={Book.condition}
-        category={Book.category}
-      />
-    </div>
-  );
-}
 
 export default function BrowseFreeBooks({ donatebook }) {
   const [progress, setProgress] = useState(0);

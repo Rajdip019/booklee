@@ -32,21 +32,15 @@ export default function Home({sellBooks, donateBooks, sellerDetails}) {
       {/* <button onClick={topLoader}>click</button> */}
     <HomePageMain />
     <NewlyAddedHome 
-      sellBooks={sellBooks}
-      sellerDetails = {sellerDetails}
       topLoader = {topLoader}
     />
     <GetBooksHome 
     topLoader = {topLoader}
     />
     <TopFreeBooksHome 
-    donateBooks={donateBooks}
-    sellerDetails = {sellerDetails}
     topLoader = {topLoader}
     />
     <TopStoryBooksHome 
-      sellBooks={sellBooks}
-      sellerDetails = {sellerDetails}
       topLoader = {topLoader}
     />
     <DonateBottomHome 
@@ -57,27 +51,4 @@ export default function Home({sellBooks, donateBooks, sellerDetails}) {
   )
 }
 
-export async function getStaticProps() {
-  const {templateString} = template
-  try{
-    const res = await fetch(`${templateString}/api/sellbook`);
-    const res2 = await fetch(`${templateString}/api/donatebook`);
-    const res3 = await fetch (`${templateString}/api/user`)
-    const data = await res.json()
-    const data2 = await res2.json()
-    const data3 = await res3.json()
-    return{
-      props:{
-        sellBooks : data,
-        donateBooks : data2,
-        sellerDetails : data3
-      }
-    }
-
-  }catch{
-    return{
-      notFound : true
-    }
-  }
-}
 
