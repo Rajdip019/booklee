@@ -178,7 +178,7 @@ const Navbar = (props) => {
               </MenuList>
             </Menu>
             {/*Donate Button for mobile*/}
-            <div className="block xl:hidden">
+            <div className="block xl:hidden z-50">
               <Menu>
                 <MenuButton
                   py={2}
