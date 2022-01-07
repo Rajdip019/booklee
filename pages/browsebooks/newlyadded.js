@@ -367,13 +367,14 @@ const search = () => {
             placement="bottom"
             onClose={onClose}
             finalFocusRef={btnRef}
+
           >
             <DrawerOverlay />
             <DrawerContent>
-              <DrawerCloseButton />
 
               <DrawerBody>
-                <>
+                <div className="mt-12">
+              <DrawerCloseButton className="mt-24" />
                 <h1 className="text-5xl font-semibold py-10 font-rokkitt">
                     Filter
                   </h1>
@@ -387,7 +388,7 @@ const search = () => {
                       onChange={(val) => setPrice(val + 1)}
                       min={priceMin}
                       max={priceMax}
-                      
+                      value={price}
                     >
                         
                       <SliderTrack>
@@ -614,7 +615,7 @@ const search = () => {
                       Search
                     </button>
                   </div>
-                </>
+                </div>
               </DrawerBody>
             </DrawerContent>
           </Drawer>

@@ -379,10 +379,10 @@ const Search = () => {
           >
             <DrawerOverlay />
             <DrawerContent>
-              <DrawerCloseButton />
+              <DrawerCloseButton className="mt-24"/>
 
               <DrawerBody>
-                <>
+                <div className="mt-12">
                   <h1 className="text-5xl font-semibold py-10 font-rokkitt">
                     Filter
                   </h1>
@@ -629,7 +629,7 @@ const Search = () => {
                       Search
                     </button>
                   </div>
-                </>
+                </div>
               </DrawerBody>
             </DrawerContent>
           </Drawer>
