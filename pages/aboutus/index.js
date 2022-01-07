@@ -4,7 +4,6 @@ import GeneralSidebar from "../components/GeneralSidebar";
 import Footer from "../components/Footer";
 
 
-
 export default function AboutUs() {
     return (
         <>
@@ -18,11 +17,32 @@ export default function AboutUs() {
                         <div className="m-auto">
                             <img src="/debajyoti.png" alt="Debajyoti Saha Image" />
                             <h1 className="text-center text-xl font-semibold">Debajyoti Saha</h1>
+                            <div className="flex justify-center mt-4">
+                                <a href="https://twitter.com/itsdebajyoti" target="_blank" className="mx-2">
+                                <svg className=" mx-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                                </a>
+                                <a href="https://www.linkedin.com/in/debajyoti-saha-37bb78219/" target="_blank" className="mx-2">
+                                <svg className=" mx-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                </a>
+                                <a href="https://github.com/Debajyoti14" target="_blank" className="mx-2">
+                                <svg className=" mx-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                </a>
+                            </div>
                             <p className="text-center max-w-[20rem] mt-4 text-gray-500">A great enthusiast of Web development | UI/UX Designing | Web 3.0 | Co-founder at BrutWeb</p>
                         </div>
                         <div className="m-auto mt-10 sm:m-auto">
                             <img src="/rajdeep.png" alt="Rajdeep Sengupta Image" />
                             <h1 className="text-center text-xl font-semibold">Rajdeep Sengupta</h1>
+                            <div className="flex justify-center mt-4">
+                            <a href="https://twitter.com/RajdeepS019" target="_blank" className="mx-2">
+                                <svg className=" mx-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                                </a>
+                                <a href="https://www.linkedin.com/in/rajdeep-sengupta/" target="_blank" className="mx-2"> 
+                                <svg className=" mx-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                </a>
+                                <a href="https://github.com/Rajdip019" target="_blank" className="mx-2">
+                                <svg className=" mx-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                </a>                            </div>
                             <p className="text-center max-w-[20rem] mt-4 text-gray-500">Young UI & UX Designer and Web Developer | Co-founder at BrutWeb | Loves to Play Chess</p>
                         </div>
                     </div>
@@ -55,12 +75,12 @@ export default function AboutUs() {
                             <button className="bg-skin-lightBlue text-skin-darkBlue p-2 px-6 text-xl font-bold rounded-lg mt-5 hover:bg-skin-hoverBlue">Contact</button>
                         </div>
                         <div className="lg:ml-48 flex justify-center sm:w-[600px] m-auto">
-                        <img src="/contact.svg" alt="" className="min-w-[350px] scale-75 mb-10" />
+                            <img src="/contact.svg" alt="" className="min-w-[350px] scale-75 mb-10" />
                         </div>
                     </div>
                 </div>
                 <div className="lg:ml-[300px] w-full">
-                <Footer />
+                    <Footer />
                 </div>
             </div>
         </>

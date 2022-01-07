@@ -483,7 +483,7 @@ const Navbar = (props) => {
           <Input
             type="text"
             value={searchInput}
-            placeholder={props.book ? props.book : "Serch a Book you want"}
+            placeholder={props.book ? props.book : "Search a Book you want"}
             className=" bg-gray-200 h-10 w-[80vw] rounded-r-none"
             onChange={(e) => setSearchInput(e.target.value)}
           />

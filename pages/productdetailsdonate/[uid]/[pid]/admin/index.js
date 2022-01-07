@@ -101,7 +101,7 @@ export default function ProductDetailsDonate({
               href={"/productdetailsdonate/[uid]/[pid]/admin/edit"}
               as={`/productdetailsdonate/${UserBookDetails._id}/${donateBooksDetails._id}/admin/edit`}
             >
-              <button className="h-[50px] w-10/12  md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-10 lg:mx-5  mx-5 mt-4"  onClick={()=> {setProgress(30)}}>
+              <button className="h-[50px] w-10/12  md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-5 lg:mx-5  mx-5 mt-4"  onClick={()=> {setProgress(30)}}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 inline-block pr-1 mb-0.5"
@@ -119,7 +119,7 @@ export default function ProductDetailsDonate({
                 Edit
               </button>
             </Link>
-            <button className="h-[50px] w-10/12 md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-10 lg:mx-4  mx-5 mt-4"  onClick={()=> {setProgress(30)}}>
+            <button className="h-[50px] w-10/12 md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-5 lg:mx-4  mx-5 mt-4"  onClick={()=> {setProgress(30)}}>
               <div className="flex items-center justify-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -154,7 +154,7 @@ export default function ProductDetailsDonate({
                 />
               </div>
             </button>
-            <button className="h-[50px] w-10/12 md:w-auto bg-skin-lightRed text-skin-darkRed hover:bg-red-100 px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-10 lg:mx-4  mx-5 mt-4">
+            <button className="h-[50px] w-10/12 md:w-auto bg-skin-lightRed text-skin-darkRed hover:bg-red-100 px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-5 lg:mx-4  mx-5 mt-4">
               <div className="flex flex-row justify-center items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -178,7 +178,7 @@ export default function ProductDetailsDonate({
               </div>
             </button>
             <Link href={'/productdetailsdonate/[uid]/[pid]'} as={`/productdetailsdonate/${UserBookDetails._id}/${donateBooksDetails._id}`}>
-        <button className="h-[50px] w-10/12 md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-10 lg:mx-4 sm:mx-3 mx-5 mt-4"  onClick={()=> {setProgress(30)}}>
+        <button className="h-[50px] w-10/12 md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-5 lg:mx-4 sm:mx-3 mx-5 mt-4"  onClick={()=> {setProgress(30)}}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 inline pr-1 mb-0.5"

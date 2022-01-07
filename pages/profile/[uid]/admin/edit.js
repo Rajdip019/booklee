@@ -154,11 +154,8 @@ const EditProfile = ({UserDetails}) => {
               </div>
             </div>
             {/* ///////////////////////////////////Edit Your Profile Personal Details//////////////////////////////// */}
-            <div className="col-span-2 mt-5">
-              <h1 className="text-2xl font-semibold mb-5 hidden md:block">
-                Edit Your Profile
-              </h1>
-              <h3 className="text-xl font-medium">Personal Details</h3>
+            <div className="col-span-2 mt-10">
+              <h3 className="text-2xl font-medium mb-5">Personal Details</h3>
               <div className="my-3">
                 <div className="my-3">
                   <h3>Phone No</h3>
@@ -197,8 +194,8 @@ const EditProfile = ({UserDetails}) => {
           <div className="ml-[0px] lg:ml-[300px] w-11/12 lg:w-[calc(100%-300px)] grid grid-col-1 md:grid-cols-5 lg:grid-cols-5 gap-0 md:gap-10 mt-6">
             <div className="col-span-2 md:col-span-1 mx-auto"></div>
             {/* ///////////////////////////////////Edit Your Profile Personal Details//////////////////////////////// */}
-            <div className="md:col-span-4 col-span-1  mt-5 text-xl font-medium lg:-mb-6">
-              <h3>Adress Details</h3>
+            <div className="md:col-span-4 col-span-1  mt-5 lg:-mb-6 text-2xl font-medium mb-5">
+              <h3 >Adress Details</h3>
             </div>
             <div className="col-span-2 md:col-span-1   mx-auto"></div>
 

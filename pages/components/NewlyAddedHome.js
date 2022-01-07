@@ -30,7 +30,7 @@ const NewlyAddedHome = (props) => {
 
       <div className="sm:hidden 2xl:grid 2xl:grid-cols-5 gap-1 w-11/12 m-auto md:hidden lg:hidden hidden mt-32 mb-6">
         <div className="col-span-5  mb-12 px-[2vw]">
-          <span className="text-3xl font-semibold ml-0">Newly Added</span>
+          <span className="text-4xl font-bold ml-0 font-rokkitt">Newly Added</span>
           <Link href="/browsebooks/newlyadded">
             <button
               className="float-right bg-skin-lightBlue text-skin-darkBlue py-2 px-4 rounded-lg font-semibold text-xl hover:bg-skin-hoverBlue transition-all"
@@ -69,7 +69,7 @@ const NewlyAddedHome = (props) => {
 
       <div className="sm:grid sm:grid-cols-2 lg:hidden xl:grid xl:grid-cols-4 2xl:hidden hidden my-14">
         <div className="sm:col-span-2 xl:col-span-4  mb-12 xl:px-[3vw] px-[8vw]">
-          <span className=" sm:text-center text-3xl font-semibold xl:text-left">
+          <span className=" sm:text-center font-bold font-rokkitt text-4xl xl:text-left">
             Newly Added
           </span>
           <Link href="/browsebooks/newlyadded">
@@ -110,7 +110,7 @@ const NewlyAddedHome = (props) => {
 
       <div className="lg:grid lg:grid-cols-3 xl:hidden sm:hidden md:hidden 2xl:hidden hidden my-14">
         <div className="col-span-3 mb-12 px-[5vw]">
-          <span className="text-3xl font-semibold">Newly Added</span>
+          <span className="font-bold font-rokkitt text-4xl">Newly Added</span>
           <Link href="/browsebooks/newlyadded">
             <button
               className="float-right bg-skin-lightBlue text-skin-darkBlue py-2 px-4 rounded-lg font-semibold text-xl hover:bg-skin-hoverBlue transition-all"
@@ -148,7 +148,7 @@ const NewlyAddedHome = (props) => {
       {/* ///////////////////////////////////////////////////For Small/Mobile Screens///////////////////////////////////////// */}
 
       <div className="sm:hidden  grid grid-cols-1 mt-14 mb-14">
-        <h2 className="text-3xl font-semibold mb-12 text-center underline">
+        <h2 className="font-bold font-rokkitt text-3xl mb-12 text-center underline">
           Newly Added
         </h2>
         {result?.slice(0, 2).map((newbooks) => {

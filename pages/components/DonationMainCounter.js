@@ -8,8 +8,8 @@ const DonationMainCounter = ({totalDonation}) => {
 
     return (
         <div className="h-full w-full">
-            <div className="text-center mt-10 lg:mt-20 xl:mt-24 2xl:mt-30 px-4">
-                <h1 className="text-xl sm:text-3xl font-medium my-5 max-w-3xl mx-auto ">“I think people forget that it doesn't take a big donation to help someone, just a lot of little donations.”</h1>
+            <div className="text-center mt-10 lg:mt-20 xl:mt-24 2xl:mt-30 px-2">
+                <h1 className="text-xl sm:text-3xl font-bold my-5 max-w-4xl mx-auto font-rokkitt">“Every small donation counts.It can help a child to grow”</h1>
                 <p className="text-2xl opacity-75 font-bold">Total Books Donated</p>
                 <p className="font-normal text-lg opacity-75">till now...</p>
             </div>
