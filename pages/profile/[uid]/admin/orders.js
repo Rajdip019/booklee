@@ -11,11 +11,14 @@ import { useEffect, useState } from "react";
 import { Tabs, TabList, Tab, ChakraProvider } from "@chakra-ui/react";
 import { template } from "../../../../helpers/template";
 import LoadingBar from "react-top-loading-bar";
+import CardSkeleton from "../../../components/CardSkeleton";
 
 
 export default function UserProfile({ UserDetails }) {
 
   const {templateString} = template;
+
+  const [isFetched, setIsFetched] = useState(true);
 
   const [progress, setProgress] = useState(0);
 
@@ -40,7 +43,8 @@ export default function UserProfile({ UserDetails }) {
       body: JSON.stringify({
         id: UserDetails.orderBook_id,
       }),
-    });
+    });    
+    setIsFetched(false)
     setProgress(90)
     const bookData = await res.json();
     setSoldBook(bookData);
@@ -58,6 +62,7 @@ export default function UserProfile({ UserDetails }) {
         id: UserDetails.getBook_id,
       }),
     });
+    setIsFetched(false)
     setProgress(90)
     const bookData = await res.json();
     setDonatedBook(bookData);
@@ -203,6 +208,22 @@ export default function UserProfile({ UserDetails }) {
           {profile ? (
             <>
               <div className="lg:ml-[300px] my-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 lg:w-[calc(100%-350px)] align-middle">
+              {isFetched ? (
+                        <>
+                          <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                            <CardSkeleton />
+                          </div>
+                          <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                            <CardSkeleton />
+                          </div>
+                          <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                            <CardSkeleton />
+                          </div>
+                          <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                            <CardSkeleton />
+                          </div>
+                        </>
+                      ) : null}
               {donateBook?.map((Book) => {
                       return (
                         <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
@@ -244,6 +265,22 @@ export default function UserProfile({ UserDetails }) {
           ) : (
             <>
               <div className="lg:ml-[300px] my-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 lg:w-[calc(100%-350px)] align-middle">
+              {isFetched ? (
+                        <>
+                          <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                            <CardSkeleton />
+                          </div>
+                          <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                            <CardSkeleton />
+                          </div>
+                          <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                            <CardSkeleton />
+                          </div>
+                          <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                            <CardSkeleton />
+                          </div>
+                        </>
+                      ) : null}
               {soldBook?.map((Book) => {
                       return (
                         <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">

@@ -13,10 +13,12 @@ import { useEffect, useState } from "react";
 import { Tabs, TabList, Tab, ChakraProvider } from "@chakra-ui/react";
 import { template } from "../../../../helpers/template";
 import LoadingBar from "react-top-loading-bar";
-
+import CardSkeleton from "../../../components/CardSkeleton";
 
 export default function UserProfile({ UserDetails }) {
   const { templateString } = template;
+
+  const [isFetched, setISFetched] = useState(true);
 
   const [progress, setProgress] = useState(0);
 
@@ -41,6 +43,7 @@ export default function UserProfile({ UserDetails }) {
         id: UserDetails.bookDid,
       }),
     });
+    setISFetched(false);
     const bookData = await res.json();
     setBookD(bookData);
   };
@@ -59,6 +62,7 @@ export default function UserProfile({ UserDetails }) {
         id: UserDetails.bookSid,
       }),
     });
+    setISFetched(false);
     const bookData = await res.json();
     setBookS(bookData);
   };
@@ -68,7 +72,7 @@ export default function UserProfile({ UserDetails }) {
   }, []);
 
   const handleBookSold = async () => {
-    setProgress(30)
+    setProgress(30);
     const res = await fetch(`${templateString}/api/user/soldbook`, {
       method: "POST",
       headers: {
@@ -78,10 +82,11 @@ export default function UserProfile({ UserDetails }) {
         id: UserDetails.bookSoldid,
       }),
     });
-    setProgress(90)
+    setISFetched(false);
+    setProgress(90);
     const bookData = await res.json();
     setSoldBook(bookData);
-    setProgress(100)
+    setProgress(100);
   };
 
   useEffect(() => {
@@ -98,6 +103,7 @@ export default function UserProfile({ UserDetails }) {
         id: UserDetails.bookDonatedid,
       }),
     });
+    setISFetched(false);
     const bookData = await res.json();
     setDonatedBook(bookData);
   };
@@ -125,7 +131,10 @@ export default function UserProfile({ UserDetails }) {
             </div>
             <div className="flex justify-center mt-5">
               <Link href="/auth/signin">
-                <button className="bg-skin-lightBlue hover:bg-skin-hoverBlue text-skin-darkBlue px-6 py-4 rounded-lg font-bold text-xl" onClick={()=> setProgress(30)}>
+                <button
+                  className="bg-skin-lightBlue hover:bg-skin-hoverBlue text-skin-darkBlue px-6 py-4 rounded-lg font-bold text-xl"
+                  onClick={() => setProgress(30)}
+                >
                   Sign In
                 </button>
               </Link>
@@ -145,7 +154,10 @@ export default function UserProfile({ UserDetails }) {
                 This page can only be accessed by Admin
               </h1>
               <Link href={`/profile/${UserDetails._id}`}>
-                <p className="mx-[20vw] rounded-3xl text-center mt-5 bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 font-semibold text-xl cursor-pointer" onClick={()=> setProgress(30)}>
+                <p
+                  className="mx-[20vw] rounded-3xl text-center mt-5 bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 font-semibold text-xl cursor-pointer"
+                  onClick={() => setProgress(30)}
+                >
                   Go to Visitor View
                 </p>
               </Link>
@@ -187,7 +199,7 @@ export default function UserProfile({ UserDetails }) {
                             className="w-[160px]"
                             onClick={() => {
                               setprofile(true);
-                              setProgress(100)
+                              setProgress(100);
                             }}
                           >
                             Educational
@@ -196,7 +208,7 @@ export default function UserProfile({ UserDetails }) {
                             className="w-[150px] "
                             onClick={() => {
                               setprofile(false);
-                              setProgress(100)
+                              setProgress(100);
                             }}
                           >
                             Others
@@ -220,7 +232,7 @@ export default function UserProfile({ UserDetails }) {
                             className="w-[160px]"
                             onClick={() => {
                               setprofile(true);
-                              setProgress(100)
+                              setProgress(100);
                             }}
                           >
                             Educational
@@ -229,7 +241,7 @@ export default function UserProfile({ UserDetails }) {
                             className="w-[150px] "
                             onClick={() => {
                               setprofile(false);
-                              setProgress(100)
+                              setProgress(100);
                             }}
                           >
                             Others
@@ -241,7 +253,10 @@ export default function UserProfile({ UserDetails }) {
                 )}
                 <div>
                   <Link href={`/profile/${UserDetails._id}`}>
-                    <button className="ml-10 mt-5 sm:mt-0 bg-skin-lightBlue text-skin-darkBlue px-4 py-2 font-semibold rounded-3xl hover:bg-skin-hoverBlue" onClick={()=> setProgress(30)}>
+                    <button
+                      className="ml-10 mt-5 sm:mt-0 bg-skin-lightBlue text-skin-darkBlue px-4 py-2 font-semibold rounded-3xl hover:bg-skin-hoverBlue"
+                      onClick={() => setProgress(30)}
+                    >
                       Switch to Visitor View
                     </button>
                   </Link>
@@ -252,7 +267,26 @@ export default function UserProfile({ UserDetails }) {
               {profile ? (
                 <>
                   <div className=" items-center">
-                    <div className="lg:ml-[300px] my-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 lg:w-[calc(100%-350px)] align-middle" onClick={()=> setProgress(30)}>
+                    <div
+                      className="lg:ml-[300px] my-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 lg:w-[calc(100%-350px)] align-middle"
+                      onClick={() => setProgress(30)}
+                    >
+                      {isFetched ? (
+                        <>
+                          <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                            <CardSkeleton />
+                          </div>
+                          <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                            <CardSkeleton />
+                          </div>
+                          <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                            <CardSkeleton />
+                          </div>
+                          <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                            <CardSkeleton />
+                          </div>
+                        </>
+                      ) : null}
                       {bookD?.map((Book) => {
                         return (
                           <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
@@ -278,6 +312,22 @@ export default function UserProfile({ UserDetails }) {
                     <hr />
                   </div>
                   <div className="lg:ml-[300px] my-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 lg:w-[calc(100%-350px)] align-middle">
+                    {isFetched ? (
+                      <>
+                        <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                          <CardSkeleton />
+                        </div>
+                        <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                          <CardSkeleton />
+                        </div>
+                        <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                          <CardSkeleton />
+                        </div>
+                        <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                          <CardSkeleton />
+                        </div>
+                      </>
+                    ) : null}
                     {donateBook?.map((Book) => {
                       return (
                         <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
@@ -298,7 +348,10 @@ export default function UserProfile({ UserDetails }) {
                     })}
                   </div>
                   <Link href="/ListBookForDonating">
-                    <button className="fixed right-10 bottom-10 bg-skin-darkGreen rounded-full text-skin-lightGreen p-4 shadow-xl hover:bg-green-600 transition-all" onClick={()=> setProgress(30)}>
+                    <button
+                      className="fixed right-10 bottom-10 bg-skin-darkGreen rounded-full text-skin-lightGreen p-4 shadow-xl hover:bg-green-600 transition-all"
+                      onClick={() => setProgress(30)}
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-10 w-10"
@@ -319,7 +372,23 @@ export default function UserProfile({ UserDetails }) {
               ) : (
                 <>
                   <div className=" items-center">
-                    <div className="lg:ml-[300px] my-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 lg:w-[calc(100%-350px)] align-middle" >
+                    <div className="lg:ml-[300px] my-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 lg:w-[calc(100%-350px)] align-middle">
+                      {isFetched ? (
+                        <>
+                          <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                            <CardSkeleton />
+                          </div>
+                          <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                            <CardSkeleton />
+                          </div>
+                          <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                            <CardSkeleton />
+                          </div>
+                          <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                            <CardSkeleton />
+                          </div>
+                        </>
+                      ) : null}
                       {bookS?.map((Book) => {
                         return (
                           <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
@@ -345,6 +414,22 @@ export default function UserProfile({ UserDetails }) {
                     <hr />
                   </div>
                   <div className="lg:ml-[300px] my-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 lg:w-[calc(100%-350px)] align-middle">
+                    {isFetched ? (
+                      <>
+                        <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                          <CardSkeleton />
+                        </div>
+                        <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                          <CardSkeleton />
+                        </div>
+                        <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                          <CardSkeleton />
+                        </div>
+                        <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                          <CardSkeleton />
+                        </div>
+                      </>
+                    ) : null}
                     {soldBook?.map((Book) => {
                       return (
                         <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
@@ -365,7 +450,10 @@ export default function UserProfile({ UserDetails }) {
                     })}
                   </div>
                   <Link href="/ListBookForSelling">
-                    <button className="fixed right-10 bottom-10 bg-skin-darkBlue rounded-full text-skin-lightBlue p-4 hover:bg-skin-lightBlue hover:text-skin-darkBlue shadow-xl transition-all" onClick={()=> setProgress(30)}>
+                    <button
+                      className="fixed right-10 bottom-10 bg-skin-darkBlue rounded-full text-skin-lightBlue p-4 hover:bg-skin-lightBlue hover:text-skin-darkBlue shadow-xl transition-all"
+                      onClick={() => setProgress(30)}
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-10 w-10"
