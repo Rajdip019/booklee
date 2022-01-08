@@ -81,7 +81,7 @@ const DonationAddressForm = () => {
               <div className="flex justify-center mt-[30vh] lg:mt-[40vh]">
                 <Link href="/auth/signin">
                   <button className="bg-skin-lightBlue hover:bg-skin-hoverBlue text-skin-darkBlue p-6 rounded-lg font-bold text-xl">
-                    Sign In to List Your Book for Selling
+                    Sign In to List Your Book for Donating
                   </button>
                 </Link>
               </div>
@@ -320,7 +320,7 @@ const DonationAddressForm = () => {
                 className="bg-skin-lightGreen text-skin-darkGreen font-bold py-2 px-4 rounded-lg hover:bg-skin-hoverGreen transition-all mr-5"
                 onClick={handleQuery}
               >
-                Submit
+                Find Nearby NGO
               </button>
               {/* Showing the Spinner Conditionally */}
 

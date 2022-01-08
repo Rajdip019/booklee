@@ -486,8 +486,13 @@ const Navbar = (props) => {
             placeholder={props.book ? props.book : "Search a Book you want"}
             className=" bg-gray-200 h-10 w-[80vw] rounded-r-none"
             onChange={(e) => setSearchInput(e.target.value)}
+            onKeyPress={(event) => {
+              event.key === "Enter" &&
+                document.getElementById("BtnMob").click();
+            }}
           />
           <button
+          id="BtnMob"
             onClick={async () => {
               search();
               try {

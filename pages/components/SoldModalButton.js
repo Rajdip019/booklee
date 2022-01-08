@@ -220,14 +220,7 @@ const SoldModalButton = (props) => {
                     <input
                       type="tel"
                       className="w-full mr-auto ml-auto bg-gray-100"
-                      placeholder="Mobile no."
-                      disabled
-                    />
-                    <p className="text-left mt-3">Name</p>
-                    <input
-                      type="text"
-                      className="w-full mr-auto ml-auto bg-gray-100"
-                      value={buyerdata?.name}
+                      placeholder="Enter your email address"
                       disabled
                     />
                     {expandOTP ? (
@@ -310,9 +303,12 @@ const SoldModalButton = (props) => {
                   )}
                   </>
                 ) : (
+                  
                   <button
-                    className="ml-auto mr-auto bg-skin-lightBlue text-skin-darkBlue rounded-lg px-4 py-2 mt-6 font-bold hover:bg-skin-hoverBlue transition-all"
+                    
+                    className={buyerEmail ? "ml-auto mr-auto bg-skin-lightBlue text-skin-darkBlue rounded-lg px-4 py-2 mt-6 font-bold hover:bg-skin-hoverBlue transition-all" : "bg-gray-200 rounded-lg px-4 py-2 mt-6 font-semibold"}
                     onClick={()=> {handleExpansion(); handleEmailCheck(); setExpandOTP(false); }}
+                    disabled={!buyerEmail}                              
                   >
                     Verify
                   </button>
