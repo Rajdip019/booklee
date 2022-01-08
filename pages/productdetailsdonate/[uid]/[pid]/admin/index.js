@@ -119,7 +119,7 @@ export default function ProductDetailsDonate({
                 Edit
               </button>
             </Link>
-            <button className="h-[50px] w-10/12 md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-5 lg:mx-4  mx-5 mt-4"  onClick={()=> {setProgress(30)}}>
+            <button className="h-[50px] w-10/12 md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-5 lg:mx-4  mx-5 mt-4" >
               <div className="flex items-center justify-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
