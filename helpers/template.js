@@ -1,3 +1,3 @@
 export const template = {
-    templateString : "https://booklee.azurewebsites.net"
+    templateString : "https://booklee.vercel.app"
 }
