@@ -1,3 +1,3 @@
 export const template = {
-    templateString : "https://bookle.azurestaticapp.net"
+    templateString : "https://booklee.azurewebsites.net"
 }
