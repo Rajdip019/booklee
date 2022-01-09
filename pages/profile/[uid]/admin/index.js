@@ -43,7 +43,6 @@ export default function UserProfile({ UserDetails }) {
         id: UserDetails.bookDid,
       }),
     });
-    setISFetched(false);
     const bookData = await res.json();
     setBookD(bookData);
   };
@@ -82,7 +81,6 @@ export default function UserProfile({ UserDetails }) {
         id: UserDetails.bookSoldid,
       }),
     });
-    setISFetched(false);
     setProgress(90);
     const bookData = await res.json();
     setSoldBook(bookData);
@@ -103,7 +101,6 @@ export default function UserProfile({ UserDetails }) {
         id: UserDetails.bookDonatedid,
       }),
     });
-    setISFetched(false);
     const bookData = await res.json();
     setDonatedBook(bookData);
   };

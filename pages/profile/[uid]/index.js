@@ -5,8 +5,8 @@ import UserProfileOthers from "../../components/UserProfileOthers";
 import UserProfileDonation from "../../components/UserProfileDonation";
 import ProductCardSellingDisplay from "../../components/ProductCardSellingDisplay";
 import ProductCardDonationDisplay from "../../components/ProductCardDonationDisplay";
-import ProductSoldOutCard from "../../components/ProductSoldOutCard";
-import ProductDonatedCard from "../../components/ProductDonatedCard";
+import ProductSoldOutCardN from "../../components/ProductCardSoldOutN";
+import ProductDonatedCardN from "../../components/ProductCardDonatedN";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
@@ -294,7 +294,7 @@ export default function UserProfile({ UserDetails }) {
                 return (
                   <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
                     <div>
-                      <ProductDonatedCard
+                      <ProductDonatedCardN
                         _id={Book._id}
                         seller_id={Book.seller_id}
                         name={Book.name}
@@ -378,7 +378,7 @@ export default function UserProfile({ UserDetails }) {
                 return (
                   <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
                     <div>
-                      <ProductSoldOutCard
+                      <ProductSoldOutCardN
                         _id={Book._id}
                         seller_id={Book.seller_id}
                         name={Book.name}

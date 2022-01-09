@@ -66,7 +66,6 @@ export default function UserProfileSell({ UserDetails }) {
         id: UserDetails.favbookDid,
       }),
     });
-    setIsFetched(false);
     setProgress(90);
     const bookData = await res.json();
     setFavBookD(bookData);
