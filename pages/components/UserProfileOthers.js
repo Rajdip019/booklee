@@ -6,7 +6,10 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 
 const UserProfileOthers = (props) => {
+
+
   const [id, setId] = useState("");
+
   const { data: session } = useSession();
   const mail = session?.user?.email;
 
