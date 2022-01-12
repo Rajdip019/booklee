@@ -3,9 +3,11 @@ import ProductCardSellingDisplay from "./ProductCardSellingDisplay";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { template } from "../../helpers/template";
+import CardSkeleton from "./CardSkeleton";
 
 const TopStoryBooksHome = ({topLoader}) => {
   const { templateString } = template;
+  const [isFteched, setISFetched] = useState(true)
 
   const [result, setResult] = useState(null);
 
@@ -14,6 +16,7 @@ const TopStoryBooksHome = ({topLoader}) => {
       const res = await fetch(`${templateString}/api/sellbook/storybooks`);
       const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
       setResult(bookData);
+      setISFetched(false)
     } catch {
       null;
     }
@@ -36,6 +39,15 @@ const TopStoryBooksHome = ({topLoader}) => {
             </button>
           </Link>
         </div>
+        {isFteched ? (
+          <>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          </>
+        ) : (null)}
         {result?.slice(0, 5).map((storybook) => {
           return (
             <div className="ml-auto mr-auto mb-16">
@@ -72,6 +84,14 @@ const TopStoryBooksHome = ({topLoader}) => {
             </button>
           </Link>
         </div>
+        {isFteched ? (
+          <>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          </>
+        ) : (null)}
         {result?.slice(0, 4).map((storybook) => {
           return (
             <div className="ml-auto mr-auto mb-16">
@@ -106,6 +126,13 @@ const TopStoryBooksHome = ({topLoader}) => {
             </button>
           </Link>
         </div>
+        {isFteched ? (
+          <>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          </>
+        ) : (null)}
         {result?.slice(0, 3).map((storybook) => {
           return (
             <div className="ml-auto mr-auto mb-16">
@@ -135,6 +162,12 @@ const TopStoryBooksHome = ({topLoader}) => {
         <h2 className="text-3xl font-bold  font-rokkitt mb-12 text-center underline">
           Top Story Books
         </h2>
+        {isFteched ? (
+          <>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          </>
+        ) : (null)}
         {result?.slice(0, 2).map((storybook) => {
           return (
             <div className="ml-auto mr-auto mb-16">

@@ -3,11 +3,13 @@ import ProductCardSellingDisplay from "./ProductCardSellingDisplay";
 import Link from "next/link";
 import { useState } from "react";
 import { template } from "../../helpers/template";
+import CardSkeleton from "./CardSkeleton";
 
 const NewlyAddedHome = (props) => {
   const { templateString } = template;
 
   const [result, setResult] = useState(null);
+  const [isFteched, setISFetched] = useState(true)
 
   const handleNew = async () => {
     //Getting the Data from all the input field and Sending it to the API end Point.
@@ -15,6 +17,7 @@ const NewlyAddedHome = (props) => {
       const res = await fetch(`${templateString}/api/sellbook`);
       const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
       setResult(bookData?.reverse());
+      setISFetched(false)
     } catch {
       null;
     }
@@ -42,6 +45,15 @@ const NewlyAddedHome = (props) => {
             </button>
           </Link>
         </div>
+        {isFteched ? (
+          <>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          </>
+        ) : (null)}
         {result?.slice(0, 5).map((newbooks) => {
           return (
             <div className="ml-auto mr-auto mb-16">
@@ -83,6 +95,14 @@ const NewlyAddedHome = (props) => {
             </button>
           </Link>
         </div>
+        {isFteched ? (
+          <>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          </>
+        ) : (null)}
         {result?.slice(0, 4).map((newbooks) => {
           return (
             <div className="ml-auto mr-auto mb-16">
@@ -122,6 +142,11 @@ const NewlyAddedHome = (props) => {
             </button>
           </Link>
         </div>
+        {isFteched ? (<>
+        <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+        <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+        <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+        </>) : (null)}
         {result?.slice(0, 3).map((newbooks) => {
           return (
             <div className="ml-auto mr-auto mb-16">
@@ -151,6 +176,10 @@ const NewlyAddedHome = (props) => {
         <h2 className="font-bold font-rokkitt text-3xl mb-12 text-center underline">
           Newly Added
         </h2>
+        {isFteched ? (<>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+        </>) : (null)}
         {result?.slice(0, 2).map((newbooks) => {
           return (
             <div className="ml-auto mr-auto mb-16">

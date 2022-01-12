@@ -5,19 +5,20 @@ import UserProfileOthers from "../../components/UserProfileOthers";
 import UserProfileDonation from "../../components/UserProfileDonation";
 import ProductCardSellingDisplay from "../../components/ProductCardSellingDisplay";
 import ProductCardDonationDisplay from "../../components/ProductCardDonationDisplay";
-import ProductSoldOutCard from "../../components/ProductSoldOutCard";
-import ProductDonatedCard from "../../components/ProductDonatedCard";
+import ProductSoldOutCardN from "../../components/ProductCardSoldOutN";
+import ProductDonatedCardN from "../../components/ProductCardDonatedN";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Tabs, TabList, Tab, ChakraProvider } from "@chakra-ui/react";
 import { template } from "../../../helpers/template";
 import LoadingBar from "react-top-loading-bar";
-
-
+import CardSkeleton from "../../components/CardSkeleton";
 
 export default function UserProfile({ UserDetails }) {
   const { templateString } = template;
+
+  const [isFetched, setISFetched] = useState(true);
 
   const [progress, setProgress] = useState(0);
 
@@ -42,6 +43,7 @@ export default function UserProfile({ UserDetails }) {
         id: UserDetails.bookDid,
       }),
     });
+    setISFetched(false);
     const bookData = await res.json();
     setBookD(bookData);
   };
@@ -61,6 +63,7 @@ export default function UserProfile({ UserDetails }) {
         id: UserDetails.bookSid,
       }),
     });
+    setISFetched(false);
     setProgress(90);
     const bookData = await res.json();
     setBookS(bookData);
@@ -81,6 +84,7 @@ export default function UserProfile({ UserDetails }) {
         id: UserDetails.bookSoldid,
       }),
     });
+    setISFetched(false);
     const bookData = await res.json();
     setSoldBook(bookData);
   };
@@ -99,6 +103,7 @@ export default function UserProfile({ UserDetails }) {
         id: UserDetails.bookDonatedid,
       }),
     });
+    setISFetched(false);
     const bookData = await res.json();
     setDonatedBook(bookData);
   };
@@ -225,6 +230,22 @@ export default function UserProfile({ UserDetails }) {
           <>
             <div className=" items-center">
               <div className="lg:ml-[300px] my-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 lg:w-[calc(100%-350px)] align-middle">
+                {isFetched ? (
+                  <>
+                    <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                      <CardSkeleton />
+                    </div>
+                    <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                      <CardSkeleton />
+                    </div>
+                    <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                      <CardSkeleton />
+                    </div>
+                    <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                      <CardSkeleton />
+                    </div>
+                  </>
+                ) : null}
                 {bookD?.map((Book) => {
                   return (
                     <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
@@ -253,11 +274,27 @@ export default function UserProfile({ UserDetails }) {
               <hr />
             </div>
             <div className="lg:ml-[300px] my-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 lg:w-[calc(100%-350px)] align-middle">
+              {isFetched ? (
+                <>
+                  <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                    <CardSkeleton />
+                  </div>
+                  <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                    <CardSkeleton />
+                  </div>
+                  <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                    <CardSkeleton />
+                  </div>
+                  <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                    <CardSkeleton />
+                  </div>
+                </>
+              ) : null}
               {donateBook?.map((Book) => {
                 return (
                   <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
                     <div>
-                      <ProductDonatedCard
+                      <ProductDonatedCardN
                         _id={Book._id}
                         seller_id={Book.seller_id}
                         name={Book.name}
@@ -277,6 +314,22 @@ export default function UserProfile({ UserDetails }) {
           <>
             <div className=" items-center">
               <div className="lg:ml-[300px] my-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 lg:w-[calc(100%-350px)] align-middle">
+                {isFetched ? (
+                  <>
+                    <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                      <CardSkeleton />
+                    </div>
+                    <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                      <CardSkeleton />
+                    </div>
+                    <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                      <CardSkeleton />
+                    </div>
+                    <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                      <CardSkeleton />
+                    </div>
+                  </>
+                ) : null}
                 {bookS?.map((Book) => {
                   return (
                     <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
@@ -305,11 +358,27 @@ export default function UserProfile({ UserDetails }) {
               <hr />
             </div>
             <div className="lg:ml-[300px] my-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 lg:w-[calc(100%-350px)] align-middle">
+              {isFetched ? (
+                <>
+                  <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                    <CardSkeleton />
+                  </div>
+                  <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                    <CardSkeleton />
+                  </div>
+                  <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                    <CardSkeleton />
+                  </div>
+                  <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
+                    <CardSkeleton />
+                  </div>
+                </>
+              ) : null}
               {soldBook?.map((Book) => {
                 return (
                   <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">
                     <div>
-                      <ProductSoldOutCard
+                      <ProductSoldOutCardN
                         _id={Book._id}
                         seller_id={Book.seller_id}
                         name={Book.name}
