@@ -58,7 +58,7 @@ const HomePageMain = () => {
                         <img
                           src="/Rectangle 102.png"
                           alt=""
-                          className="w-full h-full object-center object-cover rounded-lg "
+                          className="mt-5 sm:mt-0 invisible xs:visible w-full h-full object-center object-cover rounded-lg "
                         />
                       </div>
                       <div className="w-44 h-64 rounded-lg overflow-hidden">
@@ -98,14 +98,14 @@ const HomePageMain = () => {
 
               <Link href="/ListBookForDonating">
               <button onClick={()=> {setProgress(40); setProgress(100)}}
-                className="inline-block text-center font-bold text-xl bg-skin-lightGreen border border-transparent rounded-md py-3 px-10 text-skin-darkGreen hover:bg-skin-hoverGreen transition-all"
+                className="w-full xs:w-auto inline-block text-center font-bold text-xl bg-skin-lightGreen border border-transparent rounded-md py-3 px-10 text-skin-darkGreen hover:bg-skin-hoverGreen transition-all"
               >
                 Donate Now
               </button>
               </Link>
               <Link href="/ListBookForSelling">
               <button onClick={()=> {setProgress(40); setProgress(100)}}
-                className="ml-6 inline-block text-center font-bold text-xl bg-skin-lightBlue border border-transparent rounded-md py-3 px-8 text-skin-darkBlue hover:bg-skin-hoverBlue relative z-20 transition-all"
+                className="w-full ml-0 mt-5 xs:w-auto xs:ml-6 inline-block text-center font-bold text-xl bg-skin-lightBlue border border-transparent rounded-md py-3 px-8 text-skin-darkBlue hover:bg-skin-hoverBlue relative z-20 transition-all"
               >
                 Sell
               </button>
