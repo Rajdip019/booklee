@@ -3,11 +3,13 @@ import ProductCardDonationDisplay from "./ProductCardDonationDisplay";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { template } from "../../helpers/template";
+import CardSkeleton from "./CardSkeleton";
 
 
 const TopFreeEduBook = ({ topLoader }) => {
 
   const [result, setResult]  = useState()
+  const [isFteched, setISFetched] = useState(true)
 
   const {templateString} =template;
 
@@ -16,6 +18,7 @@ const TopFreeEduBook = ({ topLoader }) => {
       const res = await fetch(`${templateString}/api/donatebook`);
       const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
       setResult(bookData);
+      setISFetched(false)
     } catch {
       null;
     }
@@ -40,6 +43,15 @@ const TopFreeEduBook = ({ topLoader }) => {
             </button>
           </Link>
         </div>
+        {isFteched ? (
+          <>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          </>
+        ) : (null)}
         {result?.slice(0, 5).map((edubook) => {
           return (
             <div className="ml-auto mr-auto mb-16">
@@ -75,6 +87,14 @@ const TopFreeEduBook = ({ topLoader }) => {
             </button>
           </Link>
         </div>
+        {isFteched ? (
+          <>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          </>
+        ) : (null)}
         {result?.slice(0, 4).map((edubook) => {
           return (
             <div className="ml-auto mr-auto mb-16">
@@ -108,6 +128,13 @@ const TopFreeEduBook = ({ topLoader }) => {
             </button>
           </Link>
         </div>
+        {isFteched ? (
+          <>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          </>
+        ) : (null)}
         {result?.slice(0, 3).map((edubook) => {
           return (
             <div className="ml-auto mr-auto mb-16">
@@ -136,6 +163,12 @@ const TopFreeEduBook = ({ topLoader }) => {
         <h2 className="font-bold font-rokkitt text-3xl mb-12 text-center underline">
           Free Educational Books
         </h2>
+        {isFteched ? (
+          <>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          <div className="ml-auto mr-auto mb-16"><CardSkeleton /></div>
+          </>
+        ) : (null)}
         {result?.slice(0, 2).map((edubook) => {
           return (
             <div className="ml-auto mr-auto mb-16">
