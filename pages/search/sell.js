@@ -120,7 +120,7 @@ const Search = () => {
       />
       {/* Filter Start */}
       <ChakraProvider>
-        <div className="w-[300px] text-center shadow-2xl h-[100vh] fixed  hidden lg:block">
+        <div className="w-[300px] text-center shadow-2xl h-[100vh] fixed hidden lg:block overflow-scroll">
           <h1 className="text-5xl font-semibold py-10 font-rokkitt">Filter</h1>
           {/* Slider Starts */}
           <div className="w-10/12 mx-auto">
@@ -332,7 +332,7 @@ const Search = () => {
               </select>
             </div>
           </div>
-          <div className="flex justify-between w-9/12 mx-auto">
+          <div className="flex justify-between w-9/12 mx-auto mb-12">
             <button
               className="bg-skin-lightRed text-skin-darkRed hover:bg-red-100 px-4 py-2 transition-all rounded-lg font-bold my-10 "
               onClick={handleReset}
