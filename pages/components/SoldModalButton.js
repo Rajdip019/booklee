@@ -233,6 +233,7 @@ const SoldModalButton = (props) => {
                       onChange={(e) => {
                       setOTPUser(e.target.value);}}
                     />
+                    <p className="text-xs text-left mt-2 text-red-500">*If you can't find the OTP Please check spam or promotional section of your email.</p>
                     </>):  (null)}
                   </>
                 ) : (
@@ -306,7 +307,7 @@ const SoldModalButton = (props) => {
                   
                   <button
                     
-                    className={buyerEmail ? "ml-auto mr-auto bg-skin-lightBlue text-skin-darkBlue rounded-lg px-4 py-2 mt-6 font-bold hover:bg-skin-hoverBlue transition-all" : "bg-gray-200 rounded-lg px-4 py-2 mt-6 font-semibold"}
+                    className={buyerEmail ? " ml-auto mr-auto bg-skin-lightBlue text-skin-darkBlue rounded-lg px-4 py-2 mt-6 font-bold hover:bg-skin-hoverBlue transition-all" : "bg-gray-200 rounded-lg px-4 py-2 mt-6 font-bold"}
                     onClick={()=> {handleExpansion(); handleEmailCheck(); setExpandOTP(false); }}
                     disabled={!buyerEmail}                              
                   >

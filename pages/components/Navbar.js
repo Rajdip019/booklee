@@ -14,6 +14,7 @@ import {
   MenuList,
   MenuItem,
   Avatar,
+  Tooltip
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
@@ -82,7 +83,7 @@ const Navbar = (props) => {
             <input
               value={searchInput}
               type="text"
-              placeholder={props.book ? props.book : "Search a Book you want"}
+              placeholder={props.book ? props.book : "Search a Book"}
               className="hidden xl:block bg-gray-200 h-10  my-5 w-full rounded-r-none"
               onChange={(e) => setSearchInput(e.target.value)}
               onKeyPress={(event) => {
@@ -116,6 +117,25 @@ const Navbar = (props) => {
           </div>
 
           <div className="flex items-center">
+          <a href="https://rajdeepsengupta.notion.site/Project-Details-0fcfce9964da4e96af6564c87aa631fc" target="_blank">
+          <div>
+          <Tooltip hasArrow label='Search places' color='black' placement='bottom'>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-7 w-7 sm:mx-3  text-skin-darkBlue cursor-pointer hover:scale-110 transition-all"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                clip-rule="evenodd"
+              />
+            </svg>
+
+            </Tooltip>
+          </div>
+          </a>
             <span className="hidden xl:block">
               <Link href="/ListBookForSelling">
                 <button
@@ -211,211 +231,209 @@ const Navbar = (props) => {
             </Menu>
             {/*Donate Button for mobile*/}
             <div className="flex items-center">
-            <div className="block xl:hidden z-50 mt-1">
-              <Menu>
-                <MenuButton
-                  py={2}
-                  transition="all 0.2s"
-                  _expanded={{ bg: "blue.400" }}
-                  _focus={{ boxShadow: "outline" }}
-                >
-                  <div className="w-[35px] ml-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6 text-skin-darkGreen"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                      />
-                    </svg>
-                  </div>
-                </MenuButton>
-                <MenuList
-                  className=" bg-white rounded-lg p-2 w-24 shadow-xl "
-                  onClick={() => {
-                    setProgress(40);
-                  }}
-                >
-                  <Link href="/ListBookForSelling">
-                    <MenuItem className="p-1 hover:bg-skin-lightGreen transition-all rounded font-semibold">
-                      <span className="text-skin-darkGreen text-center mx-auto">
-                        Sell
-                      </span>
-                    </MenuItem>
-                  </Link>
-                  <Link href="/ListBookForDonating">
-                    <MenuItem
-                      className="p-1 hover:bg-skin-lightGreen transition-all rounded font-semibold"
-                      onClick={() => {
-                        setProgress(40);
-                      }}
-                    >
-                      <span className="text-skin-darkGreen text-center mx-auto">
-                        Donate Directly
-                      </span>
-                    </MenuItem>
-                  </Link>
-                  <Link href="/donatengo">
-                    <MenuItem
-                      className="p-1 hover:bg-skin-lightGreen transition-all rounded font-semibold"
-                      onClick={() => {
-                        setProgress(40);
-                      }}
-                    >
-                      <span className="text-skin-darkGreen text-center mx-auto">
-                        Donate to NGO
-                      </span>
-                    </MenuItem>
-                  </Link>
-                </MenuList>
-              </Menu>
-            </div>
-            {/* {/--------------------------------------*Hamburger Menu*--------------------------------------------/} */}
-            <div className="block xl:hidden">
-              <>
-                <ChakraProvider>
-                  <Button ref={btnRef} onClick={onOpen} bgColor="white">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </Button>
-                  <Drawer
-                    isOpen={isOpen}
-                    placement="right"
-                    onClose={onClose}
-                    finalFocusRef={btnRef}
+              <div className="block xl:hidden z-50 mt-1">
+                <Menu>
+                  <MenuButton
+                    py={2}
+                    transition="all 0.2s"
+                    _expanded={{ bg: "blue.400" }}
+                    _focus={{ boxShadow: "outline" }}
                   >
-                    <DrawerOverlay />
-                    <DrawerContent>
-                      <DrawerCloseButton />
+                    <div className="w-[35px] ml-4">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6 text-skin-darkGreen"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                        />
+                      </svg>
+                    </div>
+                  </MenuButton>
+                  <MenuList
+                    className=" bg-white rounded-lg p-2 w-24 shadow-xl "
+                    onClick={() => {
+                      setProgress(40);
+                    }}
+                  >
+                    <Link href="/ListBookForSelling">
+                      <MenuItem className="p-1 hover:bg-skin-lightGreen transition-all rounded font-semibold">
+                        <span className="text-skin-darkGreen text-center mx-auto">
+                          Sell
+                        </span>
+                      </MenuItem>
+                    </Link>
+                    <Link href="/ListBookForDonating">
+                      <MenuItem
+                        className="p-1 hover:bg-skin-lightGreen transition-all rounded font-semibold"
+                        onClick={() => {
+                          setProgress(40);
+                        }}
+                      >
+                        <span className="text-skin-darkGreen text-center mx-auto">
+                          Donate Directly
+                        </span>
+                      </MenuItem>
+                    </Link>
+                    <Link href="/donatengo">
+                      <MenuItem
+                        className="p-1 hover:bg-skin-lightGreen transition-all rounded font-semibold"
+                        onClick={() => {
+                          setProgress(40);
+                        }}
+                      >
+                        <span className="text-skin-darkGreen text-center mx-auto">
+                          Donate to NGO
+                        </span>
+                      </MenuItem>
+                    </Link>
+                  </MenuList>
+                </Menu>
+              </div>
+              {/* {/--------------------------------------*Hamburger Menu*--------------------------------------------/} */}
+              <div className="block xl:hidden">
+                <>
+                  <ChakraProvider>
+                    <Button ref={btnRef} onClick={onOpen} bgColor="white">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </Button>
+                    <Drawer
+                      isOpen={isOpen}
+                      placement="right"
+                      onClose={onClose}
+                      finalFocusRef={btnRef}
+                    >
+                      <DrawerOverlay />
+                      <DrawerContent>
+                        <DrawerCloseButton />
 
-                      <DrawerBody>
-                        <>
-                          <div className="text-center h-[97vh]">
-                            <h1 className="text-3xl font-semibold py-10 font-rokkitt">
-                              Booklee
-                            </h1>
-                            <hr />
-                            <Link href="/">
+                        <DrawerBody>
+                          <>
+                            <div className="text-center h-[97vh]">
+                              <h1 className="text-3xl font-semibold py-10 font-rokkitt">
+                                Booklee
+                              </h1>
+                              <hr />
+                              <Link href="/">
+                                <button
+                                  className="w-full  text-xl rounded-lg font-semibold text-skin-darkBlue my-2"
+                                  onClick={() => {
+                                    setProgress(40);
+                                  }}
+                                >
+                                  Home
+                                </button>
+                              </Link>
+                              <hr />
+                              <Link
+                                href={"/profile/[uid]/admin"}
+                                as={`/profile/${id}/admin`}
+                              >
+                                <button
+                                  className="w-full  text-xl rounded-lg font-semibold text-skin-darkBlue my-2"
+                                  onClick={() => {
+                                    setProgress(40);
+                                  }}
+                                >
+                                  Profile
+                                </button>
+                              </Link>
+                              <hr />
+                              <Link
+                                href={"/profile/[uid]/admin/favourite"}
+                                as={`/profile/${id}/admin/favourite`}
+                              >
+                                <button
+                                  className="w-full  text-xl rounded-lg font-semibold text-skin-darkBlue my-2"
+                                  onClick={() => {
+                                    setProgress(40);
+                                  }}
+                                >
+                                  Favourite
+                                </button>
+                              </Link>
+                              <hr />
+                              <Link
+                                href={"/profile/[uid]/admin/orders"}
+                                as={`/profile/${id}/admin/orders`}
+                              >
+                                <button
+                                  className="w-full  text-xl rounded-lg font-semibold text-skin-darkBlue my-2"
+                                  onClick={() => {
+                                    setProgress(40);
+                                  }}
+                                >
+                                  Your Orders
+                                </button>
+                              </Link>
+                              <hr />
                               <button
-                                className="w-full  text-xl rounded-lg font-semibold text-skin-darkBlue my-2"
+                                onClick={() => signOut()}
+                                className="w-full text-xl rounded-lg font-semibold text-skin-darkBlue my-2"
                                 onClick={() => {
                                   setProgress(40);
                                 }}
                               >
-                                Home
+                                Logout
                               </button>
-                            </Link>
-                            <hr />
-                            <Link
-                              href={"/profile/[uid]/admin"}
-                              as={`/profile/${id}/admin`}
-                            >
-                              <button
-                                className="w-full  text-xl rounded-lg font-semibold text-skin-darkBlue my-2"
-                                onClick={() => {
-                                  setProgress(40);
-                                }}
-                              >
-                                Profile
-                              </button>
-                            </Link>
-                            <hr />
-                            <Link
-                              href={"/profile/[uid]/admin/favourite"}
-                              as={`/profile/${id}/admin/favourite`}
-                            >
-                              <button
-                                className="w-full  text-xl rounded-lg font-semibold text-skin-darkBlue my-2"
-                                onClick={() => {
-                                  setProgress(40);
-                                }}
-                              >
-                                Favourite
-                              </button>
-                            </Link>
-                            <hr />
-                            <Link
-                              href={"/profile/[uid]/admin/orders"}
-                              as={`/profile/${id}/admin/orders`}
-                            >
-                              <button
-                                className="w-full  text-xl rounded-lg font-semibold text-skin-darkBlue my-2"
-                                onClick={() => {
-                                  setProgress(40);
-                                }}
-                              >
-                                Your Orders
-                              </button>
-                            </Link>
-                            <hr />
-                            <button
-                              onClick={() => signOut()}
-                              className="w-full text-xl rounded-lg font-semibold text-skin-darkBlue my-2"
-                              onClick={() => {
-                                setProgress(40);
-                              }}
-                            >
-                              Logout
-                            </button>
-                            <hr />
-                            <Link href="/profile/sell">
-                              <div
-                                className=" bottom-0 absolute mb-3 w-full left-0 py-3"
-                                onClick={() => {
-                                  setProgress(40);
-                                }}
-                              >
-                                <hr />
-                                <div className="flex mt-3">
-                                  <div className="mx-5 my-auto">
-                                    <Avatar
-                                      name={session?.user.name}
-                                      src={session?.user?.image}
-                                      borderRadius="100%"
-                                    />
-                                  </div>
-                                  <div>
-                                    <p
-                                      className="text-lg font-semibold text-left"
-                                      onClick={() => {
-                                        setProgress(40);
-                                      }}
-                                    >
-                                      {session?.user.name}
-                                    </p>
-                                    <p className="text-left text-sm">
-                                      {session?.user.email}
-                                    </p>
+                              <hr />
+                              <Link href="/profile/sell">
+                                <div
+                                  className=" bottom-0 absolute mb-3 w-full left-0 py-3"
+                                  onClick={() => {
+                                    setProgress(40);
+                                  }}
+                                >
+                                  <hr />
+                                  <div className="flex mt-3">
+                                    <div className="mx-5 my-auto">
+                                      <Avatar
+                                        name={session?.user.name}
+                                        src={session?.user?.image}
+                                        borderRadius="100%"
+                                      />
+                                    </div>
+                                    <div>
+                                      <p
+                                        className="text-lg font-semibold text-left"
+                                        onClick={() => {
+                                          setProgress(40);
+                                        }}
+                                      >
+                                        {session?.user.name}
+                                      </p>
+                                      <p className="text-left text-sm">
+                                        {session?.user.email}
+                                      </p>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            </Link>
-                          </div>
-                        </>
-                      </DrawerBody>
-                    </DrawerContent>
-                  </Drawer>
-                  
-                </ChakraProvider>
-                
-              </>
-            </div>
+                              </Link>
+                            </div>
+                          </>
+                        </DrawerBody>
+                      </DrawerContent>
+                    </Drawer>
+                  </ChakraProvider>
+                </>
+              </div>
             </div>
           </div>
         </nav>
@@ -441,7 +459,7 @@ const Navbar = (props) => {
             <Input
               value={searchInput}
               type="text"
-              placeholder={props.book ? props.book : "Search a Book you want"}
+              placeholder={props.book ? props.book : "Search a Book"}
               className="hidden xl:block bg-gray-200 h-10  my-5 w-full rounded-r-none"
               onChange={(e) => setSearchInput(e.target.value)}
               onKeyPress={(event) => {
@@ -475,6 +493,25 @@ const Navbar = (props) => {
           </div>
 
           <div className="flex items-center">
+          <a href="https://rajdeepsengupta.notion.site/Project-Details-0fcfce9964da4e96af6564c87aa631fc" target="_blank">
+          <div>
+          <Tooltip hasArrow label='Search places' color='black' placement='bottom'>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-7 w-7 -mx-3 sm:mx-3 text-skin-darkBlue cursor-pointer hover:scale-110 transition-all"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                clip-rule="evenodd"
+              />
+            </svg>
+
+            </Tooltip>
+          </div>
+          </a>
             <Link href="/auth/signin">
               <button
                 onClick={() => {
@@ -495,7 +532,7 @@ const Navbar = (props) => {
           <Input
             type="text"
             value={searchInput}
-            placeholder={props.book ? props.book : "Search a Book you want"}
+            placeholder={props.book ? props.book : "Search a Book"}
             className=" bg-gray-200 h-10 w-[80vw] rounded-r-none"
             onChange={(e) => setSearchInput(e.target.value)}
             onKeyPress={(event) => {
@@ -504,7 +541,7 @@ const Navbar = (props) => {
             }}
           />
           <button
-          id="BtnMob"
+            id="BtnMob"
             onClick={async () => {
               search();
               try {
