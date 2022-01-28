@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState , useRef} from "react";
 import Navbar from "../components/Navbar";
 import GeneralSidebar from "../components/GeneralSidebar";
 import Document from "../document";
@@ -11,6 +11,7 @@ import { getSession } from "next-auth/react";
 import cities from "../../database/city"; //Have all the cities name According to State
 import { template } from "../../helpers/template";
 import LoadingBar from "react-top-loading-bar";
+import { useEffect } from "react/cjs/react.development";
 
 const ListBookForSelling = () => {
   const { data: session } = useSession();
@@ -47,6 +48,7 @@ const ListBookForSelling = () => {
 
   const toast = createStandaloneToast(); // A standalone toast (doesn't reqiure a parent element)
   ///Form Submit Function
+  let remaining = (300 - description.length);
   
   const handleSubmit = async (e) => {
     setProgress(30)
@@ -81,7 +83,8 @@ const ListBookForSelling = () => {
       }),
     });
     setProgress(100)
-    const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
+  //Getting the response data to use it show the Toast conditionally
+
 
     //Showing Toast conditionally
 
@@ -152,6 +155,11 @@ const ListBookForSelling = () => {
     setState("");
     setPin("");
   };
+
+
+  
+  
+
 
   return (
     <>
@@ -228,17 +236,19 @@ const ListBookForSelling = () => {
                         </div>
                         <div className="my-3">
                           <h3>Product Description</h3>
-                          <ChakraProvider>
-                            <Input
-                              type="text"
-                              placeholder="Enter Product Description"
-                              name="description"
-                              value={description}
-                              onChange={(e) => {
-                                setDescription(e.target.value);
-                              }}
+                            <textarea
+                            type="text"
+                            className="w-full h-24 resize-none"                        
+                            id="text-area"
+                            placeholder="Enter Product Description"
+                            name="description"
+                            value={description}
+                            maxLength="300"
+                            onChange={(e) => {
+                              setDescription(e.target.value);
+                            }}
                             />
-                          </ChakraProvider>
+                            <p className={remaining==0 ? "float-right text-xs text-red-600" :  "float-right text-xs text-opacity-50 "} id="remaining-char">{remaining} characters remaining</p>
                         </div>
                         <div className="mt-5">
                           <div className="mb-5">

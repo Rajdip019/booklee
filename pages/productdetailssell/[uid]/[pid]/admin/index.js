@@ -7,7 +7,7 @@ import GeneralSidebar from "../../../../components/GeneralSidebar";
 import ProductDetailsSell from "../../../../components/ProductDetailsSell";
 import SoldModalButton from "../../../../components/SoldModalButton";
 import DeleteModalButton from "../../../../components/DeleteModalButton";
-import { Avatar } from "@chakra-ui/react";
+import { Avatar, ChakraProvider } from "@chakra-ui/react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { template } from "../../../../../helpers/template";
@@ -70,12 +70,14 @@ export default function ProductDetailsSellPage({
       <div className="lg:ml-[300px] bg-gray-50 pt-5 block text-center">
         <h2 className=" text-3xl font-semibold">Admin Panel</h2>
         <div className="2xl:hidden items-center">
+          <ChakraProvider>
           <Avatar
             className="w-36 h-36 mt-5 "
             name={UserBookDetails.name}
             src={UserBookDetails.image}
             borderRadius="100%"
           ></Avatar>
+          </ChakraProvider>
           <h3 className=" text-xl font-semibold text-center">
             {UserBookDetails.name}
           </h3>
@@ -84,12 +86,14 @@ export default function ProductDetailsSellPage({
       </div>
       <div className="lg:ml-[300px] bg-gray-50 py-10 md:flex justify-center flex flex-col md:flex-row items-center">
         <div className="hidden 2xl:flex-col 2xl:flex  mr-[8vw] 2xl:items-center">
+          <ChakraProvider>
           <Avatar
             className="w-36 h-36 mb-5"
             name={UserBookDetails.name}
             src={UserBookDetails.image}
             borderRadius="100%"
           ></Avatar>
+          </ChakraProvider>
           <h3 className=" text-xl font-semibold text-center">
             {UserBookDetails.name}
           </h3>
