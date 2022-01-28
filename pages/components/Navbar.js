@@ -439,13 +439,25 @@ const Navbar = (props) => {
           </div>
           <div className="w-[25vw] flex">
             <Input
+              value={searchInput}
               type="text"
-              placeholder="Search "
+              placeholder={props.book ? props.book : "Search a Book you want"}
               className="hidden xl:block bg-gray-200 h-10  my-5 w-full rounded-r-none"
+              onChange={(e) => setSearchInput(e.target.value)}
+              onKeyPress={(event) => {
+                event.key === "Enter" &&
+                  document.getElementById("myBtn").click();
+              }}
             />
             <button
-              onClick={() => {
-                setProgress(40);
+              id="myBtn"
+              onClick={async () => {
+                search();
+                try {
+                  setProgress(40);
+                  await props.handleFilter();
+                  setProgress(100);
+                } catch {}
               }}
             >
               <svg

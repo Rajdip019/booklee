@@ -9,10 +9,9 @@ import DonateBottomHome from "./components/DonateBottomHome"
 import Footer from "./components/Footer";
 import LoadingBar from 'react-top-loading-bar';
 import { useState } from "react"
-import {template} from "../helpers/template";
 
 
-export default function Home({sellBooks, donateBooks, sellerDetails}) {
+export default function Home() {
 
   const [progress, setProgress] = useState(0)
 
@@ -21,6 +20,7 @@ export default function Home({sellBooks, donateBooks, sellerDetails}) {
   }
   return (
     <>  
+    <div className="scrollbar-thin scrollbar-thumb-blue-600 scrollbar-track-blue-300 h-screen overflow-y-scroll">
     <Document />
     <Navbar/>
     <LoadingBar
@@ -31,6 +31,8 @@ export default function Home({sellBooks, donateBooks, sellerDetails}) {
       />
       {/* <button onClick={topLoader}>click</button> */}
     <HomePageMain />
+    <div className="relative z-20 bg-white">
+
     <NewlyAddedHome 
       topLoader = {topLoader}
     />
@@ -47,6 +49,8 @@ export default function Home({sellBooks, donateBooks, sellerDetails}) {
       topLoader = {topLoader}
     />
     <Footer />
+    </div>
+    </div>
     </>
   )
 }

@@ -17,7 +17,7 @@ const HomePageMain = () => {
         <img src="/Vector.png" alt="vector image" />
         </div>
         <div className="relative bg-white overflow-hidden">
-      <div className="pt-16 pb-80 sm:pt-24 sm:pb-40 lg:pt-40 lg:pb-48">
+      <div className="pt-16 pb-80 sm:pt-24 sm:pb-40 lg:pt-40 lg:pb-48 relative z-20">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sm:static">
           <div className="sm:max-w-lg">
             <h1 className=" -mt-14 sm:-mt-0 text-4xl font-rokkitt font-extrabold tracking-tight text-gray-900 sm:text-6xl relative z-20 leading-[50px]">

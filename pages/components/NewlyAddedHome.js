@@ -31,7 +31,7 @@ const NewlyAddedHome = (props) => {
     <>
       {/*////////////////////////////////////////// For Extra Large/PC Skin/////////////////////////////////////////// */}
 
-      <div className="sm:hidden 2xl:grid 2xl:grid-cols-5 gap-1 w-11/12 m-auto md:hidden lg:hidden hidden mt-32 mb-6">
+      <div className="sm:hidden 2xl:grid 2xl:grid-cols-5 gap-1 w-11/12 m-auto md:hidden lg:hidden hidden mt-32 mb-6 pt-5">
         <div className="col-span-5  mb-12 px-[2vw]">
           <span className="text-4xl font-bold ml-0 font-rokkitt">Newly Added</span>
           <Link href="/browsebooks/newlyadded">
