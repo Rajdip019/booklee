@@ -45,7 +45,12 @@ export default function ProductDetailsDonate({
           <Link
             href={`/productdetailsdonate/${UserBookDetails._id}/${donateBooksDetails._id}`}
           >
-            <p className="mx-[20vw] rounded-3xl text-center mt-5 bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 font-semibold text-xl cursor-pointer"  onClick={()=> {setProgress(30)}}>
+            <p
+              className="mx-[20vw] rounded-3xl text-center mt-5 bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 font-semibold text-xl cursor-pointer"
+              onClick={() => {
+                setProgress(30);
+              }}
+            >
               Go to Visitor View
             </p>
           </Link>
@@ -71,14 +76,14 @@ export default function ProductDetailsDonate({
 
           <div className="lg:ml-[300px] bg-gray-50 pt-5 block text-center">
             <h2 className=" text-3xl font-semibold">Admin Panel</h2>
-            <div className="2xl:hidden items-center flex flex-col justify-center">
+            <div className="2xl:hidden items-center">
               <ChakraProvider>
-              <Avatar
-                className="w-36 h-36 mt-5 "
-                name={UserBookDetails.name}
-                src={UserBookDetails.image}
-                borderRadius="100%"
-              ></Avatar>
+                <Avatar
+                  className="w-36 h-36 my-5 "
+                  name={UserBookDetails.name}
+                  src={UserBookDetails.image}
+                  borderRadius="100%"
+                ></Avatar>
               </ChakraProvider>
               <h3 className=" text-xl font-semibold text-center">
                 {UserBookDetails.name}
@@ -87,14 +92,15 @@ export default function ProductDetailsDonate({
             </div>
           </div>
           <div className="lg:ml-[300px] bg-gray-50 py-10 md:flex justify-center flex flex-col md:flex-row items-center">
-            <div className="hidden 2xl:block  mr-[8vw] lg:flex flex-col justify-center items-center">
-            <ChakraProvider>
-              <Avatar
-                className="w-36 h-36"
-                name={UserBookDetails.name}
-                src={UserBookDetails.image}
-                borderRadius="100%"
-              ></Avatar>
+            <div className="hidden 2xl:flex-col 2xl:flex  mr-[8vw] 2xl:items-center">
+              <ChakraProvider>
+                <Avatar
+                  size="xl"
+                  name={UserBookDetails.name}
+                  src={UserBookDetails.image}
+                  borderRadius="100%"
+                  className="mb-5"
+                ></Avatar>
               </ChakraProvider>
               <h3 className=" text-xl font-semibold text-center">
                 {UserBookDetails.name}
@@ -105,7 +111,12 @@ export default function ProductDetailsDonate({
               href={"/productdetailsdonate/[uid]/[pid]/admin/edit"}
               as={`/productdetailsdonate/${UserBookDetails._id}/${donateBooksDetails._id}/admin/edit`}
             >
-              <button className="h-[50px] w-10/12  md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-5 lg:mx-5  mx-5 mt-4"  onClick={()=> {setProgress(30)}}>
+              <button
+                className="h-[50px] w-10/12  md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-5 lg:mx-5  mx-5 mt-4"
+                onClick={() => {
+                  setProgress(30);
+                }}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 inline-block pr-1 mb-0.5"
@@ -123,7 +134,7 @@ export default function ProductDetailsDonate({
                 Edit
               </button>
             </Link>
-            <button className="h-[50px] w-10/12 md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-5 lg:mx-4  mx-5 mt-4" >
+            <button className="h-[50px] w-10/12 md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-5 lg:mx-4  mx-5 mt-4">
               <div className="flex items-center justify-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -181,25 +192,33 @@ export default function ProductDetailsDonate({
                 />
               </div>
             </button>
-            <Link href={'/productdetailsdonate/[uid]/[pid]'} as={`/productdetailsdonate/${UserBookDetails._id}/${donateBooksDetails._id}`}>
-        <button className="h-[50px] w-10/12 md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-5 lg:mx-4 sm:mx-3 mx-5 mt-4"  onClick={()=> {setProgress(30)}}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 inline pr-1 mb-0.5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
-            />
-          </svg>
-          Switch to Visitor View
-        </button>
-        </Link>
+            <Link
+              href={"/productdetailsdonate/[uid]/[pid]"}
+              as={`/productdetailsdonate/${UserBookDetails._id}/${donateBooksDetails._id}`}
+            >
+              <button
+                className="h-[50px] w-10/12 md:w-auto bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 text-lg font-bold rounded-lg transition-all xl:mx-5 lg:mx-4 sm:mx-3 mx-5 mt-4"
+                onClick={() => {
+                  setProgress(30);
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 inline pr-1 mb-0.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
+                  />
+                </svg>
+                Switch to Visitor View
+              </button>
+            </Link>
           </div>
           {/* Admin Pannel End */}
         </>
@@ -209,12 +228,10 @@ export default function ProductDetailsDonate({
 }
 
 export async function getServerSideProps({ params: { pid, uid } }) {
-  const {templateString} = template;
+  const { templateString } = template;
   try {
     const res = await fetch(`${templateString}/api/donatebook/${pid}`);
-    const res2 = await fetch(
-      `${templateString}/api/user/userdetails/${uid}`
-    );
+    const res2 = await fetch(`${templateString}/api/user/userdetails/${uid}`);
     const data = await res.json();
     const data2 = await res2.json();
 
