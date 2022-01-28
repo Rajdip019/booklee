@@ -5,7 +5,7 @@ import Navbar from "../../../../components/Navbar";
 import GeneralSidebar from "../../../../components/GeneralSidebar";
 import ProductDetailsDonation from "../../../../components/ProductDetailsDonation";
 import DeleteModalButtonD from "../../../../components/DeleteModalButtonD";
-import { Avatar } from "@chakra-ui/react";
+import { Avatar, ChakraProvider } from "@chakra-ui/react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import DonatedModalButton from "../../../../components/DonatedModalButton";
@@ -72,12 +72,14 @@ export default function ProductDetailsDonate({
           <div className="lg:ml-[300px] bg-gray-50 pt-5 block text-center">
             <h2 className=" text-3xl font-semibold">Admin Panel</h2>
             <div className="2xl:hidden items-center flex flex-col justify-center">
+              <ChakraProvider>
               <Avatar
                 className="w-36 h-36 mt-5 "
                 name={UserBookDetails.name}
                 src={UserBookDetails.image}
                 borderRadius="100%"
               ></Avatar>
+              </ChakraProvider>
               <h3 className=" text-xl font-semibold text-center">
                 {UserBookDetails.name}
               </h3>
@@ -86,12 +88,14 @@ export default function ProductDetailsDonate({
           </div>
           <div className="lg:ml-[300px] bg-gray-50 py-10 md:flex justify-center flex flex-col md:flex-row items-center">
             <div className="hidden 2xl:block  mr-[8vw] lg:flex flex-col justify-center items-center">
+            <ChakraProvider>
               <Avatar
                 className="w-36 h-36"
                 name={UserBookDetails.name}
                 src={UserBookDetails.image}
                 borderRadius="100%"
               ></Avatar>
+              </ChakraProvider>
               <h3 className=" text-xl font-semibold text-center">
                 {UserBookDetails.name}
               </h3>
