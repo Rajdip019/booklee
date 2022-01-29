@@ -88,7 +88,7 @@ const Search = () => {
       />
       {/* Filter Start */}
       <ChakraProvider>
-        <div className="w-[300px] text-center shadow-2xl h-[100vh] fixed hidden lg:block" >
+        <div className="w-[300px] text-center shadow-2xl h-[100vh] fixed hidden lg:block scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-50 overflow-y-scroll" >
           <h1 className="text-5xl font-semibold py-10 font-rokkitt">Filter</h1>
           {/* Condition Radio Button Start*/}
           <div className="w-10/12 mx-auto">

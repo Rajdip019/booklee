@@ -25,7 +25,7 @@ const HomePageMain = () => {
             your Old books
             </h1>
             <p className="mt-4 text-xl text-gray-500 relative z-20 ">
-             One and only stop for buyind and selling old books.You can also donate your old academic books to NGO, So that it can help others.
+             One and only stop for buying and selling old books. You can also donate your old academic books to NGO, So that it can help others.
             </p>
           </div>
           <div>

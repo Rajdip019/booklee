@@ -20,7 +20,6 @@ export default function Home() {
   }
   return (
     <>  
-    <div className="scrollbar-thin scrollbar-thumb-blue-600 scrollbar-track-blue-300 h-screen overflow-y-scroll">
     <Document />
     <Navbar/>
     <LoadingBar
@@ -31,7 +30,7 @@ export default function Home() {
       />
       {/* <button onClick={topLoader}>click</button> */}
     <HomePageMain />
-    <div className="relative z-20 bg-white">
+
 
     <NewlyAddedHome 
       topLoader = {topLoader}
@@ -49,8 +48,8 @@ export default function Home() {
       topLoader = {topLoader}
     />
     <Footer />
-    </div>
-    </div>
+
+
     </>
   )
 }

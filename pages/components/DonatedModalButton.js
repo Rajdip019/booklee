@@ -224,13 +224,6 @@ const DonatedModalButton = (props) => {
                           placeholder="Mobile no."
                           disabled
                         />
-                        <p className="text-left mt-3">Name</p>
-                        <input
-                          type="text"
-                          className="w-full mr-auto ml-auto bg-gray-100"
-                          value={buyerdata?.name}
-                          disabled
-                        />
                         {expandOTP ? (
                           <>
                             <p className="text-left mt-3">OTP</p>
@@ -242,6 +235,7 @@ const DonatedModalButton = (props) => {
                                 setOTPUser(e.target.value);
                               }}
                             />
+                             <p className="text-xs text-left mt-2 text-red-500">*If you can't find the OTP Please check spam or promotional section of your email.</p>
                           </>
                         ) : null}
                       </>
