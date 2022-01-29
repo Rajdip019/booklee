@@ -46,6 +46,7 @@ const EditListBookForSelling = ({sellBooksDetails , UserBookDetails}) => {
   const {templateString} = template;
 
   ///Form Submit Function
+  let remaining = (300 - description.length);
   
   const handleSubmit = async (e) => {
     e.preventDefault(); // Preventing Default Action of form (Stops page reload)
@@ -216,15 +217,19 @@ const EditListBookForSelling = ({sellBooksDetails , UserBookDetails}) => {
                         <div className="my-3">
                           <h3>Product Description</h3>
                           <ChakraProvider>
-                            <Input
-                              type="text"
-                              placeholder="Enter Product Description"
-                              name="description"
-                              value={description}
-                              onChange={(e) => {
-                                setDescription(e.target.value);
-                              }}
+                          <textarea
+                            type="text"
+                            className="w-full h-24 resize-none"                        
+                            id="text-area"
+                            placeholder="Enter Product Description"
+                            name="description"
+                            value={description}
+                            maxLength="300"
+                            onChange={(e) => {
+                              setDescription(e.target.value);
+                            }}
                             />
+                            <p className={remaining==0 ? "float-right text-xs text-red-600" :  "float-right text-xs text-opacity-50 "} id="remaining-char">{remaining} characters remaining</p>
                           </ChakraProvider>
                         </div>
                         <div className="mt-5">

@@ -12,10 +12,10 @@ import { Input, ChakraProvider } from "@chakra-ui/react";
 import cities from "../../../../../database/city"; //Have all the cities name According to State
 import { template } from "../../../../../helpers/template";
 
-const EditListBookForDonating = ({donateBooksDetails, UserBookDetails}) => {
-  
+const EditListBookForDonating = ({ donateBooksDetails, UserBookDetails }) => {
+
   const { data: session } = useSession();
-  const {templateString} = template;
+  const { templateString } = template;
 
   //Getting Email of the user form Session
 
@@ -27,7 +27,7 @@ const EditListBookForDonating = ({donateBooksDetails, UserBookDetails}) => {
   const [authorname, setAuthorname] = useState(donateBooksDetails.author);
   const [description, setDescription] = useState(donateBooksDetails.description);
   const [media, setMedia] = useState("");
-  const [img, setImg]  = useState("")
+  const [img, setImg] = useState("")
   const [condition, setCondition] = useState(donateBooksDetails.condition);
   const [adress, setAdress] = useState(donateBooksDetails.adress);
   const [landmark, setLandmark] = useState(donateBooksDetails.landmark);
@@ -43,6 +43,7 @@ const EditListBookForDonating = ({donateBooksDetails, UserBookDetails}) => {
 
   const toast = createStandaloneToast(); // A standalone toast (doesn't reqiure a parent element)
   ///Form Submit Function
+  let remaining = (300 - description.length);
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Preventing Default Action of form (Stops page reload)
@@ -63,8 +64,8 @@ const EditListBookForDonating = ({donateBooksDetails, UserBookDetails}) => {
         condition: condition,
         description: description,
         photo: mediaUrl,
-        seller_mail :donateBooksDetails.seller_mail,
-        seller_id : donateBooksDetails.seller_id,
+        seller_mail: donateBooksDetails.seller_mail,
+        seller_id: donateBooksDetails.seller_id,
         adress: adress,
         landmark: landmark,
         country: country,
@@ -141,209 +142,214 @@ const EditListBookForDonating = ({donateBooksDetails, UserBookDetails}) => {
       {/*/////////////////////// If there is no session (user is not authenticated)  /////////////////////////// */}
 
 
-        {/*/////////////////////// If there is session (user is authenticated)  /////////////////////////// */}
+      {/*/////////////////////// If there is session (user is authenticated)  /////////////////////////// */}
 
-        {UserBookDetails.email != mail && (
-            <div className="lg:ml-[350px] my-[35vh] lg:w-[calc(100%-350px)]">
+      {UserBookDetails.email != mail && (
+        <div className="lg:ml-[350px] my-[35vh] lg:w-[calc(100%-350px)]">
           <h1 className="text-4xl text-gray-500 text-center">You Do not Have Access to this Page!</h1>
           <h1 className="text-2xl text-gray-500 text-center mt-3">This page can only be accessed by Admin</h1>
           <Link href={`/productdetailsdonate/${UserBookDetails._id}/${donateBooksDetails._id}`}>
-          <p className="mx-[20vw] rounded-3xl text-center mt-5 bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 font-semibold text-xl cursor-pointer">Go to Visitor View</p>
+            <p className="mx-[20vw] rounded-3xl text-center mt-5 bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 font-semibold text-xl cursor-pointer">Go to Visitor View</p>
           </Link>
-          </div>
-        ) }
+        </div>
+      )}
 
-        {mail === UserBookDetails.email && (
+      {mail === UserBookDetails.email && (
         <>
 
-        <form>
-         
-          {formStep ? ( //Book Details Form
-            <>
-          <div className="ml-[0px] lg:ml-[300px] lg:w-[calc(100%-300px)] ">
-            <div className="hidden lg:block bg-skin-lightGreen text-skin-darkGreen rounded-xl w-11/12 mx-auto mt-5 shadow-lg">
-              <div className="flex flex-col sm:flex-row text-center sm:text-left justify-between h-full ">
-                <div className="ml-0 sm:ml-7 my-auto ">
-                  <h1 className="text-xl sm:text-2xl font-bold">
-                    Donate to NGO
-                  </h1>
-                </div>
-                <div className="my-auto text-center">
-                  <Link href="/donatengo">
-                    <button className="font-bold bg-skin-darkGreen text-skin-lightGreen rounded-xl mr-0 sm:mr-7 py-2 px-4 my-3 text-xl">
-                      Donate
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
+          <form>
 
-          {/* ///////////////////////////////////Enter Book Details Below(first part)//////////////////////////////// */}
-          <div className="mt-10 w-10/12 mx-auto">
-            <div className="ml-[0px] lg:ml-[300px] w-11/12 lg:w-[calc(100%-300px)] grid grid-col-1 md:grid-cols-2 lg:grid-cols-2 gap-0 md:gap-10">
-              <div>
-                <h1 className="text-2xl font-bold mb-5">
-                  Enter Book Details Below
-                </h1>
-                <div className="my-3">
-                  <h3>Book Name</h3>
-                  <ChakraProvider className="w-[30vw]">
-                    <Input
-                      placeholder="Enter the book Name"
-                      className="w-[10vw]"
-                      name="bookname"
-                      value={bookname}
-                      onChange={(e) => {
-                        setBookname(e.target.value);
-                      }}
-                      required
-                    />
-                  </ChakraProvider>{" "}
-                  <div className="my-5">
-                    <h3>Author Name</h3>
-                    <ChakraProvider>
-                      <Input
-                        placeholder="Enter the Author Name"
-                        name="authorname"
-                        value={authorname}
-                        onChange={(e) => {
-                          setAuthorname(e.target.value);
-                        }}
-                      />
-                    </ChakraProvider>
-                  </div>
-                  <div className="my-3">
-                    <h3>Product Description</h3>
-                    <ChakraProvider>
-                      <Input
-                        placeholder="Enter Product Description"
-                        name="description"
-                        value={description}
-                        onChange={(e) => {
-                          setDescription(e.target.value);
-                        }}
-                      />
-                    </ChakraProvider>
+            {formStep ? ( //Book Details Form
+              <>
+                <div className="ml-[0px] lg:ml-[300px] lg:w-[calc(100%-300px)] ">
+                  <div className="hidden lg:block bg-skin-lightGreen text-skin-darkGreen rounded-xl w-11/12 mx-auto mt-5 shadow-lg">
+                    <div className="flex flex-col sm:flex-row text-center sm:text-left justify-between h-full ">
+                      <div className="ml-0 sm:ml-7 my-auto ">
+                        <h1 className="text-xl sm:text-2xl font-bold">
+                          Donate to NGO
+                        </h1>
+                      </div>
+                      <div className="my-auto text-center">
+                        <Link href="/donatengo">
+                          <button className="font-bold bg-skin-darkGreen text-skin-lightGreen rounded-xl mr-0 sm:mr-7 py-2 px-4 my-3 text-xl">
+                            Donate
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              {/* ///////////////////////////////////Enter Book Details Below(last part)//////////////////////////////// */}
-              <div className="mt-0 md:mt-[59px]">
-                <div className="xl:pr-8">
-                  <div className="hidden md:block">
-                    <img
-                      src="/ListBookForDonation.svg"
-                      className="w-[230px] h-[160px]"
-                    ></img>
+
+                {/* ///////////////////////////////////Enter Book Details Below(first part)//////////////////////////////// */}
+                <div className="mt-10 w-10/12 mx-auto">
+                  <div className="ml-[0px] lg:ml-[300px] w-11/12 lg:w-[calc(100%-300px)] grid grid-col-1 md:grid-cols-2 lg:grid-cols-2 gap-0 md:gap-10">
+                    <div>
+                      <h1 className="text-2xl font-bold mb-5">
+                        Enter Book Details Below
+                      </h1>
+                      <div className="my-3">
+                        <h3>Book Name</h3>
+                        <ChakraProvider className="w-[30vw]">
+                          <Input
+                            placeholder="Enter the book Name"
+                            className="w-[10vw]"
+                            name="bookname"
+                            value={bookname}
+                            onChange={(e) => {
+                              setBookname(e.target.value);
+                            }}
+                            required
+                          />
+                        </ChakraProvider>{" "}
+                        <div className="my-5">
+                          <h3>Author Name</h3>
+                          <ChakraProvider>
+                            <Input
+                              placeholder="Enter the Author Name"
+                              name="authorname"
+                              value={authorname}
+                              onChange={(e) => {
+                                setAuthorname(e.target.value);
+                              }}
+                            />
+                          </ChakraProvider>
+                        </div>
+                        <div className="my-3">
+                          <h3>Product Description</h3>
+                          <ChakraProvider>
+                            <textarea
+                              type="text"
+                              className="w-full h-24 resize-none"
+                              id="text-area"
+                              placeholder="Enter Product Description"
+                              name="description"
+                              value={description}
+                              maxLength="300"
+                              onChange={(e) => {
+                                setDescription(e.target.value);
+                              }}
+                            />
+                            <p className={remaining == 0 ? "float-right text-xs text-red-600" : "float-right text-xs text-opacity-50 "} id="remaining-char">{remaining} characters remaining</p>
+                          </ChakraProvider>
+                        </div>
+                      </div>
+                    </div>
+                    {/* ///////////////////////////////////Enter Book Details Below(last part)//////////////////////////////// */}
+                    <div className="mt-0 md:mt-[59px]">
+                      <div className="xl:pr-8">
+                        <div className="hidden md:block">
+                          <img
+                            src="/ListBookForDonation.svg"
+                            className="w-[230px] h-[160px]"
+                          ></img>
+                        </div>
+
+                        <label>Condition</label>
+                        <select
+                          value={condition}
+                          onChange={(e) => setCondition(e.target.value)}
+                          className="block w-full h-[40px] pl-2 mb-5"
+                        >
+                          <option value="">Enter Condition</option>
+                          <option value="5">5 star (Almost New Condition))</option>
+                          <option value="4">4 star (Good Condition)</option>
+                          <option value="3">3 star (Average Condition)</option>
+                          <option value="2">2 star (Below Average Condition)</option>
+                          <option value="1">1 star (Poor Condition)</option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
-
-                  <label>Condition</label>
-                  <select
-                    value={condition}
-                    onChange={(e) => setCondition(e.target.value)}
-                    className="block w-full h-[40px] pl-2 mb-5"
-                  >
-                    <option value="">Enter Condition</option>
-                    <option value="5">5 star (Almost New Condition))</option>
-                    <option value="4">4 star (Good Condition)</option>
-                    <option value="3">3 star (Average Condition)</option>
-                    <option value="2">2 star (Below Average Condition)</option>
-                    <option value="1">1 star (Poor Condition)</option>
-                  </select>
                 </div>
-              </div>
-            </div>
-          </div>
-          {/* /////////<///////////////////////////After Grid////////////////////////////////////////// */}
+                {/* /////////<///////////////////////////After Grid////////////////////////////////////////// */}
 
-          <div className="mt-5 w-10/12 mx-auto">
-            <div className="ml-[0px] lg:ml-[300px] w-11/12 lg:w-[calc(100%-300px)]">
-              <label className="block text-sm font-medium text-gray-700">
-                Add Product Image
-              </label>
-              <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                <div className="space-y-1 text-center">
-                  <svg
-                    className="mx-auto h-12 w-12 text-gray-400"
-                    stroke="currentColor"
-                    fill="none"
-                    viewBox="0 0 48 48"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  <div className="flex text-sm text-gray-600">
-                    <label
-                      htmlFor="file-upload"
-                      className="relative cursor-pointer bg-white rounded-md font-medium text-skin-darkBlue hover:text-skin-darkBlue  focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-bg-skin-lightBlue"
-                    >
-                      <span className="hover:underline transition-all">
-                        Upload a photo
-                      </span>
+                <div className="mt-5 w-10/12 mx-auto">
+                  <div className="ml-[0px] lg:ml-[300px] w-11/12 lg:w-[calc(100%-300px)]">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Add Product Image
                     </label>
-                    <input
-                      id="file-upload"
-                      name="file-upload"
-                      type="file"
-                      className="sr-only "
-                      accept="image/*"
-                      onChange={(e) => setMedia(e.target.files[0])}
-                    />
+                    <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                      <div className="space-y-1 text-center">
+                        <svg
+                          className="mx-auto h-12 w-12 text-gray-400"
+                          stroke="currentColor"
+                          fill="none"
+                          viewBox="0 0 48 48"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                            strokeWidth={2}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        <div className="flex text-sm text-gray-600">
+                          <label
+                            htmlFor="file-upload"
+                            className="relative cursor-pointer bg-white rounded-md font-medium text-skin-darkBlue hover:text-skin-darkBlue  focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-bg-skin-lightBlue"
+                          >
+                            <span className="hover:underline transition-all">
+                              Upload a photo
+                            </span>
+                          </label>
+                          <input
+                            id="file-upload"
+                            name="file-upload"
+                            type="file"
+                            className="sr-only "
+                            accept="image/*"
+                            onChange={(e) => setMedia(e.target.files[0])}
+                          />
 
-                    {/* Showing the Uploaded File name */}
+                          {/* Showing the Uploaded File name */}
 
-                    <span className="ml-2">
-                      {media.name} {!media.name && "No Photo Selected"}
-                    </span>
+                          <span className="ml-2">
+                            {media.name} {!media.name && "No Photo Selected"}
+                          </span>
+                        </div>
+                        <p className="text-xs text-gray-500">PNG, JPG up to 2MB</p>
+                      </div>
+                    </div>
+                    <div className="flex">
+                      <button
+                        type="submit"
+                        className="bg-skin-lightGreen text-skin-darkGreen font-bold py-2 px-4 rounded-lg mt-5 mr-5 hover:bg-skin-hoverGreen transition-all"
+                        onClick={() => { setFormStep(false) }}
+                      >
+                        Next
+                      </button>
+                      <button
+                        type="reset"
+                        className="bg-skin-lightRed text-skin-darkRed font-bold py-2 px-4 rounded-lg mt-5 mr-5 hover:bg-red-100 transition-all"
+                        onClick={handleReset}
+                      >
+                        Reset
+                      </button>
+
+                      {/* Showing the Spinner Conditionally */}
+
+                      {loading ? (
+                        <div className="mt-6">
+                          <ChakraProvider>
+                            <Spinner
+                              thickness="3.5px"
+                              size="lg"
+                              color="blue.500"
+                              speed="0.8s"
+                            />
+                          </ChakraProvider>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
                   </div>
-                  <p className="text-xs text-gray-500">PNG, JPG up to 2MB</p>
                 </div>
-              </div>
-              <div className="flex">
-                <button
-                  type="submit"
-                  className="bg-skin-lightGreen text-skin-darkGreen font-bold py-2 px-4 rounded-lg mt-5 mr-5 hover:bg-skin-hoverGreen transition-all"
-                  onClick={() => {setFormStep(false)}}
-                >
-                  Next
-                </button>
-                <button
-                  type="reset"
-                  className="bg-skin-lightRed text-skin-darkRed font-bold py-2 px-4 rounded-lg mt-5 mr-5 hover:bg-red-100 transition-all"
-                  onClick={handleReset}
-                >
-                  Reset
-                </button>
+              </>
 
-                {/* Showing the Spinner Conditionally */}
-
-                {loading ? (
-                  <div className="mt-6">
-                    <ChakraProvider>
-                      <Spinner
-                        thickness="3.5px"
-                        size="lg"
-                        color="blue.500"
-                        speed="0.8s"
-                      />
-                    </ChakraProvider>
-                  </div>
-                ) : (
-                  <></>
-                )}
-              </div>
-            </div>
-          </div>
-            </>
-
-          ) : ( //Adress Details Form
-            <>
+            ) : ( //Adress Details Form
+              <>
                 <div className="mt-10 w-10/12 m-auto">
                   <div className="ml-[0px] lg:ml-[300px] w-11/12 lg:w-[calc(100%-300px)] grid grid-col-1 md:grid-cols-2 lg:grid-cols-2 gap-0 md:gap-10">
                     <div className=" col-span-1 md:col-span-2">
@@ -570,31 +576,31 @@ const EditListBookForDonating = ({donateBooksDetails, UserBookDetails}) => {
                       </button>
                     </div>
                   </div>
-                  </div>
-                </>
-          ) }
-        </form>
+                </div>
+              </>
+            )}
+          </form>
         </>
-        )}
+      )}
     </div>
   );
 };
 
 export async function getServerSideProps({ params: { pid, uid } }) {
-  const {templateString} = template;
-  try{
+  const { templateString } = template;
+  try {
     const res = await fetch(`${templateString}/api/donatebook/${pid}`);
     const res2 = await fetch(`${templateString}/api/user/userdetails/${uid}`);
     const data = await res.json()
     const data2 = await res2.json()
-    return{
-      props:{
-        donateBooksDetails : data,
-        UserBookDetails : data2
+    return {
+      props: {
+        donateBooksDetails: data,
+        UserBookDetails: data2
       }
     }
-  }catch{
-    return{
+  } catch {
+    return {
       notFound: true,
     }
   }

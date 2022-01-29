@@ -35,8 +35,8 @@ const ProductDetailsSell = (props) => {
                         <p className='text-red-500 text-sm '>(*we do not provide full adress details, contact seller for that.)</p>
                     </div>
                     <div className="mb-4">
-                        <button className="text-xl my-auto bg-skin-lightBlue text-skin-darkBlue rounded-lg px-5 py-3 font-bold cursor-pointer hidden md:block">₹{props.price}</button>
-                        <p className="text-2xl my-auto bg-skin-lightBlue text-skin-darkBlue rounded-lg px-5 py-3 font-bold cursor-pointer text-center md:hidden">₹{props.price}</p>
+                        <button className="text-xl my-auto bg-skin-lightBlue text-skin-darkBlue rounded-lg px-5 py-3 font-bold cursor-default hidden md:block">₹{props.price}</button>
+                        <p className="text-2xl my-auto bg-skin-lightBlue text-skin-darkBlue rounded-lg px-5 py-3 font-bold text-center md:hidden">₹{props.price}</p>
                     </div>
                 </div>
             </div>

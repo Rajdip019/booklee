@@ -11,7 +11,6 @@ import { getSession } from "next-auth/react";
 import cities from "../../database/city"; //Have all the cities name According to State
 import { template } from "../../helpers/template";
 import LoadingBar from "react-top-loading-bar";
-import { useEffect } from "react/cjs/react.development";
 
 const ListBookForSelling = () => {
   const { data: session } = useSession();
