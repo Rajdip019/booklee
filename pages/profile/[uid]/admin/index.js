@@ -191,7 +191,7 @@ export default function UserProfile({ UserDetails }) {
                         size="lg"
                         orientation="horizontal"
                       >
-                        <TabList className="bg-blue-50 w-[300px] rounded-3xl shadow-lg">
+                        <TabList className="bg-blue-50 w-[300px] rounded-3xl shadow-lg mr-10">
                           <Tab
                             className="w-[160px]"
                             onClick={() => {
@@ -202,7 +202,7 @@ export default function UserProfile({ UserDetails }) {
                             Educational
                           </Tab>
                           <Tab
-                            className="w-[150px] "
+                            className="w-[150px]"
                             onClick={() => {
                               setprofile(false);
                               setProgress(100);
@@ -224,7 +224,7 @@ export default function UserProfile({ UserDetails }) {
                         orientation="horizontal"
                         defaultIndex={1}
                       >
-                        <TabList className="bg-blue-50 w-[300px] rounded-3xl shadow-lg">
+                        <TabList className="bg-blue-50 w-[300px] rounded-3xl shadow-lg mr-10">
                           <Tab
                             className="w-[160px]"
                             onClick={() => {
@@ -251,7 +251,7 @@ export default function UserProfile({ UserDetails }) {
                 <div>
                   <Link href={`/profile/${UserDetails._id}`}>
                     <button
-                      className="ml-10 mt-5 sm:mt-0 bg-skin-lightBlue text-skin-darkBlue px-4 py-2 font-semibold rounded-3xl hover:bg-skin-hoverBlue"
+                      className="mt-5 sm:mt-0 bg-skin-lightBlue text-skin-darkBlue px-4 py-2 font-semibold rounded-3xl hover:bg-skin-hoverBlue"
                       onClick={() => setProgress(30)}
                     >
                       Switch to Visitor View

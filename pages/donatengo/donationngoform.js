@@ -92,7 +92,7 @@ const DonationAddressForm = () => {
 
       <>
         <div className="mt-10 w-10/12 m-auto">
-          <div className="ml-[0px] lg:ml-[300px] w-11/12 lg:w-[calc(100%-300px)] grid grid-col-1 md:grid-cols-2 lg:grid-cols-2 gap-0 md:gap-10">
+          <div className="ml-[0px] lg:ml-[300px] w-11/12 lg:w-[calc(100%-300px)] grid grid-col-1 md:grid-cols-2 lg:grid-cols-2">
             <div className=" col-span-1 md:col-span-2">
               <h1 className="text-2xl font-bold mb-1">Enter Address Details</h1>
               <p className="text-sm text-red-600">
@@ -100,7 +100,7 @@ const DonationAddressForm = () => {
               </p>
             </div>
             <div>
-              <div className="my-3">
+              <div className="my-3 md:mr-5">
                 <h3>Address</h3>
                 <ChakraProvider className="w-[30vw]">
                   <Input
@@ -187,7 +187,7 @@ const DonationAddressForm = () => {
             </div>
             {/* ///////////////////////////////////DonationAdressForm(second part)//////////////////////////////// */}
             <div>
-              <div className="my-3">
+              <div className="my-3 md:ml-5">
                 <div>
                   <h3>Landmark</h3>
                   <ChakraProvider>
@@ -262,7 +262,7 @@ const DonationAddressForm = () => {
 
             {/*/////////////////////////////////////////////////////////// Book Form///////////////////////////////////////// */}
             <div>
-              <div className="my-3">
+              <div className="my-3 md:mr-5">
                 <h2 className="font-bold text-2xl mb-5">Enter Book Details</h2>
                 <h3>Quantity</h3>
                 <ChakraProvider className="w-[30vw]">
@@ -306,7 +306,7 @@ const DonationAddressForm = () => {
             </div>
 
             <div>
-              <div className="hidden md:block">
+              <div className="hidden md:block md:ml-5">
                 <img
                   src="/ListBookForSelling.svg"
                   className="w-[250px] h-[250px] m-auto"
