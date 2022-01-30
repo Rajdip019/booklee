@@ -8,6 +8,7 @@ import { useDisclosure } from "@chakra-ui/hooks";
 import Link from "next/link";
 import { template } from "../../helpers/template";
 import LoadingBar from "react-top-loading-bar";
+import { useRouter } from "next/router";
 import {
   Slider,
   SliderTrack,
@@ -29,6 +30,9 @@ import {
 
 const BrowseBooks = () => {
   const { templateString } = template;
+
+  const router = useRouter();
+  const {categoryr , stater, cityr, conditionr, pricer} = router.query;
 
   const [progress, setProgress] = useState(0);
 
@@ -55,11 +59,11 @@ const BrowseBooks = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        category: category,
-        state: state,
-        city: city,
-        condition: condition,
-        price: price,
+        category: categoryr,
+        state: stater,
+        city: cityr,
+        condition: conditionr,
+        price: pricer,
       }),
     });
     setProgress(90);
@@ -92,8 +96,24 @@ const BrowseBooks = () => {
 
   useEffect(() => {
     handleFilter();
+  }, [categoryr, stater, cityr, conditionr, pricer]);
+
+  useEffect(() => {
     handlePriceMax();
-  }, []);
+  }, [])
+
+  const handleRouting = () => {
+    router.push({
+      pathname: "/browsebooks/newlyadded",
+      query: {
+        categoryr: category,
+        stater : state,
+        cityr : city,
+        conditionr : condition,
+        pricer : price
+      },
+    });
+  }
 
   return (
     <>
@@ -326,7 +346,7 @@ const BrowseBooks = () => {
                 </button>
                 <button
                   className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 transition-all rounded-lg font-bold my-10"
-                  onClick={handleFilter}
+                  onClick={() => {handleRouting(); handleFilter();}}
                 >
                   Search
                 </button>
@@ -605,7 +625,7 @@ const BrowseBooks = () => {
                     </button>
                     <button
                       className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 transition-all rounded-lg font-bold my-10"
-                      onClick={handleFilter}
+                      onClick={() => {handleRouting(); handleFilter();}}
                     >
                       Search
                     </button>

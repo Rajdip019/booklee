@@ -9,6 +9,9 @@ import {
   ModalCloseButton,
   Spinner,
   ChakraProvider,
+  PinInput,
+  PinInputField,
+  HStack
 } from "@chakra-ui/react";
 import { Avatar } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
@@ -17,17 +20,17 @@ import { useSession } from "next-auth/react";
 import { template } from "../../helpers/template";
 
 const SoldModalButton = (props) => {
-
-  const {templateString} = template;
+  const { templateString } = template;
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [expandZone, setExpandZone] = useState(false);
   const router = useRouter();
-  const {data : session} =  useSession();
+  const { data: session } = useSession();
 
   const today = new Date();
-  const date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-  const time = today.getHours() + ":" + today.getMinutes(); 
+  const date =
+    today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
+  const time = today.getHours() + ":" + today.getMinutes();
 
   function handleExpansion() {
     setExpandZone(true);
@@ -39,10 +42,9 @@ const SoldModalButton = (props) => {
     setExpandZone("fail");
   }
 
-
   const handleSoldAdd = async (e) => {
     //Getting the Data from all the input field and Sending it to the API end Point.
-    setLoader(true)
+    setLoader(true);
     const res = await fetch(`${templateString}/api/soldbook/add`, {
       method: "POST",
       headers: {
@@ -68,12 +70,12 @@ const SoldModalButton = (props) => {
         city: props.city,
         pin: props.pin,
         date: date,
-        time: time
+        time: time,
       }),
     });
     await handleSoldDelete();
     const bookData = await res.json();
-    };
+  };
 
   const handleSoldDelete = async (e) => {
     //Getting the Data from all the input field and Sending it to the API end Point.
@@ -111,30 +113,29 @@ const SoldModalButton = (props) => {
   const [buyerdata, setBuyerData] = useState(null);
 
   const handleEmailCheck = async () => {
-    try{
+    try {
       const res = await fetch(`${templateString}/api/user/${buyerEmail}`);
       const data = await res.json();
       setBuyerData(data);
-    }catch{
+    } catch {
       handleFail();
     }
-  }
+  };
   const invoicePage = () => {
-    router.push(`/profile/${props.seller_id}/admin`)
-  }
+    router.push(`/profile/${props.seller_id}/admin`);
+  };
 
   const waitSendFunc = () => {
     const waitSend = setTimeout(invoicePage, 5000);
     waitSend;
-  }
+  };
   const [OTP, setOTP] = useState();
-  
+
   //Mail Sender
   const handleMail = async () => {
-    
-  //OTP Generater
+    //OTP Generater
     var otp = Math.floor(1000 + Math.random() * 9000);
-    setOTP(otp)
+    setOTP(otp);
     const res = await fetch(`${templateString}/api/email`, {
       method: "POST",
       headers: {
@@ -143,31 +144,29 @@ const SoldModalButton = (props) => {
       body: JSON.stringify({
         buyer_mail: buyerEmail,
         name: buyerdata.name,
-        OTP: otp
+        OTP: otp,
       }),
     });
-  }
-
-
-
+  };
 
   const [OTPVerified, setOTPVerified] = useState(false);
-  const [OTPUser, setOTPUser] = useState()
+  const [OTPUser, setOTPUser] = useState();
   const [expandOTP, setExpandOTP] = useState(false);
 
   const OTPVerification = () => {
-    if(OTP == OTPUser){
-      setOTPVerified(true)
+    if (OTP == OTPUser) {
+      setOTPVerified(true);
     }
-  }
+  };
 
-  //Loader 
+  //Loader
   const [loader, setLoader] = useState(false);
 
   return (
     <div>
       <ChakraProvider>
-        <button className="font-bold"
+        <button
+          className="font-bold"
           onClick={() => {
             onOpen();
             handleExpansionClose();
@@ -188,148 +187,195 @@ const SoldModalButton = (props) => {
               <ModalHeader className="text-center text-2xl font-semibold mb-3">
                 Verify Email
               </ModalHeader>
-              <ModalCloseButton className=" right-4 absolute" onClick={() => {setOTPVerified(false); setOTPUser(null)}} />
+              <ModalCloseButton
+                className=" right-4 absolute"
+                onClick={() => {
+                  setOTPVerified(false);
+                  setOTPUser(null);
+                }}
+              />
               <ModalBody className="text-center mt-6 ">
-              {expandZone === "fail" && (
-                <>
-                <h1 className="text-2xl font-semibold text-red-500">Buyer is not Verified!</h1>
-                <h1 className="text-md font-semibold text-red-600 mt-3">Email Verification Failed.</h1>
-                </>
-              )}
-              {expandZone != "fail" && (
-                <>
-                {expandZone ? (
+                {expandZone === "fail" && (
                   <>
-                <div className="flex justify-around items-center">
-                <ChakraProvider>
-                  <Avatar
-                    name={buyerdata?.name}
-                    src={buyerdata?.image}
-                    size="lg"
-                    borderRadius="100%"
-                  />
-                  </ChakraProvider>
-                  <div>
-                  <h2 className="m-auto font-semibold text text-xl ">
-                    {buyerdata?.name}
-                  </h2>
-                  <p className=" bg-skin-lightGreen text-skin-darkGreen font-semibold rounded-2xl mt-1">Buyer Verified!</p>
-                  </div>
-                </div>
-                    <p className="text-left mt-6">Email Address</p>
-                    <input
-                      type="tel"
-                      className="w-full mr-auto ml-auto bg-gray-100"
-                      placeholder="Enter your email address"
-                      disabled
-                    />
-                    {expandOTP ? (
-                      <>
-                      <p className="text-left mt-3">OTP</p>
-                    <input
-                      type="number"
-                      className="w-full mr-auto ml-auto bg-gray-100"
-                      value={OTPUser}
-                      onChange={(e) => {
-                      setOTPUser(e.target.value);}}
-                    />
-                    <p className="text-xs text-left mt-2 text-red-500">*If you can't find the OTP Please check spam or promotional section of your email.</p>
-                    </>):  (null)}
-                  </>
-                ) : (
-                  <>
-                  <div className="flex ">
-                  <Avatar
-                    name={props.name}
-                    src={props.img}
-                    className="w-24 h-24 "
-                    borderRadius="100%"
-                  />
-                  <h2 className="m-auto font-semibold text text-xl ">
-                    {props.name}
-                  </h2>
-                </div>
-                    <p className="text-left mt-6">Email Address.</p>
-                    <input
-                      type="email"
-                      className="w-full mr-auto ml-auto"
-                      placeholder="Enter Email Address of Buyer"
-                      value={buyerEmail}
-                      onChange={(e) => {
-                        setBuyerEmail(e.target.value);
-                      }}
-                    />
+                    <h1 className="text-2xl font-semibold text-red-500">
+                      Buyer is not Verified!
+                    </h1>
+                    <h1 className="text-md font-semibold text-red-600 mt-3">
+                      Email Verification Failed.
+                    </h1>
                   </>
                 )}
-                </>
-              )}
+                {expandZone != "fail" && (
+                  <>
+                    {expandZone ? (
+                      <>
+                        <div className="flex justify-around items-center">
+                          <ChakraProvider>
+                            <Avatar
+                              name={buyerdata?.name}
+                              src={buyerdata?.image}
+                              size="lg"
+                              borderRadius="100%"
+                            />
+                          </ChakraProvider>
+                          <div>
+                            <h2 className="m-auto font-semibold text text-xl ">
+                              {buyerdata?.name}
+                            </h2>
+                            <p className=" bg-skin-lightGreen text-skin-darkGreen font-semibold rounded-2xl mt-1">
+                              Buyer Verified!
+                            </p>
+                          </div>
+                        </div>
+                        <p className="text-left mt-6">Email Address</p>
+                        <input
+                          type="tel"
+                          className="w-full mr-auto ml-auto bg-gray-100"
+                          placeholder="Enter your email address"
+                          disabled
+                        />
+                        {expandOTP ? (
+                          <>
+                            <p className="text-left mt-3">OTP</p>
+                            <ChakraProvider>
+                            <HStack>
+                              <PinInput
+                                autoFocus
+                                value={OTPUser}
+                                onChange={(e) => {
+                                  setOTPUser(e);
+                                }}
+                                className="w-full"
+                                size="xl"
+                              >
+                                <PinInputField />
+                                <PinInputField />
+                                <PinInputField />
+                                <PinInputField />
+                              </PinInput>
+                              </HStack>
+                            </ChakraProvider>
+                            <p className="text-xs text-left mt-2 text-red-500">
+                              *If you can't find the OTP Please check spam or
+                              promotional section of your email.
+                            </p>
+                          </>
+                        ) : null}
+                      </>
+                    ) : (
+                      <>
+                        <div className="flex ">
+                          <Avatar
+                            name={props.name}
+                            src={props.img}
+                            className="w-24 h-24 "
+                            borderRadius="100%"
+                          />
+                          <h2 className="m-auto font-semibold text text-xl ">
+                            {props.name}
+                          </h2>
+                        </div>
+                        <p className="text-left mt-6">Email Address.</p>
+                        <input
+                          type="email"
+                          className="w-full mr-auto ml-auto"
+                          placeholder="Enter Email Address of Buyer"
+                          value={buyerEmail}
+                          onChange={(e) => {
+                            setBuyerEmail(e.target.value);
+                          }}
+                        />
+                      </>
+                    )}
+                  </>
+                )}
               </ModalBody>
 
               <ModalFooter display="block" className="text-center">
-              {expandZone === "fail" && (
-                <button
+                {expandZone === "fail" && (
+                  <button
                     className="ml-auto mr-auto bg-skin-lightBlue text-skin-darkBlue rounded-lg p-3 mt-6 font-bold hover:bg-skin-hoverBlue transition-all"
-                    onClick={()=> {handleExpansionClose();}}
+                    onClick={() => {
+                      handleExpansionClose();
+                    }}
                   >
                     Back
                   </button>
-              )}
-              {expandZone != "fail" && (
-                <>
-
-                {expandZone ? (
-                  <>
-                  {expandOTP ? (
-                    <>
-                      {OTPVerified ? (
-                    <button className="ml-auto mr-auto bg-skin-lightGreen text-skin-darkGreen rounded-lg px-4 py-2 mt-6 font-bold hover:bg-skin-hoverGreen transition-all" onClick={() => {handleSoldAdd(); waitSendFunc(); handleSoldPull(); }}>
-                      Make Invoice
-                    </button>
-                      ) : (
-                        <>
-                    <button disabled className="ml-auto mr-auto bg-gray-500 text-gray-800 rounded-lg px-4 py-2 mt-6 font-bold" onClick={OTPVerification()}>
-                    Make Invoice
-                    </button>
-
-                        </>
-
-                      )}
-
-  
-                    </>
-                  ) : (
-                    <button className="ml-auto mr-auto bg-skin-lightGreen text-skin-darkGreen rounded-lg px-4 py-2 mt-6 font-bold hover:bg-skin-hoverGreen transition-all" onClick={() => {setExpandOTP(true); handleMail();  }}>
-                      Get OTP
-                    </button>
-                  )}
-                  </>
-                ) : (
-                  
-                  <button
-                    
-                    className={buyerEmail ? " ml-auto mr-auto bg-skin-lightBlue text-skin-darkBlue rounded-lg px-4 py-2 mt-6 font-bold hover:bg-skin-hoverBlue transition-all" : "bg-gray-200 rounded-lg px-4 py-2 mt-6 font-bold"}
-                    onClick={()=> {handleExpansion(); handleEmailCheck(); setExpandOTP(false); }}
-                    disabled={!buyerEmail}                              
-                  >
-                    Verify
-                  </button>
                 )}
-                </>
-              )}
-              {loader ? (
-                        <div className="mt-6">
-                          <ChakraProvider>
-                            <Spinner
-                              thickness="3.5px"
-                              size="lg"
-                              color="blue.500"
-                              speed="0.8s"
-                            />
-                          </ChakraProvider>
-                        </div>
-                      ) : (
-                        <></>
-                      )}
+                {expandZone != "fail" && (
+                  <>
+                    {expandZone ? (
+                      <>
+                        {expandOTP ? (
+                          <>
+                            {OTPVerified ? (
+                              <button
+                                className="ml-auto mr-auto bg-skin-lightGreen text-skin-darkGreen rounded-lg px-4 py-2 mt-6 font-bold hover:bg-skin-hoverGreen transition-all"
+                                onClick={() => {
+                                  handleSoldAdd();
+                                  waitSendFunc();
+                                  handleSoldPull();
+                                }}
+                              >
+                                Make Invoice
+                              </button>
+                            ) : (
+                              <>
+                                <button
+                                  disabled
+                                  className="ml-auto mr-auto bg-gray-500 text-gray-800 rounded-lg px-4 py-2 mt-6 font-bold"
+                                  onClick={OTPVerification()}
+                                >
+                                  Make Invoice
+                                </button>
+                              </>
+                            )}
+                          </>
+                        ) : (
+                          <button
+                            className="ml-auto mr-auto bg-skin-lightGreen text-skin-darkGreen rounded-lg px-4 py-2 mt-6 font-bold hover:bg-skin-hoverGreen transition-all"
+                            onClick={() => {
+                              setExpandOTP(true);
+                              handleMail();
+                            }}
+                          >
+                            Get OTP
+                          </button>
+                        )}
+                      </>
+                    ) : (
+                      <button
+                        className={
+                          buyerEmail
+                            ? " ml-auto mr-auto bg-skin-lightBlue text-skin-darkBlue rounded-lg px-4 py-2 mt-6 font-bold hover:bg-skin-hoverBlue transition-all"
+                            : "bg-gray-200 rounded-lg px-4 py-2 mt-6 font-bold"
+                        }
+                        onClick={() => {
+                          handleExpansion();
+                          handleEmailCheck();
+                          setExpandOTP(false);
+                        }}
+                        disabled={!buyerEmail}
+                      >
+                        Verify
+                      </button>
+                    )}
+                  </>
+                )}
+                {loader ? (
+                  <div className="mt-6">
+                    <ChakraProvider>
+                      <Spinner
+                        thickness="3.5px"
+                        size="lg"
+                        color="blue.500"
+                        speed="0.8s"
+                      />
+                    </ChakraProvider>
+                  </div>
+                ) : (
+                  <></>
+                )}
               </ModalFooter>
             </ModalContent>
           </div>

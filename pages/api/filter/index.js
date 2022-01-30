@@ -11,7 +11,7 @@ export default async (req, res) => {
           let categoryFinal = ""
           let categoryRaw = `'${category}'`
 
-          if(category == null || category == 0){
+          if(category == null || category == 0 || category == "" || category == undefined){
               categoryRaw  = null
           }
           else{
@@ -31,7 +31,7 @@ export default async (req, res) => {
             let stateFinal = ""
             let stateRaw = `'${state}'`
   
-            if(state == null || state == 0){
+            if(state == null || state == 0 || state == "" || state == undefined){
                 stateRaw  = null
             }
             else{
@@ -51,7 +51,7 @@ export default async (req, res) => {
             let cityFinal = ""
             let cityRaw = `'${city}'`
   
-            if(city == null || city == 0){
+            if(city == null || city == 0 || city == "" || city == undefined){
                 cityRaw  = null
             }
             else{
@@ -71,7 +71,7 @@ export default async (req, res) => {
             let conditionFinal = 0
             let conditionRaw = condition
   
-            if(condition == null || condition == 0){
+            if(condition == null || condition == 0 || condition == "" || condition == undefined){
                 conditionRaw  = null
             }
             else{
