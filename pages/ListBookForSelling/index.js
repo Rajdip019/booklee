@@ -37,6 +37,7 @@ const ListBookForSelling = () => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [pin, setPin] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
 
 
 
@@ -118,7 +119,16 @@ const ListBookForSelling = () => {
     return userData._id
   }
 
+  const addImageToPost = (e) => {
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+    }
 
+    reader.onload = (readerEvent) => {
+      setSelectedFile(readerEvent.target.result);
+    };
+  };
   //Upload Image Function using Coludinary
 
   const imgUpload = async () => {
@@ -320,7 +330,9 @@ const ListBookForSelling = () => {
                       </label>
                       <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div className="space-y-1 text-center">
-                          <svg
+
+                          {selectedFile ? ( <img src={selectedFile} alt="" className="w-60 mx-auto my-3" />) : (
+                            <svg
                             className="mx-auto h-12 w-12 text-gray-400"
                             stroke="currentColor"
                             fill="none"
@@ -334,6 +346,7 @@ const ListBookForSelling = () => {
                               strokeLinejoin="round"
                             />
                           </svg>
+                          )}
                           <div className="flex text-sm text-gray-600">
                             <label
                               htmlFor="file-upload"
@@ -349,7 +362,7 @@ const ListBookForSelling = () => {
                               type="file"
                               className="sr-only "
                               accept="image/*"
-                              onChange={(e) => setMedia(e.target.files[0])}
+                              onChange={(e) => {setMedia(e.target.files[0]); addImageToPost(e);}}
                             />
 
                             {/* Showing the Uploaded File name */}
@@ -584,6 +597,7 @@ const ListBookForSelling = () => {
                         </div>
                       </div>
                     </div>
+
                     <div className="flex">
                       <button
                         type="reset"

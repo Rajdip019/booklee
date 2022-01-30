@@ -8,6 +8,7 @@ import { useDisclosure } from "@chakra-ui/hooks";
 import Link from "next/link";
 import { template } from "../../helpers/template";
 import LoadingBar from "react-top-loading-bar";
+import { useRouter } from "next/router";
 import {
   Slider,
   SliderTrack,
@@ -29,6 +30,10 @@ import {
 
 const search = () => {
   const { templateString } = template;
+
+  const router = useRouter();
+  const {categoryr , stater, cityr, conditionr, pricer} = router.query;
+
   const [progress, setProgress] = useState(0);
 
   const [category, setCategory] = useState("Story Book");
@@ -46,12 +51,6 @@ const search = () => {
 
   const stateCity = cities.filter((element) => element.state == state); //Filtering data according to State from the cities database
 
-  const handleStory = async () => {
-    const res = await fetch(`${templateString}/api/sellbook/storybooks`);
-    const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
-    setResult(bookData);
-  };
-
   const handleFilter = async () => {
     //Getting the Data from all the input field and Sending it to the API end Point.
     setProgress(30);
@@ -61,11 +60,11 @@ const search = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        category: category,
-        state: state,
-        city: city,
-        condition: condition,
-        price: price,
+        category: categoryr,
+        state: stater,
+        city: cityr,
+        condition: conditionr,
+        price: pricer,
       }),
     });
     setProgress(90);
@@ -97,9 +96,25 @@ const search = () => {
   };
 
   useEffect(() => {
-    handleStory();
+    handleFilter();
+  }, [categoryr, stater, cityr, conditionr, pricer]);
+  
+  useEffect(() => {
     handlePriceMax();
-  }, []);
+  }, [])
+
+  const handleRouting = () => {
+    router.push({
+      pathname: "/browsebooks/topstorybooks",
+      query: {
+        categoryr: category,
+        stater : state,
+        cityr : city,
+        conditionr : condition,
+        pricer : price
+      },
+    });
+  }
 
   return (
     <>
@@ -333,7 +348,7 @@ const search = () => {
               </button>
               <button
                 className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 transition-all rounded-lg font-bold my-10"
-                onClick={handleFilter}
+                onClick={() => {handleRouting(); handleFilter();}}
               >
                 Search
               </button>
@@ -611,7 +626,7 @@ const search = () => {
                     </button>
                     <button
                       className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 transition-all rounded-lg font-bold my-10"
-                      onClick={handleFilter}
+                       onClick={() => {handleRouting(); handleFilter();}}
                     >
                       Search
                     </button>

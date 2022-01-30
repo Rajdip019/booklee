@@ -34,6 +34,7 @@ const EditListBookForSelling = ({sellBooksDetails , UserBookDetails}) => {
   const [city, setCity] = useState(sellBooksDetails.city);
   const [state, setState] = useState(sellBooksDetails.state);
   const [pin, setPin] = useState(sellBooksDetails.pin);
+  const [selectedFile, setSelectedFile] = useState(null);
 
 
 
@@ -107,6 +108,17 @@ const EditListBookForSelling = ({sellBooksDetails , UserBookDetails}) => {
         isClosable: true,
       });
     }
+  };
+
+  const addImageToPost = (e) => {
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+    }
+
+    reader.onload = (readerEvent) => {
+      setSelectedFile(readerEvent.target.result);
+    };
   };
 
   const imgUpload = async () => {
@@ -303,7 +315,9 @@ const EditListBookForSelling = ({sellBooksDetails , UserBookDetails}) => {
                       </label>
                       <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div className="space-y-1 text-center">
-                          <svg
+
+                        {selectedFile ? ( <img src={selectedFile} alt="" className="w-60 mx-auto my-3" />) : (
+                            <svg
                             className="mx-auto h-12 w-12 text-gray-400"
                             stroke="currentColor"
                             fill="none"
@@ -317,6 +331,7 @@ const EditListBookForSelling = ({sellBooksDetails , UserBookDetails}) => {
                               strokeLinejoin="round"
                             />
                           </svg>
+                          )}
                           <div className="flex text-sm text-gray-600">
                             <label
                               htmlFor="file-upload"
@@ -332,7 +347,7 @@ const EditListBookForSelling = ({sellBooksDetails , UserBookDetails}) => {
                               type="file"
                               className="sr-only "
                               accept="image/*"
-                              onChange={(e) => setMedia(e.target.files[0])}
+                              onChange={(e) => {setMedia(e.target.files[0]); addImageToPost(e);}}
                             />
 
                             {/* Showing the Uploaded File name */}

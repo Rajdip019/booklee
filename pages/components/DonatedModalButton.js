@@ -9,6 +9,9 @@ import {
   Spinner,
   ModalCloseButton,
   ChakraProvider,
+  PinInput,
+  PinInputField,
+  HStack
 } from "@chakra-ui/react";
 import { Avatar } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
@@ -227,14 +230,24 @@ const DonatedModalButton = (props) => {
                         {expandOTP ? (
                           <>
                             <p className="text-left mt-3">OTP</p>
-                            <input
-                              type="number"
-                              className="w-full mr-auto ml-auto bg-gray-100"
-                              value={OTPUser}
-                              onChange={(e) => {
-                                setOTPUser(e.target.value);
-                              }}
-                            />
+                            <ChakraProvider>
+                            <HStack>
+                              <PinInput
+                                autoFocus
+                                value={OTPUser}
+                                onChange={(e) => {
+                                  setOTPUser(e);
+                                }}
+                                className="w-full"
+                                size="xl"
+                              >
+                                <PinInputField />
+                                <PinInputField />
+                                <PinInputField />
+                                <PinInputField />
+                              </PinInput>
+                              </HStack>
+                            </ChakraProvider>
                              <p className="text-xs text-left mt-2 text-red-500">*If you can't find the OTP Please check spam or promotional section of your email.</p>
                           </>
                         ) : null}

@@ -8,6 +8,7 @@ import { useDisclosure } from "@chakra-ui/hooks";
 import Link from "next/link";
 import { template } from "../../helpers/template";
 import LoadingBar from "react-top-loading-bar";
+import { useRouter } from "next/router";
 import {
   Slider,
   SliderTrack,
@@ -29,6 +30,10 @@ import {
 
 const search = () => {
   const { templateString } = template;
+
+  const router = useRouter();
+  const {categoryr , stater, cityr, conditionr, pricer} = router.query;
+
   const [progress, setProgress] = useState(0);
 
   const [category, setCategory] = useState(null);
@@ -40,8 +45,7 @@ const search = () => {
   const [priceMin, setPriceMin] = useState(0);
   const [result, setResult] = useState(null);
 
-  const stateCity = cities.filter((element) => element.state == state); //Filtering data according to State from the cities database
-
+  const stateCity = cities.filter((element) => element.state == state);
   const handleFilter = async () => {
     //Getting the Data from all the input field and Sending it to the API end Point.
     try {
@@ -52,29 +56,29 @@ const search = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          category: category,
-          state: state,
-          city: city,
-          condition: condition,
-          price: price,
+          category: categoryr,
+          state: stater,
+          city: cityr,
+          condition: conditionr,
+          price: pricer,
         }),
       });
-      setProgress(90);
-      const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
+      setProgress(100);
+      const bookData = await res.json();
       const newBooks = bookData?.value.reverse();
       setResult(newBooks);
-      setProgress(100);
     } catch {
       null;
     }
   };
-
+  
   const handlePriceMax = async () => {
     //Getting the Data from all the input field and Sending it to the API end Point.
 
     const res = await fetch(`${templateString}/api/filter/all`);
-    const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
-    setResult(bookData?.value);
+    const bookData = await res.json();
+    const newBooks = bookData?.value.reverse(); //Getting the response data to use it show the Toast conditionally
+    setResult(newBooks);
     let priceArr = [];
     for (const i = 0; i < bookData?.value.length; i++) {
       priceArr.push(bookData?.value[i]?.price);
@@ -90,11 +94,28 @@ const search = () => {
     setCondition(0);
     setPrice(priceMax + 1);
   };
-
+  
+  useEffect(() => {
+    handlePriceMax();
+  }, [])
+  
   useEffect(() => {
     handleFilter();
-    handlePriceMax();
-  }, []);
+  }, [categoryr, stater, cityr, conditionr, pricer]);
+
+
+  const handleRouting = () => {
+    router.push({
+      pathname: "/browsebooks/newlyadded",
+      query: {
+        categoryr: category,
+        stater : state,
+        cityr : city,
+        conditionr : condition,
+        pricer : price
+      },
+    });
+  }
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
@@ -224,7 +245,6 @@ const search = () => {
                       value={0}
                       id="All"
                       className="mx-3 my-2"
-                      defaultChecked
                       onClick={(e) => setCondition(e.target.value)}
                     ></input>
                     <label htmlFor="All" className="text-lg">
@@ -331,7 +351,7 @@ const search = () => {
               </button>
               <button
                 className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 transition-all rounded-lg font-bold my-10"
-                onClick={handleFilter}
+                onClick={() => {handleRouting(); handleFilter();}}
               >
                 Search
               </button>
@@ -610,7 +630,7 @@ const search = () => {
                     </button>
                     <button
                       className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 transition-all rounded-lg font-bold my-10"
-                      onClick={handleFilter}
+                      onClick={() => {handleRouting(); handleFilter();}}
                     >
                       Search
                     </button>
