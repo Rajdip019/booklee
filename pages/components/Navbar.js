@@ -118,8 +118,8 @@ const Navbar = (props) => {
 
           <div className="flex items-center">
           <a href="https://rajdeepsengupta.notion.site/Project-Details-0fcfce9964da4e96af6564c87aa631fc" target="_blank">
-          <div>
-          <Tooltip hasArrow label='Search places' color='black' placement='bottom'>
+          <div className="flex flex-col items-center group">
+
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-7 w-7 sm:mx-3  text-skin-darkBlue cursor-pointer hover:scale-110 transition-all"
@@ -132,8 +132,8 @@ const Navbar = (props) => {
                 clip-rule="evenodd"
               />
             </svg>
-
-            </Tooltip>
+ 
+              <span className="scale-0 absolute mt-10 group-hover:scale-100 bg-gray-100 sm:text-sm text-xs border-2 px-2 py-1 rounded shadow-xl font-semibold transition-all">How to use Booklee?</span>
           </div>
           </a>
             <span className="hidden xl:block">

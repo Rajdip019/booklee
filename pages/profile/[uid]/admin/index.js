@@ -14,6 +14,11 @@ import { Tabs, TabList, Tab, ChakraProvider } from "@chakra-ui/react";
 import { template } from "../../../../helpers/template";
 import LoadingBar from "react-top-loading-bar";
 import CardSkeleton from "../../../components/CardSkeleton";
+import {
+  Alert,
+  AlertIcon,
+  CloseButton,
+} from "@chakra-ui/react";
 
 export default function UserProfile({ UserDetails }) {
   const { templateString } = template;
@@ -28,6 +33,7 @@ export default function UserProfile({ UserDetails }) {
   const [soldBook, setSoldBook] = useState([]);
   const [donateBook, setDonatedBook] = useState([]);
   const [profile, setprofile] = useState(false);
+  const [alert, setAlert] = useState(false)
 
   useEffect(() => {
     handleBookD();
@@ -109,10 +115,34 @@ export default function UserProfile({ UserDetails }) {
     setProgress(30);
   };
 
+  useEffect(() => {
+    if(!UserDetails.address || !UserDetails.phone || !UserDetails.pin || !UserDetails.state || !UserDetails.country || !UserDetails.city)
+    {
+      setAlert(true)
+    }
+  }, [])
+
   return (
     <>
       <Document />
       <Navbar />
+      {session && (<>
+      {alert ? (
+      <ChakraProvider>
+        <Alert status="warning" className="absolute top-0">
+          <AlertIcon />
+          Complete Your Profile to get more visibility! 
+          <span className="ml-auto flex items-center">
+          <Link href={`/profile/${UserDetails._id}/admin/edit`}>
+          <button className="mr-3 bg-yellow-500 px-4 py-2 rounded-lg font-bold text-sm hover:bg-yellow-400 transition-all">Edit Profile</button>
+          </Link>
+          <CloseButton className="ml-auto" onClick={() => {setAlert(false)}} />
+          </span>
+        </Alert>
+      </ChakraProvider>
+      ) : (null)}
+
+      </>)}
       <LoadingBar
         color="#4287f5"
         height={4}
@@ -139,6 +169,7 @@ export default function UserProfile({ UserDetails }) {
           </div>
         </>
       )}
+
 
       {session && (
         <>
