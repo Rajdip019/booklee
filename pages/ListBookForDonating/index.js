@@ -160,6 +160,7 @@ const ListBookForDonating = () => {
     setCity("");
     setState("");
     setPin("");
+    setSelectedFile(null);
   };
 
   return (

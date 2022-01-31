@@ -163,6 +163,7 @@ const ListBookForSelling = () => {
     setCity("");
     setState("");
     setPin("");
+    setSelectedFile(null)
   };
 
 

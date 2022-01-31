@@ -371,14 +371,6 @@ const EditListBookForSelling = ({sellBooksDetails , UserBookDetails}) => {
                         >
                           Next
                         </button>
-                        <button
-                          type="reset"
-                          className="bg-skin-lightRed text-skin-darkRed font-bold py-2 px-4 rounded-lg mt-5 mr-5 hover:bg-red-100 transition-all"
-                          onClick={handleReset}
-                        >
-                          Reset
-                        </button>
-
                         {/* Showing the Spinner Conditionally */}
 
                         {loading ? (
@@ -584,7 +576,6 @@ const EditListBookForSelling = ({sellBooksDetails , UserBookDetails}) => {
                     </div>
                     <div className="flex">
                       <button
-                        type="reset"
                         className="bg-skin-lightBlue text-skin-darkBlue font-bold py-2 px-4 rounded-lg mt-5 mr-5 hover:bg-skin-hoverBlue transition-all"
                         onClick={() => setFormStep(true)}
                       >
@@ -614,16 +605,6 @@ const EditListBookForSelling = ({sellBooksDetails , UserBookDetails}) => {
                       ) : (
                         <></>
                       )}
-                    </div>
-
-                    <div className="md:ml-auto">
-                      <button
-                        type="reset"
-                        className="bg-skin-lightRed text-skin-darkRed font-bold py-2 px-4 rounded-lg mt-5 mr-5 hover:bg-red-100 transition-all"
-                        onClick={handleReset}
-                      >
-                        Reset
-                      </button>
                     </div>
                   </div>
                 </>
