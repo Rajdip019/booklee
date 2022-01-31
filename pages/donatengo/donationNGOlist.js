@@ -8,11 +8,16 @@ import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import { getCenter } from "geolib";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import { ChakraProvider, Spinner, createStandaloneToast } from "@chakra-ui/react";
+import {
+  ChakraProvider,
+  Spinner,
+  createStandaloneToast,
+  CloseButton,
+} from "@chakra-ui/react";
 import { template } from "../../helpers/template";
 
 const DonationNGOlist = ({ NGOData }) => {
-  const {templateString} = template;
+  const { templateString } = template;
   const { data: session } = useSession();
   const email = session?.user?.email;
   const nameUser = session?.user?.name;
@@ -141,8 +146,11 @@ const DonationNGOlist = ({ NGOData }) => {
     <div>
       <Document />
       <Navbar />
+      {session ? (
+        <>
+
       <form>
-        <div className=" lg:grid lg:grid-cols-2">
+        <div className=" lg:grid lg:grid-cols-2 scrollbar-thin ">
           <div className="mx-auto w-10/12 mt-10">
             <h1 className="text-5xl font-bold mb-10 text-left font-rokkitt">
               Select a Nearby NGO to Donate:
@@ -162,7 +170,27 @@ const DonationNGOlist = ({ NGOData }) => {
               })}
             </div>
           </div>
-          <section className="ml-auto hidden lg:block" onClick={() => {setSubmitButton(false);}}>
+          <div className="fixed right-3 z-20 bg-white mt-3 px-2 py-1 rounded-lg font-semibold lg:flex items-center hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 mr-2 text-blue-600"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            Scroll to Zoom in and Out
+          </div>
+          <section
+            className="ml-auto hidden lg:block fixed right-0"
+            onClick={() => {
+              setSubmitButton(false);
+            }}
+          >
             <ReactMapGL
               mapStyle="mapbox://styles/rajdip019/ckxhm41s1im8l14pccg026pf5"
               mapboxApiAccessToken="pk.eyJ1IjoicmFqZGlwMDE5IiwiYSI6ImNreGhuZnplMDBlaDAyd3Vib3RyMGVhajMifQ.IQoz-hXnogEvUowXf7kMnQ"
@@ -185,14 +213,13 @@ const DonationNGOlist = ({ NGOData }) => {
                     </p>
                   </Marker>
                   {selectedLocation.longitude === result.longitude ? (
-                    <Popup
-                      closeOnClick={true}
-                      onclose={() => setSelectedLocation({})}
+                    <Popup className="relative z-50"
                       latitude={result.latitude}
                       longitude={result.longitude}
                     >
-                      <div className="max-w-[200px]">
-                        <p className="text-lg font-semibold font-rokkitt ">
+                      <CloseButton className="absolute right-0 bg-white px-2 py-1 text-xs z-50" onClick={() => setSelectedLocation({})}/>
+                      <div className="max-w-[250px] relative z-40">
+                        <p className="text-lg font-semibold font-rokkitt mr-6">
                           {result.name}
                         </p>
                       </div>
@@ -222,7 +249,8 @@ const DonationNGOlist = ({ NGOData }) => {
                 className="lg:flex lg:items-center my-3 font-bold text-lg bg-skin-lightGreen text-skin-darkGreen px-4 py-2 rounded-xl mx-10 transition-all hover:bg-skin-hoverGreen"
                 onClick={handleSubmit}
               >
-                Donate to <p className="text-sm lg:ml-2 lg:mt-[2px] ">{nameS}</p> 
+                Donate to{" "}
+                <p className="text-sm lg:ml-2 lg:mt-[2px] ">{nameS}</p>
               </button>
             ) : (
               <button
@@ -252,6 +280,25 @@ const DonationNGOlist = ({ NGOData }) => {
           </div>
         </div>
       </form>
+      </>
+      ) : (
+        <>
+
+            <div className="flex justify-center mt-[28vh] lg:mt-[38vh]">
+              <h1 className="text-3xl">Oops, You are not Signed In!</h1>
+            </div>
+            <div className="flex justify-center mt-5">
+              <Link href="/auth/signin">
+                <button
+                  className="bg-skin-lightBlue hover:bg-skin-hoverBlue text-skin-darkBlue px-6 py-4 rounded-lg font-bold text-xl"
+                  onClick={() => setProgress(30)}
+                >
+                  Sign In
+                </button>
+              </Link>
+            </div>
+        </>
+      )}
     </div>
   );
 };
