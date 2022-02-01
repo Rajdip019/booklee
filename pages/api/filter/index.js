@@ -99,7 +99,7 @@ export default async (req, res) => {
 
 
           const res1 = await fetch(
-            `https://bookleesearch.search.windows.net/indexes/cosmosdb-index/docs?api-version=2020-06-30-Preview&search=*${bookMain}&$count=true&category=*&facet=category&%24filter=price%20ge%20${priceMin}%20and%20price%20lt%20${priceMax}${categoryFinal}${stateFinal}${cityFinal}${conditionFinal}` ,
+            `https://bookleesearch.search.windows.net/indexes/cosmosdb-index/docs?api-version=2021-04-30-Preview&search=*${bookMain}&$count=true&category=*&facet=category&%24filter=price%20ge%20${priceMin}%20and%20price%20lt%20${priceMax}${categoryFinal}${stateFinal}${cityFinal}${conditionFinal}` ,
             {
               headers: {
                 "Content-Type": "application/json",
