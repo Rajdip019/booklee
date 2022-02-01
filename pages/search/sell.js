@@ -53,7 +53,7 @@ const Search = () => {
   const [result, setResult] = useState(null);
 
   const router = useRouter();
-  const {book} = router.query;
+  const {book, categoryr , stater, cityr, conditionr, pricer} = router.query;
  
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
@@ -68,11 +68,11 @@ const Search = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        category: category,
-        state: state,
-        city: city,
-        condition: condition,
-        price: price,
+        category: categoryr,
+        state: stater,
+        city: cityr,
+        condition: conditionr,
+        price: pricer,
         book: book
       }),
     });
@@ -87,7 +87,7 @@ const Search = () => {
 
     const res = await fetch(`${templateString}/api/filter/all`);
     const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
-
+    setResult(bookData?.value);
     let priceArr = [];
     for (const i = 0; i < bookData?.value.length; i++) {
       priceArr.push(bookData?.value[i]?.price);
@@ -106,10 +106,27 @@ const Search = () => {
 
   useEffect(() => {
     handleFilter();
-    handlePriceMax();
-  }, [book]);
+  }, [categoryr, stater, cityr, conditionr, pricer, book]);
 
- 
+  useEffect(() => {
+    handlePriceMax();
+  }, []);
+
+
+  const handleRouting = () => {
+    router.push({
+      pathname: "/search/sell",
+      query: {
+        book : book,
+        categoryr: category,
+        stater : state,
+        cityr : city,
+        conditionr : condition,
+        pricer : price
+      },
+    });
+  }
+
 
   return (
     <div>
@@ -341,7 +358,7 @@ const Search = () => {
             </button>
             <button
               className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 transition-all rounded-lg font-bold my-10"
-              onClick={handleFilter}
+              onClick={() => {handleRouting(); handleFilter();}}
             >
               Search
             </button>
@@ -624,7 +641,7 @@ const Search = () => {
                     </button>
                     <button
                       className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 transition-all rounded-lg font-bold my-10"
-                      onClick={handleFilter}
+                      onClick={() => {handleRouting(); handleFilter();}}
                     >
                       Search
                     </button>

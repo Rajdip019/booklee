@@ -45,15 +45,19 @@ const Navbar = (props) => {
   };
   havesession();
 
-  const search = () => {
-    setProgress(100);
+  const handleRouting = () => {
     router.push({
       pathname: "/search/sell",
       query: {
-        book: searchInput,
+        book : searchInput,
+        categoryr: null,
+        stater : null,
+        cityr : null,
+        conditionr : null,
+        pricer : 10000
       },
     });
-  };
+  }
 
   const [progress, setProgress] = useState(0);
 
@@ -94,7 +98,7 @@ const Navbar = (props) => {
             <button
               id="myBtn"
               onClick={async () => {
-                search();
+                handleRouting();
                 try {
                   setProgress(40);
                   await props.handleFilter();
@@ -470,7 +474,7 @@ const Navbar = (props) => {
             <button
               id="myBtn"
               onClick={async () => {
-                search();
+                handleRouting();
                 try {
                   setProgress(40);
                   await props.handleFilter();
@@ -543,7 +547,7 @@ const Navbar = (props) => {
           <button
             id="BtnMob"
             onClick={async () => {
-              search();
+              handleRouting();
               try {
                 setProgress(40);
                 await props.handleFilter();
