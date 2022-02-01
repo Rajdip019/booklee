@@ -83,6 +83,7 @@ const ListBookForSelling = () => {
       }),
     });
     setProgress(100)
+    const bookData = await res.json();
   //Getting the response data to use it show the Toast conditionally
 
 
