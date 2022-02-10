@@ -112,7 +112,7 @@ const HomePageMain = () => {
               </Link>
               <Link href="/donatengo">
               <button onClick={()=> {setProgress(40); setProgress(100)}}
-                className="block mt-5 px-[5.4rem] text-center font-bold text-xl border-4 border-[#155D18] rounded-md py-3 text-skin-darkGreen hover:bg-skin-hoverGreen transition-all"
+                className="block mt-5 px-[5.4rem] text-center font-bold text-xl border-4 border-[#155D18] rounded-md py-3 text-skin-darkGreen hover:bg-[#155D18] hover:text-skin-lightGreen transition-all"
               >
                 Donate to NGO
               </button>

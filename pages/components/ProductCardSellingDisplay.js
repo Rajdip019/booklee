@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { template } from "../../helpers/template";
+import { Badge, ChakraProvider } from '@chakra-ui/react'
 
 const ProductCardSellingDisplay = (props) => {
   const {templateString} = template;
@@ -60,7 +61,7 @@ const ProductCardSellingDisplay = (props) => {
       <div className="w-[266px] cursor-pointer">
       <div>
         <img
-          className=" h-[300px] w-[266px] rounded-lg mb-3"
+          className=" h-[300px] w-[266px] rounded-lg mb-3 "
           src={props.img}
           alt=""
         />
@@ -119,9 +120,9 @@ const ProductCardSellingDisplay = (props) => {
             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
           </svg>
         </span>
-        <span className="bg-skin-darkBlue rounded-lg pl-2 pr-2 font-semibold text-skin-lightBlue ml-3 pb-0.5">
-          {props.category}
-        </span>
+        <ChakraProvider>
+        <Badge colorScheme='blue' className="my-auto ml-2 text-sm" variant='solid'>{props.category}</Badge>
+        </ChakraProvider>    
       </div>
     </div>
     </Link>
