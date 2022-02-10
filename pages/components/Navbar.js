@@ -14,7 +14,7 @@ import {
   MenuList,
   MenuItem,
   Avatar,
-  Tooltip
+  Tooltip,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
@@ -117,25 +117,29 @@ const Navbar = (props) => {
           </div>
 
           <div className="flex items-center">
-          <a href="https://rajdeepsengupta.notion.site/Project-Details-0fcfce9964da4e96af6564c87aa631fc" target="_blank">
-          <div className="flex flex-col items-center group">
-
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-7 w-7 sm:mx-3  text-skin-darkBlue cursor-pointer hover:scale-110 transition-all"
-              viewBox="0 0 20 20"
-              fill="currentColor"
+            <a
+              href="https://rajdeepsengupta.notion.site/Project-Details-0fcfce9964da4e96af6564c87aa631fc"
+              target="_blank"
             >
-              <path
-                fill-rule="evenodd"
-                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                clip-rule="evenodd"
-              />
-            </svg>
- 
-              <span className="scale-0 absolute mt-10 group-hover:scale-100 bg-gray-100 sm:text-sm text-xs border-2 px-2 py-1 rounded shadow-xl font-semibold transition-all">How to use Booklee?</span>
-          </div>
-          </a>
+              <div className="flex flex-col items-center group">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-7 w-7 sm:mx-3  text-skin-darkBlue cursor-pointer hover:scale-110 transition-all"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+
+                <span className="scale-0 absolute mt-10 group-hover:scale-100 bg-gray-100 sm:text-sm text-xs border-2 px-2 py-1 rounded shadow-xl font-semibold transition-all">
+                  How to use Booklee?
+                </span>
+              </div>
+            </a>
             <span className="hidden xl:block">
               <Link href="/ListBookForSelling">
                 <button
@@ -180,7 +184,7 @@ const Navbar = (props) => {
                   </ChakraProvider>
                 </div>
               </MenuButton>
-              <MenuList className=" bg-white rounded-lg p-2 w-28 shadow-lg">
+              <MenuList className=" bg-white rounded-lg p-2 w-36 shadow-lg">
                 <Link href={"/profile/[uid]/admin"} as={`/profile/${id}/admin`}>
                   <MenuItem
                     className="p-1 hover:bg-skin-lightBlue transition-all rounded font-semibold"
@@ -188,7 +192,21 @@ const Navbar = (props) => {
                       setProgress(40);
                     }}
                   >
-                    <span className="text-skin-darkBlue">User Profile</span>
+                    <span className="text-skin-darkBlue flex items-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 mr-2 text-black"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                          clipRule="evenodd"
+                        />
+                      </svg>{" "}
+                      User Profile
+                    </span>
                   </MenuItem>
                 </Link>
                 <Link
@@ -201,7 +219,21 @@ const Navbar = (props) => {
                       setProgress(40);
                     }}
                   >
-                    <span className="text-skin-darkBlue">Favourite</span>
+                    <span className="text-skin-darkBlue flex items-center ">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 mr-2 text-red-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      Favourite
+                    </span>
                   </MenuItem>
                 </Link>
                 <Link
@@ -214,7 +246,21 @@ const Navbar = (props) => {
                       setProgress(40);
                     }}
                   >
-                    <span className="text-skin-darkBlue">Your Orders</span>
+                    <span className="text-skin-darkBlue flex items-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 mr-2"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      Your Orders
+                    </span>
                   </MenuItem>
                 </Link>
                 <MenuItem
@@ -225,7 +271,21 @@ const Navbar = (props) => {
                     setProgress(100);
                   }}
                 >
-                  <span className="text-skin-darkBlue">Logout</span>
+                  <span className="text-skin-darkBlue flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5 mr-2"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Logout
+                  </span>
                 </MenuItem>
               </MenuList>
             </Menu>
@@ -493,25 +553,29 @@ const Navbar = (props) => {
           </div>
 
           <div className="flex items-center">
-          <a href="https://rajdeepsengupta.notion.site/Project-Details-0fcfce9964da4e96af6564c87aa631fc" target="_blank">
-          <div>
-          <Tooltip hasArrow label='Search places' color='black' placement='bottom'>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-7 w-7 -mx-3 sm:mx-3 text-skin-darkBlue cursor-pointer hover:scale-110 transition-all"
-              viewBox="0 0 20 20"
-              fill="currentColor"
+            <a
+              href="https://rajdeepsengupta.notion.site/Project-Details-0fcfce9964da4e96af6564c87aa631fc"
+              target="_blank"
             >
-              <path
-                fill-rule="evenodd"
-                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                clip-rule="evenodd"
-              />
-            </svg>
+              <div className="flex flex-col items-center group">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-7 w-7 sm:mx-3  text-skin-darkBlue cursor-pointer hover:scale-110 transition-all"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
 
-            </Tooltip>
-          </div>
-          </a>
+                <span className="scale-0 absolute mt-10 group-hover:scale-100 bg-gray-100 sm:text-sm text-xs border-2 px-2 py-1 rounded shadow-xl font-semibold transition-all">
+                  How to use Booklee?
+                </span>
+              </div>
+            </a>
             <Link href="/auth/signin">
               <button
                 onClick={() => {

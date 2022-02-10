@@ -11,7 +11,7 @@ const GetBooksHome = ({topLoader}) => {
             <h1 className="text-2xl sm:text-4xl xl:text-5xl  font-bold">Get</h1>
             <h1 className="text-md sm:text-[20px]  font-bold">Free Educational Books</h1>
             <Link href="/browsefreebooks" >
-            <button className="font-bold bg-skin-darkGreen text-skin-lightGreen rounded-xl py-2 px-4 my-3 text-md sm:text-lg" onClick={()=> {topLoader()}}>
+            <button className="font-bold bg-skin-darkGreen text-skin-lightGreen rounded-xl py-2 px-4 my-3 text-md sm:text-lg hover:bg-transparent hover:border-4 border-[#155D18] transition-all hover:text-skin-darkGreen border-4" onClick={()=> {topLoader()}}>
               Browse Now
             </button>
             </Link>
@@ -28,7 +28,7 @@ const GetBooksHome = ({topLoader}) => {
             <h1 className="text-2xl sm:text-4xl xl:text-5xl font-bold">Get</h1>
             <h1 className="text-md sm:text-[20px] font-bold">Old Books at less price</h1>
             <Link href="/browsebooks" >
-            <button className="font-bold bg-skin-darkBlue text-skin-lightBlue rounded-xl py-2 px-4 my-3 text-md sm:text-lg" onClick={()=> {topLoader()}}>
+            <button className="font-bold bg-skin-darkBlue text-skin-lightBlue rounded-xl py-2 px-4 my-3 text-md sm:text-lg hover:bg-transparent hover:border-4 border-[#0F56B3] transition-all hover:text-skin-darkBlue border-4" onClick={()=> {topLoader()}}>
               Browse Now
             </button>
             </Link>
