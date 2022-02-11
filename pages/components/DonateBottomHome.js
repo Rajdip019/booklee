@@ -15,7 +15,7 @@ const DonateBottomHome = ({topLoader}) => {
             </div>
             <div className="my-auto text-center">
             <Link href="/donatengo">
-            <button className="font-bold bg-skin-darkGreen text-skin-lightGreen rounded-xl mr-0 sm:mr-7 py-2 px-4 mb-3 text-xl" onClick={()=> {topLoader()}}>
+            <button className="font-bold bg-skin-darkGreen text-skin-lightGreen rounded-xl py-2 px-4 my-3 text-md sm:text-lg hover:bg-transparent hover:border-4 border-[#155D18] transition-all hover:text-skin-darkGreen border-4" onClick={()=> {topLoader()}}>
               Donate Now
             </button>
             </Link>

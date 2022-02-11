@@ -441,7 +441,7 @@ export default function UserProfile({ UserDetails }) {
                     <h1 className="text-center lg:text-left">Sold Out</h1>
                     <hr />
                   </div>
-                  <div className="lg:ml-[300px] my-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 lg:w-[calc(100%-350px)] align-middle">
+                  <div className="lg:ml-[300px] grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 lg:w-[calc(100%-350px)] align-middle">
                     {isFetched ? (
                       <>
                         <div className="my-8 md:scale-75 md:my-0 lg:my-8 lg:scale-100 mx-auto">

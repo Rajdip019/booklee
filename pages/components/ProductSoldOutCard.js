@@ -9,7 +9,7 @@ const ProductSoldOutCard = (props) => {
                 <img className=" h-[300px] w-[266px] rounded-t-lg " src={props.img} alt="" />
             </div>
 
-            <div className="flex  mb-3 w-[266px]">
+            <div className="flex mb-3 w-[266px]">
             <Link href={'/productsold/invoice/[order_id]'} as={`/productsold/invoice/${props._id}`}>
                 <button className="w-[266px] rounded-b-lg bg-skin-lightBlue text-skin-darkBlue py-3 font-bold text-center text-xl" onClick={()=> {try{props.topLoader()}catch{}}}>Get Invoice</button>
             </Link>
