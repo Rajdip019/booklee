@@ -249,7 +249,7 @@ const ListBookForSelling = () => {
                           <h3>Product Description</h3>
                             <textarea
                             type="text"
-                            className="w-full h-24 resize-none"                        
+                            className="w-full h-24 resize-none focus:ring-blue-400"                        
                             id="text-area"
                             placeholder="Enter Product Description"
                             name="description"

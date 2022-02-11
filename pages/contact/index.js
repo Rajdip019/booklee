@@ -7,14 +7,16 @@ import { useState } from "react";
 import { template } from "../../helpers/template";
 
 export default function Contact() {
-  const {templateString} = template;
+  const { templateString } = template;
 
   const toast = createStandaloneToast(); // A standalone toast (doesn't reqiure a parent element)
 
   const { data: session } = useSession();
   const sender_email = session?.user?.email;
   const sender_name = session?.user?.name;
-  const [message, setMessage] = useState();
+  const [message, setMessage] = useState("");
+  let remaining = (300 - message.length);
+
 
   const handleMail = async () => {
     const res = await fetch(`${templateString}/api/contact`, {
@@ -74,13 +76,16 @@ export default function Contact() {
               />
               <h3 className="my-1 mt-5">Write down your concern</h3>
               <textarea
-                className="md:w-[35vw] w-[85vw]"
+                className="md:w-[35vw] w-[85vw] h-[13vh] resize-none"
                 type="text"
                 placeholder="Write a message to us."
                 value={message}
+                maxLength="500"
                 onChange={(e) => setMessage(e.target.value)}
                 required
               />
+              <p className={remaining == 0 ? "ml-auto text-xs text-red-600" : "ml-auto text-xs text-opacity-50 "} id="remaining-char">{remaining} characters remaining</p>
+
               <button
                 className="mb-20 bg-skin-lightBlue text-skin-darkBlue p-2 px-6 text-xl font-bold rounded-lg mt-10 hover:bg-skin-hoverBlue"
                 type="submit"

@@ -142,7 +142,7 @@ export default function UserProfile({ UserDetails }) {
             topLoader={topLoader}
           />
         )}
-        <div className=" ml-[30px] mt-10  lg:ml-[350px] flex-row sm:flex sm:justify-center">
+        <div className=" ml-[30px] mt-10  lg:ml-[350px] flex-row sm:flex sm:justify-center md:justify-start">
           {/* Toggle Button */}
 
           {profile ? (
@@ -154,7 +154,7 @@ export default function UserProfile({ UserDetails }) {
                   size="lg"
                   orientation="horizontal"
                 >
-                  <TabList className="bg-blue-50 w-[300px] rounded-3xl shadow-lg">
+                  <TabList className="bg-blue-50 w-[300px] rounded-3xl shadow-lg mr-6 md:mr-0">
                     <Tab
                       className="w-[160px]"
                       onClick={() => {
@@ -212,7 +212,7 @@ export default function UserProfile({ UserDetails }) {
             </div>
           )}
           {UserDetails.email === session?.user?.email && (
-            <div >
+            <div className="flex items-center">
               <Link href={`/profile/${UserDetails._id}/admin`}>
                 <button
                   className=" md:ml-10 mt-5 sm:mt-0 bg-skin-lightBlue text-skin-darkBlue px-4 py-2 font-semibold rounded-3xl hover:bg-skin-hoverBlue"

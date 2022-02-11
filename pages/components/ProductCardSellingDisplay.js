@@ -104,8 +104,8 @@ const ProductCardSellingDisplay = (props) => {
           </div>
 
       </div>
-      <div className="flex ">
-        <h1 className="w-[215px] font-semibold text-xl mb-2">{props.name}</h1>
+      <div className="flex">
+        <h1 className="max-w-[215px] font-semibold text-xl mb-2">{props.name}</h1>
         <span className="font-semibold text-xl">₹{props.price}</span>
       </div>
       <div className="flex">
