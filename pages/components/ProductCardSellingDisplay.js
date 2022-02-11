@@ -104,16 +104,17 @@ const ProductCardSellingDisplay = (props) => {
           </div>
 
       </div>
-      <div className="flex justify-between">
-        <h1 className="max-w-[215px] font-semibold text-xl mb-2">{props.name}</h1>
+      <div className="absolute w-full">
+      <div className="flex justify-between w-full">
+        <h1 className="font-semibold text-xl mb-2 pr-2">{props.name}</h1>
         <span className="font-semibold text-xl">₹{props.price}</span>
       </div>
-      <div className="flex">
+      <div className="flex items-center">
         <span className="font-bold text-base">{props.condition}</span>
         <span className="pl-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h- w-6 text-yellow-400"
+            className="h-6 w-6 text-yellow-400"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -123,6 +124,8 @@ const ProductCardSellingDisplay = (props) => {
         <ChakraProvider>
         <Badge colorScheme='blue' className="my-auto ml-2 text-sm" variant='solid'>{props.category}</Badge>
         </ChakraProvider>    
+      </div>
+
       </div>
     </div>
     </Link>

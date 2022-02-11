@@ -56,7 +56,7 @@ const ProductCardSellingDisplay = (props) => {
         href={"/productdetailssell/[uid]/[pid]"}
         as={`/productdetailssell/${props.seller_id}/${props._id}`}
       >
-          <div className="w-[266px] cursor-pointer">
+          <div className="w-[266px] cursor-pointer scale-90">
             <div>
               <img
                 className=" h-[300px] w-[266px] rounded-lg mb-3"
@@ -98,8 +98,9 @@ const ProductCardSellingDisplay = (props) => {
                 )}
               </div>
             </div>
-            <div className="flex ">
-              <h1 className="w-[215px] font-semibold text-xl mb-2">
+            <div className="absolute w-full">
+            <div className="flex justify-between w-full ">
+              <h1 className="font-semibold text-xl mb-2 pr-2">
                 {props.name}
               </h1>
               <span className="font-semibold text-xl">₹{props.price}</span>
@@ -119,6 +120,7 @@ const ProductCardSellingDisplay = (props) => {
               <ChakraProvider>
         <Badge colorScheme='blue' className="my-auto ml-2 text-sm" variant='solid'>{props.category}</Badge>
         </ChakraProvider>  
+            </div>
             </div>
           </div>
       </Link>

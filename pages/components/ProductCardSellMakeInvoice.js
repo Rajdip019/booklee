@@ -6,7 +6,7 @@ const ProductCardSellMakeInvoice = (props) => {
 
     return (
       
-        <div >
+        <div className='scale-90'>
           <div>
             <img className=" h-[300px] w-[266px] rounded-t-lg " src={props.img} alt="" />
             </div>
@@ -15,7 +15,7 @@ const ProductCardSellMakeInvoice = (props) => {
             <button className="w-[266px] rounded-b-lg bg-skin-lightBlue py-3 text-skin-darkBlue font-bold text-center hover:bg-skin-hoverBlue transition-all" onClick={()=> {try{props.topLoader()}catch{}}}>Manage Book</button>
             </Link>
   
-            <div className="flex ">
+            <div className="flex mt-3">
             <h1 className="w-[215px] font-semibold text-xl mb-2">{props.name}</h1>
             <span className="font-semibold text-xl">₹{props.price}</span>
             </div>
