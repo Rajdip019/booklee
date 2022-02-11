@@ -7,7 +7,7 @@ const ProductCardDonationMakeProof = (props) => {
   return (
     
 
-      <div>
+      <div className="scale-90">
         <div>
           <img
             className=" h-[300px] w-[266px] rounded-t-lg "
@@ -24,7 +24,7 @@ const ProductCardDonationMakeProof = (props) => {
             Manage Book
           </button>
         </Link>
-        <h1 className="w-[266px] font-semibold text-xl mb-2">{props.name}</h1>
+        <h1 className="w-[266px] font-semibold text-xl mb-2 mt-3">{props.name}</h1>
         <div className="flex">
           <span className="font-bold text-base">{props.condition}</span>
           <span className="pl-1">

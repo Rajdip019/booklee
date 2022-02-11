@@ -2,7 +2,7 @@ import React from 'react'
 
 const ProductDonatedCardN = (props) => {
     return (
-        <div>
+        <div className='scale-90'>
             <div>
                 <img className=" h-[300px] w-[266px] rounded-t-lg " src={props.img} alt="" />
             </div>

@@ -56,7 +56,7 @@ const ProductCardDonationDisplay = (props) => {
     return (
         <>
           <Link href={'/productdetailsdonate/[uid]/[pid]'} as={`/productdetailsdonate/${props.seller_id}/${props._id}`}>
-            <div className="w-[266px] cursor-pointer">  
+            <div className="w-[266px] cursor-pointer scale-90">  
             <div>
                <img className=" h-[300px] w-[266px] rounded-lg mb-3" src={props.img} alt="" />
                <div onClick={clickOnChild}>

@@ -4,7 +4,7 @@ import { Badge, ChakraProvider } from '@chakra-ui/react'
 
 const ProductSoldOutCard = (props) => {
     return (
-        <div>
+        <div className='scale-90'>
             <div>
                 <img className=" h-[300px] w-[266px] rounded-t-lg " src={props.img} alt="" />
             </div>
@@ -14,8 +14,8 @@ const ProductSoldOutCard = (props) => {
                 <button className="w-[266px] rounded-b-lg bg-skin-lightBlue text-skin-darkBlue py-3 font-bold text-center text-xl" onClick={()=> {try{props.topLoader()}catch{}}}>Get Invoice</button>
             </Link>
             </div>
-            <div className="flex ">
-                <h1 className="w-[215px] font-semibold text-xl mb-2">{props.name}</h1>
+            <div className="flex justify-between w-full">
+                <h1 className="font-semibold text-xl mb-2 w-[226px] pr-2">{props.name}</h1>
                 <span className="font-semibold text-xl">₹{props.price}</span>
             </div>
             <div className="flex">
