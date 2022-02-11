@@ -60,7 +60,16 @@ const sellBookSchema = new mongoose.Schema({
     pin :{
         type: Number,
         required: true
-    }
+    },
+    college : {
+        type: String,
+    },
+    school : {
+        type: String
+    },
+    study: {
+        type: String
+    },
 })
 
 export default mongoose.models.Sellbook || mongoose.model("Sellbook", sellBookSchema)

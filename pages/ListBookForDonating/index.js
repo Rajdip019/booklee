@@ -12,6 +12,7 @@ import { getSession } from "next-auth/react";
 import cities from "../../database/city"; //Have all the cities name According to State
 import { template } from "../../helpers/template";
 import LoadingBar from "react-top-loading-bar";
+import collegeList from "../../database/college";
 
 const ListBookForDonating = () => {
 
@@ -37,6 +38,10 @@ const ListBookForDonating = () => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [pin, setPin] = useState("");
+  const [study, setStudy] = useState("");
+  const [college, setCollege] = useState("");
+  const [otherCollege, setOtherCollege] = useState("");
+  const [school, setSchool] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
 
   const [loading, setLoading] = useState(false); //useState for the loading dynamic animation
@@ -69,53 +74,109 @@ const ListBookForDonating = () => {
     const mediaUrl = await imgUpload(); //Getting the Image URL from the imgUpload function
 
     //Getting the Data from all the input field and Sending it to the API end Point.
+    if(college === "other"){
 
-    const res = await fetch(`${templateString}/api/donatebook/add`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: bookname,
-        author: authorname,
-        condition: condition,
-        description: description,
-        photo: mediaUrl,
-        seller_mail: mail,
-        seller_id: id,
-        adress: adress,
-        landmark: landmark,
-        country: country,
-        state: state,
-        city: city,
-        pin: pin,
-      }),
-    });
-    setProgress(100)
-    const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
-
-    //Showing Toast conditionally
-
-    if (bookData.error) {
-      setLoading(false); //Turning the animation off after the precoess is done.
-      return toast({
-        title: "There is a Problem.",
-        description: "Please fill all data.",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
+      const res = await fetch(`${templateString}/api/donatebook/add`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: bookname,
+          author: authorname,
+          condition: condition,
+          description: description,
+          photo: mediaUrl,
+          seller_mail: mail,
+          seller_id: id,
+          adress: adress,
+          landmark: landmark,
+          country: country,
+          state: state,
+          city: city,
+          pin: pin,
+          study: study,
+          college: otherCollege,
+          school: school
+        }),
       });
-    } else {
-      handleReset(); //Reset the form when the Submission is Successful.
-      setLoading(false); //Turning the animation off after the precoess is done.
-      setFormStep(true); // After Successful Submission again render Book Details form (first form)
-      return toast({
-        title: "Book Listed.",
-        description: "We've listed your book for selling.",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
+      setProgress(100)
+      const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
+  
+      //Showing Toast conditionally
+  
+      if (bookData.error) {
+        setLoading(false); //Turning the animation off after the precoess is done.
+        return toast({
+          title: "There is a Problem.",
+          description: "Please fill all data.",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      } else {
+        handleReset(); //Reset the form when the Submission is Successful.
+        setLoading(false); //Turning the animation off after the precoess is done.
+        setFormStep(true); // After Successful Submission again render Book Details form (first form)
+        return toast({
+          title: "Book Listed.",
+          description: "We've listed your book for selling.",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
+    }else{
+      const res = await fetch(`${templateString}/api/donatebook/add`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: bookname,
+          author: authorname,
+          condition: condition,
+          description: description,
+          photo: mediaUrl,
+          seller_mail: mail,
+          seller_id: id,
+          adress: adress,
+          landmark: landmark,
+          country: country,
+          state: state,
+          city: city,
+          pin: pin,
+          study: study,
+          college: college,
+          school: school
+        }),
       });
+      setProgress(100)
+      const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
+  
+      //Showing Toast conditionally
+  
+      if (bookData.error) {
+        setLoading(false); //Turning the animation off after the precoess is done.
+        return toast({
+          title: "There is a Problem.",
+          description: "Please fill all data.",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      } else {
+        handleReset(); //Reset the form when the Submission is Successful.
+        setLoading(false); //Turning the animation off after the precoess is done.
+        setFormStep(true); // After Successful Submission again render Book Details form (first form)
+        return toast({
+          title: "Book Listed.",
+          description: "We've listed your book for selling.",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
     }
   };
 
@@ -160,6 +221,10 @@ const ListBookForDonating = () => {
     setCity("");
     setState("");
     setPin("");
+    setCollege("");
+    setOtherCollege("");
+    setStudy("");
+    setSchool("")
     setSelectedFile(null);
   };
 
@@ -391,6 +456,56 @@ const ListBookForDonating = () => {
             <>
               <div className="mt-10 w-10/12 m-auto">
                 <div className="ml-[0px] lg:ml-[300px] w-11/12 lg:w-[calc(100%-300px)] grid grid-col-1 md:grid-cols-2 lg:grid-cols-2 gap-0 md:gap-10">
+                <div className=" col-span-1 md:col-span-2">
+                      <h1 className="text-2xl font-bold mb-1">
+                        Enter College/School Details
+                      </h1>
+                      <p className="text-sm text-red-600">
+                        *Enter college/school name to reach to your school/college students easily.
+                      </p>
+                    </div>
+                    <select
+                      name=""
+                      id=""
+                      className="block w-full h-[40px] pl-2"
+                      onChange={(e) => {
+                        setStudy(e.target.value);
+                        setCollege("")
+                        setSchool("")
+                      }}
+                    >
+                      <option value={null}>
+                        Are you in College or School?
+                      </option>
+                      <option value="college">College</option>
+                      <option value="school">School</option>
+                    </select>
+                    {study === "college" && (
+                      <select
+                        name=""
+                        id=""
+                        className="block w-full h-[40px] pl-2"
+                        onChange={(e) => {
+                          setCollege(e.target.value);
+                        }}
+                      >
+                        <option value={null}>Choose Your college</option>
+                        {collegeList.map((college) => {
+                          return <option value={college} >{college}</option>;
+                        })}
+                        <option value="other">Other</option>
+                      </select>
+                    )}
+                    {college === "other" && study === "college" && (
+                      <>
+                        <input type="text" className="" placeholder="Enter your College name" onChange={(e) => {setOtherCollege(e.target.value)}} />
+                      </>
+                    )}
+                    {study === "school" && (
+                      <>
+                        <input type="text" className="h-10" placeholder="Enter your School name" onChange={(e) => {setSchool(e.target.value) }} />
+                      </>
+                    )}
                   <div className=" col-span-1 md:col-span-2">
                     <h1 className="text-2xl font-bold mb-1">
                       Enter Address Details

@@ -8,7 +8,7 @@ export default async (req,res)=> {
     if(req.method === "POST") //As it is a post Method we nedd to Sepecify that.
 
     {
-        const {name, author,condition, category, description, photo, price ,seller_mail, seller_id, adress, landmark, country, state, city, pin} = req.body;  // Destructuring the info got from the body.
+        const {name, author,condition, category, description, photo, price ,seller_mail, seller_id, adress, landmark, country, state, city, pin, study, college, school} = req.body;  // Destructuring the info got from the body.
         if(!name || !author || !condition || !category || !description || !photo || !price || !seller_mail || !seller_id || !adress || !landmark || !country || !state || !city || !pin){ //Checking if all Data is Given.
             return res.json({error: "Please fill all the fields."})
         }
@@ -30,7 +30,10 @@ export default async (req,res)=> {
             country,
             state,
             city,
-            pin
+            pin,
+            study,
+            college,
+            school
         }).save();
         res.status(201).json(sellbook);
 
