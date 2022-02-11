@@ -10,7 +10,7 @@ import { template } from "../../helpers/template";
 import LoadingBar from "react-top-loading-bar";
 import { useRouter } from "next/router";
 import collegeList from "../../database/college";
-import { Badge } from "@chakra-ui/react";
+import { Badge, CloseButton } from "@chakra-ui/react";
 import {
   Slider,
   SliderTrack,
@@ -704,6 +704,9 @@ const BrowseBooks = () => {
                 className="mx-1.5 my-1.5"
               >
                 Price: {pricer}
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block cursor-pointer ml-1 mb-0.5" onClick={() => {setPrice(10000)}} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+</svg>
               </Badge>
             )}
             {conditionr !== "0" && (
@@ -716,6 +719,9 @@ const BrowseBooks = () => {
                 className="mx-1.5 my-1.5"
               >
                 Condition: {parseInt(conditionr) + 1} ⭐ and above
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block cursor-pointer ml-1 mb-0.5" onClick={() => {setCondition(0)}} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+</svg>
               </Badge>
             )}
             {categoryr !== "0" && (
@@ -728,12 +734,17 @@ const BrowseBooks = () => {
                 className="mx-1.5 my-1.5"
               >
                 Category: {categoryr}
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block cursor-pointer ml-1 mb-0.5" onClick={() => {setCategory(0)}} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+</svg>
               </Badge>
             )}
             {colleger !== "0" && (
               <span className="break-words mx-1.5 my-1.5 font-semibold uppercase text-xs text-white bg-[#3182CE] px-2 py-1 sm:rounded-full rounded-lg">
                 {" "}
-                College: {colleger}
+                College: {colleger}                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block cursor-pointer ml-1 mb-0.5" onClick={() => {setCollege(0)}} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+</svg>
               </span>
             )}
             {stater !== "0" && (
@@ -746,6 +757,9 @@ const BrowseBooks = () => {
                 className="mx-1.5 my-1.5"
               >
                 State: {stater}
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block cursor-pointer ml-1 mb-0.5" onClick={() => {setState(0)}} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+</svg>
               </Badge>
             )}
             {cityr !== "0" && (
@@ -758,6 +772,9 @@ const BrowseBooks = () => {
                 className="mx-1.5 my-1.5"
               >
                 City: {cityr}
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block cursor-pointer ml-1 mb-0.5" onClick={() => {setCity(0)}} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+</svg>
               </Badge>
             )}
           </ChakraProvider>
