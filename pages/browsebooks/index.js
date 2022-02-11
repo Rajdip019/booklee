@@ -9,6 +9,7 @@ import Link from "next/link";
 import { template } from "../../helpers/template";
 import LoadingBar from "react-top-loading-bar";
 import { useRouter } from "next/router";
+import collegeList from "../../database/college";
 import {
   Slider,
   SliderTrack,
@@ -32,7 +33,7 @@ const BrowseBooks = () => {
   const { templateString } = template;
 
   const router = useRouter();
-  const {categoryr , stater, cityr, conditionr, pricer} = router.query;
+  const { categoryr, stater, cityr, conditionr, pricer, colleger } = router.query;
 
   const [progress, setProgress] = useState(0);
 
@@ -44,6 +45,7 @@ const BrowseBooks = () => {
   const [priceMax, setPriceMax] = useState(10000);
   const [priceMin, setPriceMin] = useState(0);
   const [result, setResult] = useState();
+  const [college, setCollege] = useState(null);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
@@ -64,6 +66,7 @@ const BrowseBooks = () => {
         city: cityr,
         condition: conditionr,
         price: pricer,
+        college: colleger
       }),
     });
     setProgress(90);
@@ -85,7 +88,7 @@ const BrowseBooks = () => {
     setPriceMax(Math.max(...priceArr));
     setPriceMin(Math.min(...priceArr));
   };
-  
+
   const handleReset = () => {
     setCategory(0);
     setState(0);
@@ -96,25 +99,30 @@ const BrowseBooks = () => {
 
   useEffect(() => {
     handleFilter();
-  }, [categoryr, stater, cityr, conditionr, pricer]);
+  }, [categoryr, stater, cityr, conditionr, pricer, colleger]);
 
   useEffect(() => {
     handlePriceMax();
-  }, [])
+  }, []);
 
+  useEffect(() => {
+    handleRouting();
+  }, [category, state, city, condition, price, college])
+  
   const handleRouting = () => {
     router.push({
-      pathname: "/browsebooks/newlyadded",
+      pathname: "/browsebooks",
       query: {
         categoryr: category,
-        stater : state,
-        cityr : city,
-        conditionr : condition,
-        pricer : price
+        stater: state,
+        cityr: city,
+        conditionr: condition,
+        pricer: price,
+        colleger: college
       },
     });
-  }
-
+  };
+  
   return (
     <>
       <Document />
@@ -273,6 +281,21 @@ const BrowseBooks = () => {
               </select>
             </div>
             <div className="w-11/12 mx-auto">
+              <h2 className="text-left text-xl font-semibold  my-5">College</h2>
+              <select
+                value={category}
+                onChange={(e) => setCollege(e.target.value)}
+                className="block w-full h-[40px] pl-2 mb-5"
+              >
+                <option value={0}>Select College</option>
+                {collegeList.map((college) => {
+                  return <option value={college}>{college}</option>;
+                })}
+                <option value="other">Other</option>
+              </select>
+              <p className="text-sm text-red-800">You can also search by your school/college name</p>
+            </div>
+            <div className="w-11/12 mx-auto">
               <h2 className="text-left text-xl font-semibold py-5">
                 Locations
               </h2>
@@ -337,20 +360,6 @@ const BrowseBooks = () => {
                   );
                 })}
               </select>
-              <div className="flex justify-between mb-12">
-                <button
-                  className="bg-skin-lightRed text-skin-darkRed hover:bg-red-100 px-4 py-2 transition-all rounded-lg font-bold my-10 "
-                  onClick={handleReset}
-                >
-                  Clear Filter
-                </button>
-                <button
-                  className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 transition-all rounded-lg font-bold my-10"
-                  onClick={() => {handleRouting(); handleFilter();}}
-                >
-                  Search
-                </button>
-              </div>
             </div>
           </div>
         </div>
@@ -385,10 +394,10 @@ const BrowseBooks = () => {
             finalFocusRef={btnRef}
           >
             <DrawerOverlay />
-            <DrawerContent >
-              <DrawerCloseButton className="mt-24"/>
+            <DrawerContent>
+              <DrawerCloseButton className="mt-24" />
 
-              <DrawerBody >
+              <DrawerBody>
                 <div className="mt-12">
                   <h1 className="text-5xl font-semibold py-10 font-rokkitt">
                     Filter
@@ -405,15 +414,12 @@ const BrowseBooks = () => {
                       max={priceMax}
                       value={price}
                     >
-                        
                       <SliderTrack>
                         <SliderFilledTrack />
                       </SliderTrack>
                       <SliderThumb />
                     </Slider>
-                    <div className="text-right font-bold">
-                    ₹ {price}
-                    </div>
+                    <div className="text-right font-bold">₹ {price}</div>
                   </div>
                   {/* Slider Ends */}
 
@@ -544,6 +550,21 @@ const BrowseBooks = () => {
                       </select>
                     </div>
                     <div className="w-11/12 mx-auto">
+              <h2 className="text-left text-xl font-semibold  my-5">College</h2>
+              <select
+                value={category}
+                onChange={(e) => setCollege(e.target.value)}
+                className="block w-full h-[40px] pl-2 mb-5"
+              >
+                <option value={0}>Select College</option>
+                {collegeList.map((college) => {
+                  return <option value={college}>{college}</option>;
+                })}
+                <option value="other">Other</option>
+              </select>
+              <p className="text-sm text-red-800">You can also search by your school/college name</p>
+            </div>
+                    <div className="w-11/12 mx-auto">
                       <h2 className="text-left text-xl font-semibold py-5">
                         Locations
                       </h2>
@@ -615,20 +636,6 @@ const BrowseBooks = () => {
                         })}
                       </select>
                     </div>
-                  </div>
-                  <div className="flex justify-between w-9/12 mx-auto">
-                    <button
-                      className="bg-skin-lightRed text-skin-darkRed hover:bg-red-100 px-4 py-2 transition-all rounded-lg font-bold my-10 "
-                      onClick={handleReset}
-                    >
-                      Clear Filter
-                    </button>
-                    <button
-                      className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 transition-all rounded-lg font-bold my-10"
-                      onClick={() => {handleRouting(); handleFilter();}}
-                    >
-                      Search
-                    </button>
                   </div>
                 </div>
               </DrawerBody>

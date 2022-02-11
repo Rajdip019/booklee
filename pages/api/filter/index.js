@@ -2,7 +2,7 @@ export default async (req, res) => {
     if(req.method === "POST") //As it is a post Method we nedd to Sepecify that.
 
     {
-        const {category, state ,city, condition, price ,book}  = req.body;  // Destructuring the info got from the body
+        const {category, state ,city, condition, price ,book, college}  = req.body;  // Destructuring the info got from the body
         
           const priceMax = price;
           const priceMin = 0;
@@ -87,6 +87,25 @@ export default async (req, res) => {
                   conditionFinal = `and%20condition%20gt%20${conditionRaw}`
               }
 
+              let collegeFinal = 0
+              let collegeRaw = college
+    
+              if(college == null || college == 0 || college == "" || college == undefined){
+                  collegeRaw  = null
+              }
+              else{
+                  collegeRaw = `'${college}'`
+              }
+    
+                if(collegeRaw == null)
+                {
+                    collegeFinal = "%20"
+                }
+                else{
+                    
+                    collegeFinal = `and%20college%20eq%20${collegeRaw}`
+                }
+
               let bookMain = ""
               if(book == undefined || book == "")
               {
@@ -99,7 +118,7 @@ export default async (req, res) => {
 
 
           const res1 = await fetch(
-            `https://bookleesearch.search.windows.net/indexes/cosmosdb-index/docs?api-version=2021-04-30-Preview&search=*${bookMain}&$count=true&category=*&facet=category&%24filter=price%20ge%20${priceMin}%20and%20price%20lt%20${priceMax}${categoryFinal}${stateFinal}${cityFinal}${conditionFinal}` ,
+            `https://bookleesearch.search.windows.net/indexes/cosmosdb-index/docs?api-version=2021-04-30-Preview&search=*${bookMain}&$count=true&category=*&facet=category&%24filter=price%20ge%20${priceMin}%20and%20price%20lt%20${priceMax}${collegeFinal}${categoryFinal}${stateFinal}${cityFinal}${conditionFinal}` ,
             {
               headers: {
                 "Content-Type": "application/json",

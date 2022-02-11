@@ -9,6 +9,7 @@ import Link from "next/link";
 import { template } from "../../helpers/template";
 import LoadingBar from "react-top-loading-bar";
 import { useRouter } from "next/router";
+import collegeList from "../../database/college";
 import {
   Slider,
   SliderTrack,
@@ -32,7 +33,7 @@ const search = () => {
   const { templateString } = template;
 
   const router = useRouter();
-  const {categoryr , stater, cityr, conditionr, pricer} = router.query;
+  const {categoryr , stater, cityr, conditionr, pricer, colleger} = router.query;
 
   const [progress, setProgress] = useState(0);
 
@@ -44,6 +45,7 @@ const search = () => {
   const [priceMax, setPriceMax] = useState(10000);
   const [priceMin, setPriceMin] = useState(0);
   const [result, setResult] = useState(null);
+  const [college, setCollege] = useState(null);
 
   const stateCity = cities.filter((element) => element.state == state);
   const handleFilter = async () => {
@@ -61,6 +63,7 @@ const search = () => {
           city: cityr,
           condition: conditionr,
           price: pricer,
+          college: colleger
         }),
       });
       setProgress(100);
@@ -101,7 +104,11 @@ const search = () => {
   
   useEffect(() => {
     handleFilter();
-  }, [categoryr, stater, cityr, conditionr, pricer]);
+  }, [categoryr, stater, cityr, conditionr, pricer, colleger]);
+
+  useEffect(() => {
+    handleRouting();
+  }, [category, state, city, condition, price, college])
 
 
   const handleRouting = () => {
@@ -112,7 +119,8 @@ const search = () => {
         stater : state,
         cityr : city,
         conditionr : condition,
-        pricer : price
+        pricer : price,
+        colleger: college
       },
     });
   }
@@ -277,6 +285,21 @@ const search = () => {
               </select>
             </div>
             <div className="w-11/12 mx-auto">
+              <h2 className="text-left text-xl font-semibold  my-5">College</h2>
+              <select
+                value={category}
+                onChange={(e) => setCollege(e.target.value)}
+                className="block w-full h-[40px] pl-2 mb-5"
+              >
+                <option value={0}>Select College</option>
+                {collegeList.map((college) => {
+                  return <option value={college}>{college}</option>;
+                })}
+                <option value="other">Other</option>
+              </select>
+              <p className="text-sm text-red-800">You can also search by your school/college name</p>
+            </div>
+            <div className="w-11/12 mx-auto">
               <h2 className="text-left text-xl font-semibold py-5">
                 Locations
               </h2>
@@ -341,20 +364,6 @@ const search = () => {
                   );
                 })}
               </select>
-            </div>
-            <div className="flex justify-between mb-12">
-              <button
-                className="bg-skin-lightRed text-skin-darkRed hover:bg-red-100 px-4 py-2 transition-all rounded-lg font-bold my-10 "
-                onClick={handleReset}
-              >
-                Clear Filter
-              </button>
-              <button
-                className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 transition-all rounded-lg font-bold my-10"
-                onClick={() => {handleRouting(); handleFilter();}}
-              >
-                Search
-              </button>
             </div>
           </div>
         </div>
@@ -549,6 +558,21 @@ const search = () => {
                       </select>
                     </div>
                     <div className="w-11/12 mx-auto">
+              <h2 className="text-left text-xl font-semibold  my-5">College</h2>
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className="block w-full h-[40px] pl-2 mb-5"
+              >
+                <option value={0}>Select College</option>
+                {collegeList.map((college) => {
+                  return <option value={college}>{college}</option>;
+                })}
+                <option value="other">Other</option>
+              </select>
+              <p className="text-sm text-red-800">You can also search by your school/college name</p>
+            </div>
+                    <div className="w-11/12 mx-auto">
                       <h2 className="text-left text-xl font-semibold py-5">
                         Locations
                       </h2>
@@ -620,20 +644,6 @@ const search = () => {
                         })}
                       </select>
                     </div>
-                  </div>
-                  <div className="flex justify-between w-9/12 mx-auto">
-                    <button
-                      className="bg-skin-lightRed text-skin-darkRed hover:bg-red-100 px-4 py-2 transition-all rounded-lg font-bold my-10 "
-                      onClick={handleReset}
-                    >
-                      Clear Filter
-                    </button>
-                    <button
-                      className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 transition-all rounded-lg font-bold my-10"
-                      onClick={() => {handleRouting(); handleFilter();}}
-                    >
-                      Search
-                    </button>
                   </div>
                 </div>
               </DrawerBody>

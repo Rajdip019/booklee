@@ -5,6 +5,7 @@ import Document from "../document";
 import cities from "../../database/city";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { useRouter } from "next/router";
+import collegeList from "../../database/college";
 import {
   Slider,
   SliderTrack,
@@ -51,6 +52,7 @@ const Search = () => {
   const [priceMax, setPriceMax] = useState(10000);
   const [priceMin, setPriceMin] = useState(0);
   const [result, setResult] = useState(null);
+  const [college, setCollege] = useState(null);
 
   const router = useRouter();
   const {book} = router.query;
@@ -106,9 +108,12 @@ const Search = () => {
 
   useEffect(() => {
     handleFilter();
+  }, [book, college, state, condition, category, city, price]);
+  
+  useEffect(() => {
+    
     handlePriceMax();
-  }, [book]);
-
+  },[])
  
 
   return (
@@ -266,6 +271,21 @@ const Search = () => {
               </select>
             </div>
             <div className="w-11/12 mx-auto">
+              <h2 className="text-left text-xl font-semibold  my-5">College</h2>
+              <select
+                value={category}
+                onChange={(e) => setCollege(e.target.value)}
+                className="block w-full h-[40px] pl-2 mb-5"
+              >
+                <option value={0}>Select College</option>
+                {collegeList.map((college) => {
+                  return <option value={college}>{college}</option>;
+                })}
+                <option value="other">Other</option>
+              </select>
+              <p className="text-sm text-red-800">You can also search by your school/college name</p>
+            </div>
+            <div className="w-11/12 mx-auto">
               <h2 className="text-left text-xl font-semibold py-5">
                 Locations
               </h2>
@@ -331,20 +351,6 @@ const Search = () => {
                 })}
               </select>
             </div>
-          </div>
-          <div className="flex justify-between w-9/12 mx-auto mb-12">
-            <button
-              className="bg-skin-lightRed text-skin-darkRed hover:bg-red-100 px-4 py-2 transition-all rounded-lg font-bold my-10 "
-              onClick={handleReset}
-            >
-              Clear Filter
-            </button>
-            <button
-              className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 transition-all rounded-lg font-bold my-10"
-              onClick={handleFilter}
-            >
-              Search
-            </button>
           </div>
         </div>
       </ChakraProvider>
@@ -614,20 +620,6 @@ const Search = () => {
                         })}
                       </select>
                     </div>
-                  </div>
-                  <div className="flex justify-between w-9/12 mx-auto">
-                    <button
-                      className="bg-skin-lightRed text-skin-darkRed hover:bg-red-100 px-4 py-2 transition-all rounded-lg font-bold my-10 "
-                      onClick={handleReset}
-                    >
-                      Clear Filter
-                    </button>
-                    <button
-                      className=" bg-skin-lightBlue text-skin-darkBlue hover:bg-skin-hoverBlue px-4 py-2 transition-all rounded-lg font-bold my-10"
-                      onClick={handleFilter}
-                    >
-                      Search
-                    </button>
                   </div>
                 </div>
               </DrawerBody>
