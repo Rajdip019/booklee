@@ -275,7 +275,7 @@ const Search = () => {
             <div className="w-11/12 mx-auto">
               <h2 className="text-left text-xl font-semibold  my-5">College</h2>
               <select
-                value={category}
+                value={college}
                 onChange={(e) => setCollege(e.target.value)}
                 className="block w-full h-[40px] pl-2 mb-5"
               >
@@ -536,7 +536,7 @@ const Search = () => {
                         Category
                       </h2>
                       <select
-                        value={category}
+                        value={college}
                         onChange={(e) => setCategory(e.target.value)}
                         className="block w-full h-[40px] pl-2 mb-5"
                       >
@@ -652,6 +652,9 @@ const Search = () => {
                 className="mx-1.5 my-1.5"
               >
                 Price: {price}
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block cursor-pointer ml-1 mb-0.5" onClick={() => {setPrice(10000)}} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+</svg>
               </Badge>
             )}
             {condition !== 0 && (
@@ -664,6 +667,9 @@ const Search = () => {
                 className="mx-1.5 my-1.5"
               >
                 Condition: {parseInt(condition) + 1} ⭐ and above
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block cursor-pointer ml-1 mb-0.5" onClick={() => {setCondition(0)}} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+</svg>
               </Badge>
             )}
             {category !== 0 && (
@@ -676,12 +682,17 @@ const Search = () => {
                 className="mx-1.5 my-1.5"
               >
                 Category: {category}
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block cursor-pointer ml-1 mb-0.5" onClick={() => {setCategory(0)}} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+</svg>
               </Badge>
             )}
             {college !== 0 && (
               <span className="break-words mx-1.5 my-1.5 font-semibold uppercase text-xs text-white bg-[#3182CE] px-2 py-1 sm:rounded-full rounded-lg">
                 {" "}
-                College: {college}
+                College: {college}<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block cursor-pointer ml-1 mb-0.5" onClick={() => {setCollege(0)}} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+</svg>
               </span>
             )}
             {state !== 0 && (
@@ -693,7 +704,9 @@ const Search = () => {
                 colorScheme="blue"
                 className="mx-1.5 my-1.5"
               >
-                State: {state}
+                State: {state}<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block cursor-pointer ml-1 mb-0.5" onClick={() => {setState(0)}} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+</svg>
               </Badge>
             )}
             {city !== 0 && (
@@ -705,7 +718,9 @@ const Search = () => {
                 colorScheme="blue"
                 className="mx-1.5 my-1.5"
               >
-                City: {city}
+                City: {city}<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block cursor-pointer ml-1 mb-0.5" onClick={() => {setCity(0)}} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+</svg>
               </Badge>
             )}
           </ChakraProvider>
