@@ -79,7 +79,8 @@ export default function ProductDetailsDonate({
             <div className="2xl:hidden items-center">
               <ChakraProvider>
                 <Avatar
-                  className="w-36 h-36 my-5 "
+                  className="my-5 "
+                  size="xl"
                   name={UserBookDetails.name}
                   src={UserBookDetails.image}
                   borderRadius="100%"

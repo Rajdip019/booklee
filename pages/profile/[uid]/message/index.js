@@ -10,15 +10,19 @@ import { template } from "../../../../helpers/template";
 
 export default function ThankYou({ UserDetails }) {
 
-  const {templateString} = template;
+  const { templateString } = template;
 
   const { data: session } = useSession();
   const sender_email = session?.user?.email;
   const sender_name = session?.user?.name;
-
+  
+  
+  
   //Defining the message
-  const [message, setMessage] = useState();
-  const [bookName , setBookName] = useState();
+  const [message, setMessage] = useState("");
+  const [bookName, setBookName] = useState();
+  
+  let remaining = (300 - message.length);
 
   const toast = createStandaloneToast(); // A standalone toast (doesn't reqiure a parent element)
 
@@ -82,7 +86,7 @@ export default function ThankYou({ UserDetails }) {
               <h3 className="text-xl font-semibold ">{UserDetails.name}</h3>
             </div>
             <div className="mb-24 mt-12 mx-auto flex flex-col">
-            <h3 className="my-3 font-semibold text-gray-700">
+              <h3 className="my-3 font-semibold text-gray-700">
                 Book Name
               </h3>
               <input
@@ -98,13 +102,16 @@ export default function ThankYou({ UserDetails }) {
                 Write down your Queries about the book!
               </h3>
               <textarea
-                className="md:w-[35vw] w-[85vw]"
+                className="md:w-[35vw] w-[85vw] h-[13vh] resize-none"
                 type="text"
                 placeholder="Write a message to Seller/Donator."
+                maxLength="500"
                 required
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
+              <p className={remaining == 0 ? "ml-auto text-xs text-red-600" : "ml-auto text-xs text-opacity-50 "} id="remaining-char">{remaining} characters remaining</p>
+
               {session ? (
                 <button
                   className="bg-skin-lightBlue text-skin-darkBlue p-2 px-6 text-xl font-bold rounded-lg mt-10 hover:bg-skin-hoverBlue transition-all"
@@ -128,7 +135,7 @@ export default function ThankYou({ UserDetails }) {
 }
 
 export async function getServerSideProps({ params: { uid } }) {
-  const {templateString} = template;
+  const { templateString } = template;
   try {
     const res = await fetch(
       `${templateString}/api/user/userdetails/${uid}`

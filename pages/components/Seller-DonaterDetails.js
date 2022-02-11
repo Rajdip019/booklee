@@ -117,7 +117,7 @@ const SellerDonaterDetails = (props) => {
             <div>
               <h2 className="font-bold text-lg 2xl:mt-10 mb-3">Mobile No.</h2>
               {!props.phno && (
-                <p className="text-lg">Phone number not povided</p>
+                <p className="text-lg">Phone number not provided</p>
               )}
               {props.phno && (
                 <>

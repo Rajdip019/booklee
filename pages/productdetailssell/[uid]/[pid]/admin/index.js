@@ -88,7 +88,8 @@ export default function ProductDetailsSellPage({
         <div className="hidden 2xl:flex-col 2xl:flex  mr-[8vw] 2xl:items-center">
           <ChakraProvider>
           <Avatar
-            className="w-36 h-36 mb-5"
+            className="mb-5"
+            size="xl"
             name={UserBookDetails.name}
             src={UserBookDetails.image}
             borderRadius="100%"

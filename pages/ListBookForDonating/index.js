@@ -273,7 +273,7 @@ const ListBookForDonating = () => {
                     </div>
                     <div className="my-auto text-center">
                       <Link href="/donatengo">
-                        <button className="font-bold bg-skin-darkGreen text-skin-lightGreen rounded-xl mr-0 sm:mr-7 py-2 px-4 my-3 text-xl" onClick={() => setProgress(30)}>
+                        <button className="font-bold bg-skin-darkGreen text-skin-lightGreen rounded-xl mr-0 sm:mr-7 py-2 px-4 my-3 text-xl hover:bg-transparent hover:border-4 border-[#155D18] transition-all hover:text-skin-darkGreen border-4" onClick={() => setProgress(30)}>
                           Donate
                         </button>
                       </Link>
@@ -320,7 +320,7 @@ const ListBookForDonating = () => {
                         <h3>Product Description</h3>
                         <textarea
                           type="text"
-                          className="w-full h-24 resize-none"
+                          className="w-full h-24 resize-none focus:ring-blue-400"
                           id="text-area"
                           placeholder="Enter Product Description"
                           name="description"
