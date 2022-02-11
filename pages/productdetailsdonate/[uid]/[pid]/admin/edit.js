@@ -11,6 +11,7 @@ import { createStandaloneToast } from "@chakra-ui/react";
 import { Input, ChakraProvider } from "@chakra-ui/react";
 import cities from "../../../../../database/city"; //Have all the cities name According to State
 import { template } from "../../../../../helpers/template";
+import collegeList from "../../../../../database/college";
 
 const EditListBookForDonating = ({ donateBooksDetails, UserBookDetails }) => {
 
@@ -35,6 +36,10 @@ const EditListBookForDonating = ({ donateBooksDetails, UserBookDetails }) => {
   const [city, setCity] = useState(donateBooksDetails.city);
   const [state, setState] = useState(donateBooksDetails.state);
   const [pin, setPin] = useState(donateBooksDetails.pin);
+  const [study, setStudy] = useState(donateBooksDetails.study);
+  const [college, setCollege] = useState(donateBooksDetails.college);
+  const [otherCollege, setOtherCollege] = useState(donateBooksDetails.college);
+  const [school, setSchool] = useState(donateBooksDetails.school);
   const [selectedFile, setSelectedFile] = useState(null);
 
   const [loading, setLoading] = useState(false); //useState for the loading dynamic animation
@@ -52,52 +57,107 @@ const EditListBookForDonating = ({ donateBooksDetails, UserBookDetails }) => {
     const mediaUrl = await imgUpload(); //Getting the Image URL from the imgUpload function
 
     //Getting the Data from all the input field and Sending it to the API end Point.
-
-    const res = await fetch(`${templateString}/api/donatebook/edit`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: donateBooksDetails._id,
-        name: bookname,
-        author: authorname,
-        condition: condition,
-        description: description,
-        photo: mediaUrl,
-        seller_mail: donateBooksDetails.seller_mail,
-        seller_id: donateBooksDetails.seller_id,
-        adress: adress,
-        landmark: landmark,
-        country: country,
-        state: state,
-        city: city,
-        pin: pin
-      }),
-    });
-    const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
-
-    //Showing Toast conditionally
-
-    if (bookData.error) {
-      setLoading(false); //Turning the animation off after the precoess is done.
-      return toast({
-        title: "There is a Problem.",
-        description: "Please fill all data.",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
+    if(college === "other"){
+      const res = await fetch(`${templateString}/api/donatebook/edit`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: donateBooksDetails._id,
+          name: bookname,
+          author: authorname,
+          condition: condition,
+          description: description,
+          photo: mediaUrl,
+          seller_mail: donateBooksDetails.seller_mail,
+          seller_id: donateBooksDetails.seller_id,
+          adress: adress,
+          landmark: landmark,
+          country: country,
+          state: state,
+          city: city,
+          pin: pin,
+          study: study,
+          college: otherCollege,
+          school: school
+        }),
       });
-    } else {
-      setLoading(false); //Turning the animation off after the precoess is done.
-      setFormStep(true); // After Successful Submission again render Book Details form (first form)
-      return toast({
-        title: "Book Info Updated.",
-        description: "We've Updated your book for Donating.",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
+      const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
+  
+      //Showing Toast conditionally
+  
+      if (bookData.error) {
+        setLoading(false); //Turning the animation off after the precoess is done.
+        return toast({
+          title: "There is a Problem.",
+          description: "Please fill all data.",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      } else {
+        setLoading(false); //Turning the animation off after the precoess is done.
+        setFormStep(true); // After Successful Submission again render Book Details form (first form)
+        return toast({
+          title: "Book Info Updated.",
+          description: "We've Updated your book for Donating.",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
+
+    }else{
+      const res = await fetch(`${templateString}/api/donatebook/edit`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: donateBooksDetails._id,
+          name: bookname,
+          author: authorname,
+          condition: condition,
+          description: description,
+          photo: mediaUrl,
+          seller_mail: donateBooksDetails.seller_mail,
+          seller_id: donateBooksDetails.seller_id,
+          adress: adress,
+          landmark: landmark,
+          country: country,
+          state: state,
+          city: city,
+          pin: pin,
+          study: study,
+          college: college,
+          school: school
+        }),
       });
+      const bookData = await res.json(); //Getting the response data to use it show the Toast conditionally
+  
+      //Showing Toast conditionally
+  
+      if (bookData.error) {
+        setLoading(false); //Turning the animation off after the precoess is done.
+        return toast({
+          title: "There is a Problem.",
+          description: "Please fill all data.",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      } else {
+        setLoading(false); //Turning the animation off after the precoess is done.
+        setFormStep(true); // After Successful Submission again render Book Details form (first form)
+        return toast({
+          title: "Book Info Updated.",
+          description: "We've Updated your book for Donating.",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
     }
   };
 
@@ -359,6 +419,56 @@ const EditListBookForDonating = ({ donateBooksDetails, UserBookDetails }) => {
               <>
                 <div className="mt-10 w-10/12 m-auto">
                   <div className="ml-[0px] lg:ml-[300px] w-11/12 lg:w-[calc(100%-300px)] grid grid-col-1 md:grid-cols-2 lg:grid-cols-2 gap-0 md:gap-10">
+                  <div className=" col-span-1 md:col-span-2">
+                      <h1 className="text-2xl font-bold mb-1">
+                        Enter College/School Details
+                      </h1>
+                      <p className="text-sm text-red-600">
+                        *Enter college/school name to reach to your school/college students easily.
+                      </p>
+                    </div>
+                    <select
+                      name=""
+                      id=""
+                      className="block w-full h-[40px] pl-2"
+                      value={study}
+                      onChange={(e) => {
+                        setStudy(e.target.value);
+                        setCollege("")
+                        setSchool("")
+                      }}
+                    >
+                      <option value={null}>
+                        Are you in College or School?
+                      </option>
+                      <option value="college">College</option>
+                      <option value="school">School</option>
+                    </select>
+                    {study === "college" && (
+                      <select
+                        value={college}
+                        className="block w-full h-[40px] pl-2"
+                        onChange={(e) => {
+                          setCollege(e.target.value);
+                        }}
+                      >
+                        <option value={null}>Choose Your college</option>
+                        {collegeList.map((college) => {
+                          return <option value={college} >{college}</option>;
+                        })}
+                        <option value="other">Other</option>
+                      </select>
+                    )}
+                    {college === "other" && study === "college" && (
+                      <>
+                        <input type="text" className="" placeholder="Enter your College name" onChange={(e) => {setOtherCollege(e.target.value)}} />
+                      </>
+                    )}
+                    {study === "school" && (
+                      <>
+                        <input type="text" className="h-10" placeholder="Enter your School name" value={school} onChange={(e) => {setSchool(e.target.value) }} />
+                      </>
+                    )}
                     <div className=" col-span-1 md:col-span-2">
                       <h1 className="text-2xl font-bold mb-1">
                         Enter Address Details

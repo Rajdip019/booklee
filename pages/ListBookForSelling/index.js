@@ -1,4 +1,4 @@
-import { React, useState , useRef} from "react";
+import { React, useState, useRef } from "react";
 import Navbar from "../components/Navbar";
 import GeneralSidebar from "../components/GeneralSidebar";
 import Document from "../document";
@@ -11,10 +11,11 @@ import { getSession } from "next-auth/react";
 import cities from "../../database/city"; //Have all the cities name According to State
 import { template } from "../../helpers/template";
 import LoadingBar from "react-top-loading-bar";
+import collegeList from "../../database/college";
 
 const ListBookForSelling = () => {
   const { data: session } = useSession();
-  const {templateString} = template;
+  const { templateString } = template;
 
   const [progress, setProgress] = useState(0);
 
@@ -37,55 +38,59 @@ const ListBookForSelling = () => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [pin, setPin] = useState("");
+  const [study, setStudy] = useState("");
+  const [college, setCollege] = useState("");
+  const [otherCollege, setOtherCollege] = useState("");
+  const [school, setSchool] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
 
-
-
-  const [loading, setLoading] = useState(false);  //useState for the loading dynamic animation
-  const [formStep, setFormStep] = useState(true);  //useState for the multi step of the form
+  const [loading, setLoading] = useState(false); //useState for the loading dynamic animation
+  const [formStep, setFormStep] = useState(true); //useState for the multi step of the form
 
   const stateCity = cities.filter((element) => element.state == state); //Filtering data according to State from the cities database
 
   const toast = createStandaloneToast(); // A standalone toast (doesn't reqiure a parent element)
   ///Form Submit Function
-  let remaining = (300 - description.length);
-  
+  let remaining = 300 - description.length;
+
   const handleSubmit = async (e) => {
-    setProgress(30)
+    setProgress(30);
     e.preventDefault(); // Preventing Default Action of form (Stops page reload)
     const id = await havesession();
     setLoading(true); //Showing Loading Animation
     const mediaUrl = await imgUpload(); //Getting the Image URL from the imgUpload function
-    setProgress(50)
+    setProgress(50);
     //Getting the Data from all the input field and Sending it to the API end Point.
-
-    const res = await fetch(`${templateString}/api/sellbook/add`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: bookname,
-        author: authorname,
-        condition: condition,
-        category: category,
-        description: description,
-        photo: mediaUrl,
-        price: price,
-        seller_mail: mail,
-        seller_id : id,
-        adress: adress,
-        landmark: landmark,
-        country: country,
-        state: state,
-        city: city,
-        pin: pin,
-      }),
-    });
-    setProgress(100)
-    const bookData = await res.json();
-  //Getting the response data to use it show the Toast conditionally
-
+    if(college === "other"){
+      const res = await fetch(`${templateString}/api/sellbook/add`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: bookname,
+          author: authorname,
+          condition: condition,
+          category: category,
+          description: description,
+          photo: mediaUrl,
+          price: price,
+          seller_mail: mail,
+          seller_id: id,
+          adress: adress,
+          landmark: landmark,
+          country: country,
+          state: state,
+          city: city,
+          pin: pin,
+          study: study,
+          college: otherCollege,
+          school: school
+        }),
+      });
+      setProgress(100);
+      const bookData = await res.json();
+          //Getting the response data to use it show the Toast conditionally
 
     //Showing Toast conditionally
 
@@ -110,15 +115,70 @@ const ListBookForSelling = () => {
         isClosable: true,
       });
     }
+    }else{
+      const res = await fetch(`${templateString}/api/sellbook/add`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: bookname,
+          author: authorname,
+          condition: condition,
+          category: category,
+          description: description,
+          photo: mediaUrl,
+          price: price,
+          seller_mail: mail,
+          seller_id: id,
+          adress: adress,
+          landmark: landmark,
+          country: country,
+          state: state,
+          city: city,
+          pin: pin,
+          study: study,
+          college: college,
+          school: school
+        }),
+      });
+      setProgress(100);
+      const bookData = await res.json();
+          //Getting the response data to use it show the Toast conditionally
+
+    //Showing Toast conditionally
+
+    if (bookData.error) {
+      setLoading(false); //Turning the animation off after the precoess is done.
+      return toast({
+        title: "There is a Problem.",
+        description: "Please fill all data.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    } else {
+      handleReset(); //Reset the form when the Submission is Successful.
+      setLoading(false); //Turning the animation off after the precoess is done.
+      setFormStep(true); // After Successful Submission again render Book Details form (first form)
+      return toast({
+        title: "Book Listed.",
+        description: "We've listed your book for selling.",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+    }
   };
 
-  const havesession =async ()=> {
-    const fetchSession =  await getSession()
-    const fetchMail = fetchSession?.user?.email
-    const res = await fetch(`${templateString}/api/user/${fetchMail}`)
-    const userData = await res.json()
-    return userData._id
-  }
+  const havesession = async () => {
+    const fetchSession = await getSession();
+    const fetchMail = fetchSession?.user?.email;
+    const res = await fetch(`${templateString}/api/user/${fetchMail}`);
+    const userData = await res.json();
+    return userData._id;
+  };
 
   const addImageToPost = (e) => {
     const reader = new FileReader();
@@ -164,13 +224,12 @@ const ListBookForSelling = () => {
     setCity("");
     setState("");
     setPin("");
-    setSelectedFile(null)
+    setCollege("");
+    setOtherCollege("");
+    setStudy("");
+    setSchool("");
+    setSelectedFile(null);
   };
-
-
-  
-  
-
 
   return (
     <>
@@ -178,11 +237,11 @@ const ListBookForSelling = () => {
         <Document />
         <Navbar />
         <LoadingBar
-        color="#4287f5"
-        height={4}
-        progress={progress}
-        onLoaderFinished={() => setProgress(0)}
-      />
+          color="#4287f5"
+          height={4}
+          progress={progress}
+          onLoaderFinished={() => setProgress(0)}
+        />
         <GeneralSidebar title="List Your Book" />
 
         {/*//////////////////////////////////////////// When User is not Authenticated //////////////////////////////////// */}
@@ -192,7 +251,10 @@ const ListBookForSelling = () => {
             <div className="ml-[0px] lg:ml-[300px] lg:w-[calc(100%-300px)]">
               <div className="flex justify-center mt-[30vh] lg:mt-[40vh]">
                 <Link href="/auth/signin">
-                  <button className="bg-skin-lightBlue hover:bg-skin-hoverBlue text-skin-darkBlue p-6 rounded-lg font-bold text-xl" onClick={()=> setProgress(30)}>
+                  <button
+                    className="bg-skin-lightBlue hover:bg-skin-hoverBlue text-skin-darkBlue p-6 rounded-lg font-bold text-xl"
+                    onClick={() => setProgress(30)}
+                  >
                     Sign In to List Your Book for Selling
                   </button>
                 </Link>
@@ -247,7 +309,7 @@ const ListBookForSelling = () => {
                         </div>
                         <div className="my-3">
                           <h3>Product Description</h3>
-                            <textarea
+                          <textarea
                             type="text"
                             className="w-full h-24 resize-none focus:ring-blue-400"                        
                             id="text-area"
@@ -258,8 +320,17 @@ const ListBookForSelling = () => {
                             onChange={(e) => {
                               setDescription(e.target.value);
                             }}
-                            />
-                            <p className={remaining==0 ? "float-right text-xs text-red-600" :  "float-right text-xs text-opacity-50 "} id="remaining-char">{remaining} characters remaining</p>
+                          />
+                          <p
+                            className={
+                              remaining == 0
+                                ? "float-right text-xs text-red-600"
+                                : "float-right text-xs text-opacity-50 "
+                            }
+                            id="remaining-char"
+                          >
+                            {remaining} characters remaining
+                          </p>
                         </div>
                         <div className="mt-5">
                           <div className="mb-5">
@@ -332,22 +403,27 @@ const ListBookForSelling = () => {
                       </label>
                       <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div className="space-y-1 text-center">
-
-                          {selectedFile ? ( <img src={selectedFile} alt="" className="w-60 mx-auto my-3" />) : (
-                            <svg
-                            className="mx-auto h-12 w-12 text-gray-400"
-                            stroke="currentColor"
-                            fill="none"
-                            viewBox="0 0 48 48"
-                            aria-hidden="true"
-                          >
-                            <path
-                              d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                              strokeWidth={2}
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
+                          {selectedFile ? (
+                            <img
+                              src={selectedFile}
+                              alt=""
+                              className="w-60 mx-auto my-3"
                             />
-                          </svg>
+                          ) : (
+                            <svg
+                              className="mx-auto h-12 w-12 text-gray-400"
+                              stroke="currentColor"
+                              fill="none"
+                              viewBox="0 0 48 48"
+                              aria-hidden="true"
+                            >
+                              <path
+                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                strokeWidth={2}
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
                           )}
                           <div className="flex text-sm text-gray-600">
                             <label
@@ -364,7 +440,10 @@ const ListBookForSelling = () => {
                               type="file"
                               className="sr-only "
                               accept="image/*"
-                              onChange={(e) => {setMedia(e.target.files[0]); addImageToPost(e);}}
+                              onChange={(e) => {
+                                setMedia(e.target.files[0]);
+                                addImageToPost(e);
+                              }}
                             />
 
                             {/* Showing the Uploaded File name */}
@@ -421,6 +500,54 @@ const ListBookForSelling = () => {
                   <div className="ml-[0px] lg:ml-[300px] w-11/12 lg:w-[calc(100%-300px)] grid grid-col-1 md:grid-cols-2 lg:grid-cols-2 gap-0 md:gap-10">
                     <div className=" col-span-1 md:col-span-2">
                       <h1 className="text-2xl font-bold mb-1">
+                        Enter College/School Details
+                      </h1>
+                      <p className="text-sm text-red-600">
+                        *Enter college/school name to reach to your school/college students easily.
+                      </p>
+                    </div>
+                    <select
+                      value={study}
+                      className="block w-full h-[40px] pl-2"
+                      onChange={(e) => {
+                        setStudy(e.target.value);
+                        setCollege("")
+                        setSchool("")
+                      }}
+                    >
+                      <option value={null}>
+                        Are you in College or School?
+                      </option>
+                      <option value="college">College</option>
+                      <option value="school">School</option>
+                    </select>
+                    {study === "college" && (
+                      <select
+                        className="block w-full h-[40px] pl-2"
+                        value={college}
+                        onChange={(e) => {
+                          setCollege(e.target.value);
+                        }}
+                      >
+                        <option value={null}>Choose Your college</option>
+                        {collegeList.map((college) => {
+                          return <option value={college} >{college}</option>;
+                        })}
+                        <option value="other">Other</option>
+                      </select>
+                    )}
+                    {college === "other" && study === "college" && (
+                      <>
+                        <input type="text" className="" placeholder="Enter your College name" value={otherCollege} onChange={(e) => {setOtherCollege(e.target.value)}} />
+                      </>
+                    )}
+                    {study === "school" && (
+                      <>
+                        <input type="text" className="h-10" placeholder="Enter your School name" value={school} onChange={(e) => {setSchool(e.target.value) }} />
+                      </>
+                    )}
+                    <div className=" col-span-1 md:col-span-2">
+                      <h1 className="text-2xl font-bold mb-1 ">
                         Enter Address Details
                       </h1>
                       <p className="text-sm text-red-600">
