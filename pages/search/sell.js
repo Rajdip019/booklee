@@ -20,6 +20,7 @@ import {
   Button,
   ChakraProvider,
   RadioGroup,
+  Badge
 } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 import { template } from "../../helpers/template";
@@ -44,15 +45,15 @@ const Search = () => {
 
   const {templateString} = template;
 
-  const [category, setCategory] = useState(null);
-  const [state, setState] = useState(null);
-  const [city, setCity] = useState(null);
-  const [condition, setCondition] = useState();
+  const [category, setCategory] = useState(0);
+  const [state, setState] = useState(0);
+  const [city, setCity] = useState(0);
+  const [condition, setCondition] = useState(0);
   const [price, setPrice] = useState(10000);
   const [priceMax, setPriceMax] = useState(10000);
   const [priceMin, setPriceMin] = useState(0);
-  const [result, setResult] = useState(null);
-  const [college, setCollege] = useState(null);
+  const [result, setResult] = useState(0);
+  const [college, setCollege] = useState(0);
 
   const router = useRouter();
   const {book} = router.query;
@@ -101,9 +102,10 @@ const Search = () => {
   const handleReset = () => {
     setCategory(0);
     setState(0);
-    setCity(null);
+    setCity(0);
     setCondition(0);
-    setPrice(priceMax + 1);
+    setPrice(10000);
+    setCollege(0);
   };
 
   useEffect(() => {
@@ -557,7 +559,7 @@ const Search = () => {
                         value={state}
                         onChange={(e) => setState(e.target.value)}
                       >
-                        <option value={0}>Select State</option>
+                        <option value={null}>Select State</option>
                         <option value={0}>Any State</option>
                         <option value="Andhra Pradesh">Andhra Pradesh</option>
                         <option value="Andaman and Nicobar Islands">
@@ -629,6 +631,101 @@ const Search = () => {
       </>
 
       {/* Mobile Filter End */}
+      <div className=" ml-[30px] mt-10  lg:ml-[350px] md:flex-row sm:flex sm:items-center justify-between mr-16 flex-col">
+        <div className="flex items-center flex-wrap">
+          {(price !== 10000 ||
+            condition !== 0 ||
+            category !== 0 ||
+            college !== 0 ||
+            state !== 0||
+            city !== 0) && (
+            <p className=" font-rokkitt text-2xl">Filters Applied :</p>
+          )}
+          <ChakraProvider>
+            {price !== 10000 && (
+              <Badge
+                rounded="full"
+                paddingX="3"
+                paddingY="1"
+                variant="solid"
+                colorScheme="blue"
+                className="mx-1.5 my-1.5"
+              >
+                Price: {price}
+              </Badge>
+            )}
+            {condition !== 0 && (
+              <Badge
+                rounded="full"
+                paddingX="3"
+                paddingY="1"
+                variant="solid"
+                colorScheme="blue"
+                className="mx-1.5 my-1.5"
+              >
+                Condition: {parseInt(condition) + 1} ⭐ and above
+              </Badge>
+            )}
+            {category !== 0 && (
+              <Badge
+                rounded="full"
+                paddingX="3"
+                paddingY="1"
+                variant="solid"
+                colorScheme="blue"
+                className="mx-1.5 my-1.5"
+              >
+                Category: {category}
+              </Badge>
+            )}
+            {college !== 0 && (
+              <span className="break-words mx-1.5 my-1.5 font-semibold uppercase text-xs text-white bg-[#3182CE] px-2 py-1 sm:rounded-full rounded-lg">
+                {" "}
+                College: {college}
+              </span>
+            )}
+            {state !== 0 && (
+              <Badge
+                rounded="full"
+                paddingX="3"
+                paddingY="1"
+                variant="solid"
+                colorScheme="blue"
+                className="mx-1.5 my-1.5"
+              >
+                State: {state}
+              </Badge>
+            )}
+            {city !== 0 && (
+              <Badge
+                rounded="full"
+                paddingX="3"
+                paddingY="1"
+                variant="solid"
+                colorScheme="blue"
+                className="mx-1.5 my-1.5"
+              >
+                City: {city}
+              </Badge>
+            )}
+          </ChakraProvider>
+        </div>
+        {(price !== 10000 ||
+        condition !== 0 ||
+            category !== 0 ||
+            college !== 0 ||
+            state !== 0||
+          city !== 0) && (
+          <button
+            className="bg-skin-lightRed text-skin-darkRed font-semibold px-2 py-1 text-sm rounded-full hover:bg-red-200 transition-all hover:shadow-md whitespace-nowrap mt-5"
+            onClick={() => {
+              handleReset();
+            }}
+          >
+            Clear Filter
+          </button>
+        )}
+      </div>
       <div className=" items-center">
       {result ? (
         <>

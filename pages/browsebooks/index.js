@@ -10,6 +10,7 @@ import { template } from "../../helpers/template";
 import LoadingBar from "react-top-loading-bar";
 import { useRouter } from "next/router";
 import collegeList from "../../database/college";
+import { Badge } from "@chakra-ui/react";
 import {
   Slider,
   SliderTrack,
@@ -33,19 +34,20 @@ const BrowseBooks = () => {
   const { templateString } = template;
 
   const router = useRouter();
-  const { categoryr, stater, cityr, conditionr, pricer, colleger } = router.query;
+  const { categoryr, stater, cityr, conditionr, pricer, colleger } =
+    router.query;
 
   const [progress, setProgress] = useState(0);
 
-  const [category, setCategory] = useState(null);
-  const [state, setState] = useState(null);
-  const [city, setCity] = useState(null);
-  const [condition, setCondition] = useState();
+  const [category, setCategory] = useState(0);
+  const [state, setState] = useState(0);
+  const [city, setCity] = useState(0);
+  const [condition, setCondition] = useState(0);
   const [price, setPrice] = useState(10000);
   const [priceMax, setPriceMax] = useState(10000);
   const [priceMin, setPriceMin] = useState(0);
   const [result, setResult] = useState();
-  const [college, setCollege] = useState(null);
+  const [college, setCollege] = useState(0);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
@@ -66,7 +68,7 @@ const BrowseBooks = () => {
         city: cityr,
         condition: conditionr,
         price: pricer,
-        college: colleger
+        college: colleger,
       }),
     });
     setProgress(90);
@@ -92,9 +94,10 @@ const BrowseBooks = () => {
   const handleReset = () => {
     setCategory(0);
     setState(0);
-    setCity(null);
+    setCity(0);
     setCondition(0);
-    setPrice(priceMax + 1);
+    setPrice(10000);
+    setCollege(0);
   };
 
   useEffect(() => {
@@ -107,8 +110,8 @@ const BrowseBooks = () => {
 
   useEffect(() => {
     handleRouting();
-  }, [category, state, city, condition, price, college])
-  
+  }, [category, state, city, condition, price, college]);
+
   const handleRouting = () => {
     router.push({
       pathname: "/browsebooks",
@@ -118,11 +121,13 @@ const BrowseBooks = () => {
         cityr: city,
         conditionr: condition,
         pricer: price,
-        colleger: college
+        colleger: college,
       },
     });
   };
-  
+
+  console.log(router.query);
+
   return (
     <>
       <Document />
@@ -283,7 +288,7 @@ const BrowseBooks = () => {
             <div className="w-11/12 mx-auto">
               <h2 className="text-left text-xl font-semibold  my-5">College</h2>
               <select
-                value={category}
+                value={college}
                 onChange={(e) => setCollege(e.target.value)}
                 className="block w-full h-[40px] pl-2 mb-5"
               >
@@ -293,7 +298,9 @@ const BrowseBooks = () => {
                 })}
                 <option value="other">Other</option>
               </select>
-              <p className="text-sm text-red-800">You can also search by your school/college name</p>
+              <p className="text-sm text-red-800">
+                You can also search by your school/college name
+              </p>
             </div>
             <div className="w-11/12 mx-auto">
               <h2 className="text-left text-xl font-semibold py-5">
@@ -550,20 +557,24 @@ const BrowseBooks = () => {
                       </select>
                     </div>
                     <div className="w-11/12 mx-auto">
-              <h2 className="text-left text-xl font-semibold  my-5">College</h2>
-              <select
-                value={category}
-                onChange={(e) => setCollege(e.target.value)}
-                className="block w-full h-[40px] pl-2 mb-5"
-              >
-                <option value={0}>Select College</option>
-                {collegeList.map((college) => {
-                  return <option value={college}>{college}</option>;
-                })}
-                <option value="other">Other</option>
-              </select>
-              <p className="text-sm text-red-800">You can also search by your school/college name</p>
-            </div>
+                      <h2 className="text-left text-xl font-semibold  my-5">
+                        College
+                      </h2>
+                      <select
+                        value={college}
+                        onChange={(e) => setCollege(e.target.value)}
+                        className="block w-full h-[40px] pl-2 mb-5"
+                      >
+                        <option value={0}>Select College</option>
+                        {collegeList.map((college) => {
+                          return <option value={college}>{college}</option>;
+                        })}
+                        <option value="other">Other</option>
+                      </select>
+                      <p className="text-sm text-red-800">
+                        You can also search by your school/college name
+                      </p>
+                    </div>
                     <div className="w-11/12 mx-auto">
                       <h2 className="text-left text-xl font-semibold py-5">
                         Locations
@@ -672,6 +683,101 @@ const BrowseBooks = () => {
           </ChakraProvider>
         </div>
       </div>
+      <div className=" ml-[30px] mt-10  lg:ml-[350px] md:flex-row sm:flex sm:items-center justify-between mr-16 flex-col">
+        <div className="flex items-center flex-wrap">
+          {(pricer !== "10000" ||
+          conditionr !== "0" ||
+            categoryr !== "0" ||
+            colleger !== "0" ||
+            stater !== "0"||
+            cityr !== "0") && (
+            <p className=" font-rokkitt text-2xl">Filters Applied :</p>
+          )}
+          <ChakraProvider>
+            {pricer !== "10000" && (
+              <Badge
+                rounded="full"
+                paddingX="3"
+                paddingY="1"
+                variant="solid"
+                colorScheme="blue"
+                className="mx-1.5 my-1.5"
+              >
+                Price: {pricer}
+              </Badge>
+            )}
+            {conditionr !== "0" && (
+              <Badge
+                rounded="full"
+                paddingX="3"
+                paddingY="1"
+                variant="solid"
+                colorScheme="blue"
+                className="mx-1.5 my-1.5"
+              >
+                Condition: {parseInt(conditionr) + 1} ⭐ and above
+              </Badge>
+            )}
+            {categoryr !== "0" && (
+              <Badge
+                rounded="full"
+                paddingX="3"
+                paddingY="1"
+                variant="solid"
+                colorScheme="blue"
+                className="mx-1.5 my-1.5"
+              >
+                Category: {categoryr}
+              </Badge>
+            )}
+            {colleger !== "0" && (
+              <span className="break-words mx-1.5 my-1.5 font-semibold uppercase text-xs text-white bg-[#3182CE] px-2 py-1 sm:rounded-full rounded-lg">
+                {" "}
+                College: {colleger}
+              </span>
+            )}
+            {stater !== "0" && (
+              <Badge
+                rounded="full"
+                paddingX="3"
+                paddingY="1"
+                variant="solid"
+                colorScheme="blue"
+                className="mx-1.5 my-1.5"
+              >
+                State: {stater}
+              </Badge>
+            )}
+            {cityr !== "0" && (
+              <Badge
+                rounded="full"
+                paddingX="3"
+                paddingY="1"
+                variant="solid"
+                colorScheme="blue"
+                className="mx-1.5 my-1.5"
+              >
+                City: {cityr}
+              </Badge>
+            )}
+          </ChakraProvider>
+        </div>
+        {(pricer !== "10000" ||
+        conditionr !== "0" ||
+            categoryr !== "0" ||
+            colleger !== "0" ||
+            stater !== "0"||
+          cityr !== "0") && (
+          <button
+            className="bg-skin-lightRed text-skin-darkRed font-semibold px-2 py-1 text-sm rounded-full hover:bg-red-200 transition-all hover:shadow-md whitespace-nowrap mt-5"
+            onClick={() => {
+              handleReset();
+            }}
+          >
+            Clear Filter
+          </button>
+        )}
+      </div>
 
       <div className=" items-center">
         <div className="lg:ml-[300px] my-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 lg:w-[calc(100%-350px)] align-middle">
@@ -697,6 +803,9 @@ const BrowseBooks = () => {
             );
           })}
         </div>
+          {result?.length === 0 && (
+          <p className="lg:ml-[300px] text-5xl text-center text-gray-600 font-rokkitt flex items-center justify-center h-[50vh]">No Search Result Found</p>
+        )}
       </div>
     </>
   );
