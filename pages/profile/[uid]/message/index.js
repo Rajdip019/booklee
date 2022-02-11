@@ -22,7 +22,7 @@ export default function ThankYou({ UserDetails }) {
   const [message, setMessage] = useState("");
   const [bookName, setBookName] = useState();
   
-  let remaining = (300 - message.length);
+  let remaining = (500 - message.length);
 
   const toast = createStandaloneToast(); // A standalone toast (doesn't reqiure a parent element)
 

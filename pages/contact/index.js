@@ -15,7 +15,7 @@ export default function Contact() {
   const sender_email = session?.user?.email;
   const sender_name = session?.user?.name;
   const [message, setMessage] = useState("");
-  let remaining = (300 - message.length);
+  let remaining = (500 - message.length);
 
 
   const handleMail = async () => {

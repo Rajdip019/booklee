@@ -56,15 +56,15 @@ const ProductCardDonationDisplay = (props) => {
     return (
         <>
           <Link href={'/productdetailsdonate/[uid]/[pid]'} as={`/productdetailsdonate/${props.seller_id}/${props._id}`}>
-            <div className="w-[266px] cursor-pointer">  
+            <div className="w-[266px] cursor-pointer scale-90">  
             <div>
-               <img className=" h-[300px] w-[266px] rounded-lg mb-3" src={props.img} alt="" />
+               <img className=" h-[270px] w-[266px] rounded-lg mb-3" src={props.img} alt="" />
                <div onClick={clickOnChild}>
                {state ==
           true &&(
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 relative float-right mr-3 bottom-[305px]"
+              className="h-6 w-6 relative float-right mr-3 bottom-[275px]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -82,7 +82,7 @@ const ProductCardDonationDisplay = (props) => {
           false &&(
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 relative float-right mr-3 bottom-[305px] text-red-500"
+              className="h-6 w-6 relative float-right mr-3 bottom-[275px] text-red-500"
               viewBox="0 0 20 20"
               fill="currentColor"
               onClick={delFromFavourite}
