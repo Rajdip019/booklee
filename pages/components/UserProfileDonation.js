@@ -78,6 +78,17 @@ const UserProfileDonation = (props) => {
               {session ? (
                 <>
                   {mail != props.email && (
+                    <>
+                    {props.college && (
+                        <p className="text-white text-sm rounded-full my-1 mx-5">
+                          Studying at {props.college}
+                        </p>
+                      )}
+                      {props.school && (
+                        <p className="text-white text-sm rounded-full my-1 mx-5">
+                          Studying at {props.school}
+                        </p>
+                      )}
                     <Link
                       href={"/profile/[uid]/message"}
                       as={`/profile/${props.id}/message`}
@@ -86,16 +97,29 @@ const UserProfileDonation = (props) => {
                         Message
                       </button>
                     </Link>
+                    </>
                   )}
                 </>
               ) : (
                 <>
                   {mail != props.email && (
+                    <>
+                    {props.college && (
+                        <p className="text-white text-sm rounded-full my-1 mx-5">
+                          Studying at {props.college}
+                        </p>
+                      )}
+                      {props.school && (
+                        <p className="text-white text-sm rounded-full my-1 mx-5">
+                          Studying at {props.school}
+                        </p>
+                      )}
                     <Link href={"/auth/signin"} as={`/auth/signin`}>
                       <button className="text-md text-center bg-gray-200 text-gray-900 p-2 px-6 rounded-3xl font-semibold m-4 2xl:mx-2 transition-all" onClick={()=> {try{props.topLoader()}catch{}}}>
                         SignIn to Message
                       </button>
                     </Link>
+                    </>
                   )}
                 </>
               )}
@@ -162,7 +186,7 @@ const UserProfileDonation = (props) => {
                 )}
               </Avatar>
             </ChakraProvider>
-            <h3 className="text-white text-xl font-semibold mt-3">
+            <h3 className="text-white text-xl font-semibold mt-1">
               {props.name}
             </h3>
             {mail === props.email && (
@@ -174,24 +198,48 @@ const UserProfileDonation = (props) => {
             {session ? (
               <>
                 {mail != props.email && (
+                  <>
+                  {props.college && (
+                      <p className="text-white text-xs rounded-full my-1 mx-5">
+                        Studying at {props.college}
+                      </p>
+                    )}
+                    {props.school && (
+                      <p className="text-white text-xs rounded-full my-1 mx-5">
+                        Studying at {props.school}
+                      </p>
+                    )}
                   <Link
                     href={"/profile/[uid]/message"}
                     as={`/profile/${props.id}/message`}
                   >
-                    <button className="text-md text-center bg-skin-lightGreen text-skin-darkGreen p-2 px-6 rounded-3xl hover:bg-green-100 font-semibold m-4 2xl:mx-2 transition-all" onClick={()=> {try{props.topLoader()}catch{}}}>
+                    <button className="text-sm mt-0 text-center bg-skin-lightGreen text-skin-darkGreen p-2 px-6 rounded-3xl hover:bg-green-100 font-semibold m-4 2xl:mx-2 transition-all" onClick={()=> {try{props.topLoader()}catch{}}}>
                       Message
                     </button>
                   </Link>
+                  </>
                 )}
               </>
             ) : (
               <>
                 {mail != props.email && (
+                  <>
+                  {props.college && (
+                      <p className="text-white text-xs rounded-full my-1 mx-5">
+                        Studying at {props.college}
+                      </p>
+                    )}
+                    {props.school && (
+                      <p className="text-white text-xs rounded-full my-1 mx-5">
+                        Studying at {props.school}
+                      </p>
+                    )}
                   <Link href={"/auth/signin"} as={`/auth/signin`}>
-                    <button className="text-md text-center bg-gray-200 text-gray-900 p-2 px-6 rounded-3xl font-semibold m-4 2xl:mx-2 transition-all" onClick={()=> {try{props.topLoader()}catch{}}}>
+                    <button className="text-sm mt-0 text-center bg-gray-200 text-gray-900 p-2 px-6 rounded-3xl font-semibold m-4 2xl:mx-2 transition-all" onClick={()=> {try{props.topLoader()}catch{}}}>
                       SignIn to Message
                     </button>
                   </Link>
+                  </>
                 )}
               </>
             )}

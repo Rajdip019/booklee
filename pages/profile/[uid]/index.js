@@ -111,7 +111,7 @@ export default function UserProfile({ UserDetails }) {
   const topLoader = () => {
     setProgress(30);
   };
-
+  
   return (
     <>
       <Document />
@@ -131,6 +131,8 @@ export default function UserProfile({ UserDetails }) {
             name={UserDetails.name}
             email={UserDetails.email}
             image={UserDetails.image}
+            college = {UserDetails.college}
+            school = {UserDetails.school}
             topLoader={topLoader}
           />
         ) : (
@@ -139,6 +141,8 @@ export default function UserProfile({ UserDetails }) {
             name={UserDetails.name}
             email={UserDetails.email}
             image={UserDetails.image}
+            college = {UserDetails.college}
+            school = {UserDetails.school}
             topLoader={topLoader}
           />
         )}
