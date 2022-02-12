@@ -42,6 +42,8 @@ export default function ProductDetailsDonate({
           country={donateBooksDetails.country}
           state={donateBooksDetails.state}
           landmark={donateBooksDetails.landmark}
+          college = {donateBooksDetails.college}
+        school = {donateBooksDetails.school}
         />
       </div>
       <div className="lg:ml-[300px]">
@@ -64,6 +66,8 @@ export default function ProductDetailsDonate({
           landmarkB={donateBooksDetails.landmark}
           pinB={donateBooksDetails.pin}
           topLoader = {topLoader}
+          college = {donateBooksDetails.college}
+        school = {donateBooksDetails.school}
         />
       </div>
       <div className="lg:ml-[300px]">

@@ -57,6 +57,15 @@ const UserSchema = new mongoose.Schema({
     getBook_id :{
         type: Array,
     },
+    study: {
+        type : String,
+    },
+    college: {
+        type: String,
+    },
+    school: { 
+        type: String,
+    }
 })
 
 export default mongoose.models.User || mongoose.model("User", UserSchema)

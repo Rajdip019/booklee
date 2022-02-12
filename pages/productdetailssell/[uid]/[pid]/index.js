@@ -43,6 +43,8 @@ export default function ProductDetailsSellPage({sellBooksDetails, UserBookDetail
         state = {sellBooksDetails.state}
         landmark ={sellBooksDetails.landmark}
         price={sellBooksDetails.price}
+        college = {sellBooksDetails.college}
+        school = {sellBooksDetails.school}
       />
       </div>
       <div className="lg:ml-[300px]">
@@ -64,6 +66,8 @@ export default function ProductDetailsSellPage({sellBooksDetails, UserBookDetail
             stateB = {sellBooksDetails.state}
             landmarkB ={sellBooksDetails.landmark}
             pinB = {sellBooksDetails.pin}
+            college = {sellBooksDetails.college}
+            school = {sellBooksDetails.school}
             topLoader = {topLoader}
       />
       </div>

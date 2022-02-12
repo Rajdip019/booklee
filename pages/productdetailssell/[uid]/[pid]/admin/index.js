@@ -62,6 +62,8 @@ export default function ProductDetailsSellPage({
           state={sellBooksDetails.state}
           landmark={sellBooksDetails.landmark}
           price={sellBooksDetails.price}
+          college = {sellBooksDetails.college}
+        school = {sellBooksDetails.school}
         />
       </div>
 

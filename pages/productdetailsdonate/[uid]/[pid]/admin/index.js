@@ -70,6 +70,8 @@ export default function ProductDetailsDonate({
               country={donateBooksDetails.country}
               state={donateBooksDetails.state}
               landmark={donateBooksDetails.landmark}
+              college = {donateBooksDetails.college}
+              school = {donateBooksDetails.school}
             />
           </div>
           {/* Admin Pannel Start */}
@@ -167,6 +169,8 @@ export default function ProductDetailsDonate({
                   state={donateBooksDetails.state}
                   city={donateBooksDetails.city}
                   pin={donateBooksDetails.pin}
+                  college = {donateBooksDetails.college}
+        school = {donateBooksDetails.school}
                 />
               </div>
             </button>

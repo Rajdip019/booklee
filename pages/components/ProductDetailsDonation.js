@@ -15,17 +15,17 @@ const ProductDetailsDonation = (props) => {
         </div>
 
         <div className="xl:my-auto md:w-8/12 md:mx-auto xl:mx-0 mt-6 lg:my-12">
-          <div className=" mb-8">
+          <div className=" mb-6">
             <h1 className="text-4xl font-semibold">{props.name}</h1>
           </div>
-          <div className="mb-8">
+          <div className="mb-6">
             <p>{props.description}</p>
           </div>
-          <div className="mb-8">
+          <div className="mb-6">
             <h2 className="font-semibold ">Author</h2>
             <h3 className="text-xl">{props.author}</h3>
           </div>
-          <div className="mb-8">
+          <div className="mb-6">
             <h2 className="font-semibold">Condition</h2>
             <h3 className="text-xl flex">
               {props.condition}{" "}
@@ -41,7 +41,19 @@ const ProductDetailsDonation = (props) => {
               </span>
             </h3>
           </div>
-          <div className="mb-8">
+          {props.school && (
+            <div className="mb-6">
+              <h2 className="font-semibold ">School</h2>
+              <h3 className="text-xl">{props.school}</h3>
+            </div>
+          )}
+          {props.college && (
+            <div className="mb-6">
+              <h2 className="font-semibold ">College</h2>
+              <h3 className="text-xl">{props.college}</h3>
+            </div>
+          )}
+          <div className="mb-6">
             <h2 className="font-semibold">Location</h2>
             <p className="text-xl flex">
               {props.city}, {props.state}, {props.country}, ({props.landmark})
