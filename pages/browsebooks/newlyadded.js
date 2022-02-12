@@ -354,7 +354,7 @@ const search = () => {
                 <option value="West Bengal">West Bengal</option>
               </select>
               <select
-                className="block w-full h-[40px] pl-2 "
+                className="block w-full h-[40px] pl-2 mb-32"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
               >
