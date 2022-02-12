@@ -30,6 +30,12 @@ module.exports = {
         'DonationM-bg': "url('/DonationbgMob.png')",
         'EducationM-bg': "url('/EducationalbgMob.png')",
         'sidebar-pattern': "url('https://www.transparenttextures.com/patterns/cubes.png')",
+        'browseDonate' : "url('/1.png')",
+        'browseSell' : "url('/2.png')",
+        'landing1' : "url('/landing 1.png')",
+        'landing2' : "url('/landing2.png')",
+        'landing3' : "url('/landing3.png')",
+        'landing4' : "url('/landing4.png')"
 
         
       }),
