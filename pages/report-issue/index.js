@@ -60,7 +60,7 @@ export default function ReportIssue() {
       <div className=" ">
         <div className="lg:ml-[300px] ">
           <h1 className="text-center text-5xl text-red-600 font-semibold mt-14 font-rokkitt ">
-            Report a Isuue
+            Report a Issue
           </h1>
           <div className="flex-wrap flex">
             <div className="my-auto mt-24 mx-auto flex-col flex">
