@@ -56,7 +56,7 @@ export default function ReportIssue() {
     <>
       <Document />
       <Navbar />
-      <GeneralSidebar title="Contact Us" />
+      <GeneralSidebar title="Report a Issue" />
       <div className=" ">
         <div className="lg:ml-[300px] ">
           <h1 className="text-center text-5xl text-red-600 font-semibold mt-14 font-rokkitt ">
