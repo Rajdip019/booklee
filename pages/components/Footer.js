@@ -35,6 +35,9 @@ const Footer = () => {
                     <Link href="/contact">
                     <a className="block py-2 hover:underline transition-all">Contact</a>
                     </Link>
+                    <Link href="/report-issue">
+                    <a className="block pb-2 hover:underline transition-all">Report a Issue</a>
+                    </Link>
                 </div>
                 <div className="m-auto text-center md:text-left my-7">
 
