@@ -1,29 +1,29 @@
-# Next.js + Tailwind CSS Example
+![image](https://user-images.githubusercontent.com/65490434/154921475-6b0b54ec-6268-48dd-bb97-619d3813b435.png)  
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v2.2)](https://blog.tailwindcss.com/tailwindcss-2-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+# 1. What is Booklee ?  
 
-It uses the new [`Just-in-Time Mode`](https://tailwindcss.com/docs/just-in-time-mode) for Tailwind CSS.
+Booklee is a Web App, to sell and donate your second hand books at a minimal price or free of cost to help a needy learner, learn and grow more. 
 
-## Preview
+You can visit **_Booklee_** at [Booklee](https://booklee.vercel.app/)  
+We have also added a **video guide**, on how to use Booklee [here](https://www.youtube.com/watch?v=ykNmo_W762E)  
+  
+ 
+# 2. All Features Available  
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+When you land on the site, you'll see a lot of amazing features, ranging from the ability to login/sign-up , search for your favourite books, etc.  
+Let's go through them, one by one.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+## a. Sign-in / Sign-up  
+Here you can SignIn to our webiste or just Continue without Singing in. Even if you decide not to sign in, you can still continue and browse our awesome collection of books on the website.  
 
-## Deploy your own
+The website has sections like :  
+- Recently Added
+- Free Educational Books
+- Top Story Books
+  
+Click on the "View All" button, on any section to view _all_ the books in that section  
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+## b. Searching  
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+You also have the option of searching and filtering your search results according to (Category, Price, Condition & Location).  
+This way you'll be able to find the correct book for you as fast as possible.
