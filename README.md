@@ -117,3 +117,73 @@ You'll be directed to a page with the project details, and a Magical Admin Panel
 - See the Book Details in 'Visitor View'  
 
 ![image](https://user-images.githubusercontent.com/65490434/155155460-98df31f6-1bff-4f23-9695-229689a86dba.png)  
+
+
+## d. Marking a Book as Sold  
+ If you are marking a book as sold, you need to follow the following steps :-  
+ 1. Ask the Buyer/Donee to tell their email adress, which is registerd in Booklee and enter that in.  
+
+![image](https://user-images.githubusercontent.com/65490434/155659360-87130732-223c-4ddb-bf0b-4cc2ffee6d1d.png)  
+
+ 2. Once the system checks the user is register or not, you will see a message according to that. If the User is not authenticated then you will see aa error message to Pop up as invalid User.  
+
+![image](https://user-images.githubusercontent.com/65490434/155659402-3d0e8ffd-b774-44db-a359-5639c3fa21e1.png)  
+
+
+ 3. Or if the user is verified the system will pull the user data and show it on the modal with a verified mark!  
+ 4. Now the Seller/Doner must click on “Get OTP” and ask the buyer/donee to tell the OTP Sent to their Email to get Verified and get a Invoice/Donation Proof.  
+
+![image](https://user-images.githubusercontent.com/65490434/155659438-e0e13d1f-2990-4ad4-953e-58924c1fb2f1.png)  
+
+
+ 5. After entering the OTP click on Make Invoice to Make a invoice which the seller/Donator can get from his Profile in the Sold/Donated Section.  
+ 6. And the Buyer/Donee will get the Invoice/Donation proof in Booklee Website in Your Orders Section. (*after sigining in with his email).  
+
+# 5. Favorites Section  
+
+![image](https://user-images.githubusercontent.com/65490434/155659476-c916a8dd-499a-4aab-bc55-3e6908af6fce.png)  
+
+You can mark a book as your favourite book simply by clicking on the love icon on each card and can find them later in the Favorite Section.  
+
+# 6. Your Orders Section  
+
+![image](https://user-images.githubusercontent.com/65490434/155659778-39458164-1979-45eb-b96a-55cdda8361cc.png)  
+
+You can find all of the Books you bought or got donated in the orders section.  
+From here you can get the invoice/donation proof by clicking on the “Get Invoice” and “Get Donation Proof” buttons respectively.  
+
+# 7. Invoice/Donation Proof  
+
+![image](https://user-images.githubusercontent.com/65490434/155659995-bf56a577-93c5-4736-8f49-82b2be6fcb4b.png)  
+
+ On the invoice/Donation Proof Page you can save or print the Invoice/Donation Proof Directly from the Page.  
+
+ # 8. Message  
+
+ ![image](https://user-images.githubusercontent.com/65490434/155660041-0b429bf8-df33-4fd8-8bc1-dfa3c1695695.png)  
+
+If you want to contact a seller regarding a doubt about the book, you can also do it here.  
+You just have to enter the name of the book you have query about and write the query and the seller will receive an email about your query and can reply you back.  
+
+# 9. Donate to NGO  
+
+If you decide to donate your old books to an NGO, you can click on “Donate To NGO” Button on the home Page or click on the Donate button on the Navbar and navigate to Donate to NGO then.  
+
+Once you Click on Donate to NGO button, you will land on a Page where you can see the Total Books donated to NGO which is directly coming from the Azure Cosmos DB database.  
+
+![image](https://user-images.githubusercontent.com/65490434/155660120-12231948-601c-4886-b2c5-bc86a0204338.png)  
+
+Now on Clicking the Donate button you will be redirected to a form.  
+
+![image](https://user-images.githubusercontent.com/65490434/155660380-9c0ed499-ad8e-4b9d-8720-c855447dc15b.png)  
+
+Now After filling the form when you click on Submit, the System will find the Top 10 nearby NGO and will show the list with a interactive map which will point out the exact location of the NGO’s on the Map.  
+
+![image](https://user-images.githubusercontent.com/65490434/155660420-0387d23a-0024-48e0-86af-b1374ba13388.png)  
+
+Now after you choose your preffered NGO to donate book and click on Donate we will receive your info, The NGO, and the Book Details you want to Donate to the NGO.  
+Then, we will contact the NGO accordingly.  
+
+```diff
+These are almost all the Features of the Website. There are still some features in the Website Which is pretty self explainatory so it’s not included here.  
+```
