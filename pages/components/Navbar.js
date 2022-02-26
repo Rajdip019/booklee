@@ -118,7 +118,7 @@ const Navbar = (props) => {
 
           <div className="flex items-center">
             <a
-              href="https://rajdeepsengupta.notion.site/Project-Details-0fcfce9964da4e96af6564c87aa631fc"
+              href="https://bookleedocs.super.site/"
               target="_blank"
             >
               <div className="flex flex-col items-center group">
@@ -554,7 +554,7 @@ const Navbar = (props) => {
 
           <div className="flex items-center">
             <a
-              href="https://rajdeepsengupta.notion.site/Project-Details-0fcfce9964da4e96af6564c87aa631fc"
+              href="https://bookleedocs.super.site/"
               target="_blank"
             >
               <div className="flex flex-col items-center group">
