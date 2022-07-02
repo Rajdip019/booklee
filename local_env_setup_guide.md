@@ -15,7 +15,6 @@ Or you can run this code in your PC/Laptop terminal
 
 ```
 git clone https://github.com/Rajdip019/booklee.git
-
 ```
 
 ## 2. Installing all npm packages
@@ -24,7 +23,6 @@ Then you need to navigate to the directory and run the following code. This will
 
 ```
 npm install
-
 ```
 ## 3. Setup helper
 
@@ -38,7 +36,6 @@ Remove everything and copy paste this code snippet.
 export const template = {
     templateString : "http://localhost:3000"
 }
-
 ```
 
 **Note** : You can have different localhost other than 3000, use that in that case. 
@@ -83,7 +80,7 @@ With that's done you are done with the authentication part.
 
 We are using Cosmos DB from Microsoft Azure Cloud. If you want to have a database and access that you can watch my this video of Azure Cosmos DB International Conf.
 
-[Mkae your Database and Integrate that.](https://youtu.be/GiMtIifnsLk?t=7240)
+[Make your Database and Integrate that.](https://youtu.be/GiMtIifnsLk?t=7240)
 
 ## Searh and filter API
 
@@ -101,7 +98,6 @@ Use this code in your terminal to generate a key for you.
 
 ```
 $ openssl rand -base64 32
-
 ```
 
 Copy that key and paste it beside **SECRET** keyword in the **.env.local** file. (You renamed).
@@ -112,7 +108,6 @@ Because, when deploying to production, set the NEXTAUTH_URL environment variable
 
 ```
 NEXTAUTH_URL=https://example.com
-
 ```
 
 It maybe your localhost URL or maybe the URL where you want to deploy.
