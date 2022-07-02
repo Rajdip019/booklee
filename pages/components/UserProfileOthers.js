@@ -1,24 +1,12 @@
 import React from "react";
 import { Avatar, ChakraProvider } from "@chakra-ui/react";
 import Link from "next/link";
-import { getSession } from "next-auth/react";
-import { useState } from "react";
 import { useSession } from "next-auth/react";
 
 const UserProfileOthers = (props) => {
-  const [id, setId] = useState("");
 
   const { data: session } = useSession();
   const mail = session?.user?.email;
-
-  const havesession = async () => {
-    const fetchsession = await getSession();
-    const fetchmail = fetchsession?.user?.email;
-    const res = await fetch(`http://localhost:3000/api/user/${fetchmail}`);
-    const userData = await res.json();
-    setId(userData._id);
-  };
-  havesession();
 
   return (
     <>
