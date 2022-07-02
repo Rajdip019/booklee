@@ -7,14 +7,14 @@ const sellBookSchema = new mongoose.Schema({
     },
 	author :{
         type: String,
-        required: true
+        required: true 
     },
 	photo :{
         type: String,
         required: true
     },
 	condition : {
-        type: Number,
+        type: Number, 
         required: true
     },
 	category :{
